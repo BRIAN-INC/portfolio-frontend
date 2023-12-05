@@ -14,7 +14,7 @@ RUN npm install -g npm@10.2.4
 RUN npm install -g @angular/cli@17.0.5
 
 # Instala las dependencias del proyecto
-# RUN npm install
+RUN npm install
 
 # Instala las dependencias adicionales
 # RUN npm install ...
