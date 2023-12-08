@@ -1,5 +1,5 @@
-# Utiliza la imagen de Node.js 20.10.0 como base
-FROM node:20.10.0
+# Utiliza la imagen de Node.js 18.16.1 como base
+FROM node:18.16.1
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -8,10 +8,10 @@ WORKDIR /app
 COPY . .
 
 # Instala la versión específica de npm
-RUN npm install -g npm@10.2.4
+RUN npm install -g npm@9.8.0
 
 # Instala Angular CLI
-RUN npm install -g @angular/cli@17.0.5
+RUN npm install -g @angular/cli@17.0.6
 
 # Instala las dependencias del proyecto
 RUN npm install

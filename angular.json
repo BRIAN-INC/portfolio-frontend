@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "brian-portfolio": {
+    "portfolio-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/brian-portfolio",
+            "outputPath": "dist/portfolio-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -40,13 +40,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "10mb",
-                  "maximumError": "10mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10mb",
-                  "maximumError": "10mb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "brian-portfolio:build:production"
+              "buildTarget": "portfolio-frontend:build:production"
             },
             "development": {
-              "buildTarget": "brian-portfolio:build:development"
+              "buildTarget": "portfolio-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "brian-portfolio:build"
+            "buildTarget": "portfolio-frontend:build"
           }
         },
         "test": {
@@ -101,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "ba94ab17-a557-438b-a622-c1154eed0feb"
+    "analytics": "25a9f266-91a9-4c9b-a64c-121dd9a572b6"
   }
 }
