@@ -1,0 +1,11 @@
+<button [ngClass]="['btn', type]" [ngStyle]="{
+        'background-color': backgroundColor,
+        'color': color,
+        'border': hasBorder ? '1px solid ' + borderColor : 'none',
+        'padding': padding
+      }" [disabled]="disabled">
+  <span *ngIf="icon" class="icon">
+    <i [class]="icon"></i>
+  </span>
+  {{ text }}
+</button>
