@@ -1,14 +1,18 @@
-<div class="my-container flex">
+<!-- my-container.component.html -->
+<div class="my-container flex" [ngClass]="{'expanded': isExpanded, 'bg-scrolled': isScrolled}">
+  <div class="close">
+    <i (click)="toggleMenu()" class="fa" [ngClass]="{'fa-xmark': isExpanded, 'fa-bars': !isExpanded}"></i>
+  </div>
   <nav class="my-content flex">
     <div class="logo flex">
       <img class="logo-img" src="assets/svg/northflank.svg" alt="logo" />
-      <h2 class="logo-txt">Brian Uceda</h2>
+      <a class="logo-txt">Kiridepapel</a>
     </div>
     <ul class="items flex">
-      <li class="item"><app-button padding="3px 10px" text="Home" type="transparent"></app-button></li>
-      <li class="item"><app-button text="About" type="transparent"></app-button></li>
-      <li class="item"><app-button text="Login" type="secondary"></app-button></li>
-      <li class="item"><app-button text="Register" type="primary"></app-button></li>
+      <li class="item"><app-button text="Home" type="transparent" padding="3px 15px" url="/"></app-button></li>
+      <li class="item"><app-button text="Profile" type="transparent" padding="3px 15px" [submenus]="submenusProfile"></app-button></li>
+      <li class="item"><app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary" url="{{ gitHubUrl }}" [blank]="true"></app-button></li>
+      <li class="item"><app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary" url="{{ linkedInUrl }}" [blank]="true"></app-button></li>
     </ul>
   </nav>
 </div>

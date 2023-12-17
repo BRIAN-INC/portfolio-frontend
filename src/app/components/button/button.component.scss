@@ -1,8 +1,7 @@
-* {
-  font-size: 13px;
-}
+@import "../../../assets/style/_variables.scss";
 
 .btn {
+  font-size: 13px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +19,21 @@
     opacity: 0.7;
   }
 
-  .icon {
-    margin-right: 5px;
+  .icon-left {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+
+  .icon-right {
+    margin-left: 10px;
+    font-size: 9px;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .btn {
+    font-size: 16px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
   }
 }

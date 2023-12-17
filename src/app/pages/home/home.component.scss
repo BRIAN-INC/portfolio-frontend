@@ -8,14 +8,21 @@
 }
 
 .my-container {
+  z-index: 100;
 
   .my-content {
-    z-index: 100;
     opacity: 1;
-    height: $bar-height;
     width: 100%;
-    margin: 0 17.5%;
-    padding: 0 32px;
+    height: 100%;
+    margin: 0 10% 5%;
+    padding: 32px;
     justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: $desktop) {
+  .my-container .my-content {
+    margin: 0 10% 8%;
   }
 }

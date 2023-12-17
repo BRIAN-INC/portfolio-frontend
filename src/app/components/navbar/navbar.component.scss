@@ -2,24 +2,35 @@
 @import "../../../assets/style/_variables.scss";
 @import "../../../assets/style/_colors.scss";
 
-* {
+.my-container {
+  background-color: transparent;
+  position: sticky;
+  top: 0;
   font-size: 14px;
   color: $txt-color;
-}
+  z-index: 100;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+  transition-property: background-color, box-shadow;
 
-.my-container {
+  &.bg-scrolled {
+    background: $bg-gradient;
+    box-shadow: 0 0 10px 10px rgba($bg-color, 0.5);
+  }
+
+  .close {
+    display: none;
+  }
 
   .my-content {
-    z-index: 100;
-    opacity: 1;
     height: $bar-height;
     width: 100%;
-    margin: 0 17.5%;
+    margin: 0 15%;
     padding: 0 32px;
     justify-content: space-between;
 
     .logo {
-      gap: 10px;
+      gap: 12px;
+      cursor: pointer;
 
       .logo-img {
         width: 42px;
@@ -31,7 +42,8 @@
       .logo-txt {
         margin: 0;
         padding: 0;
-        font-size: 21px;
+        color: $txt-color;
+        font-size: 20px;
         font-weight: 500;
         text-decoration: none;
         font-family: Inter, system-ui, sans-serif;
@@ -41,9 +53,114 @@
     .items {
       text-decoration: none;
       list-style: none;
-      margin: 0 !important;
-      padding: 0 !important;
+      margin: 0;
+      padding: 0;
       gap: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop) {
+  .my-container .my-content {
+    margin: 0 12%;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .my-container {
+    height: $bar-height;
+    width: 100%;
+    z-index: 110;
+
+    &.bg-scrolled {
+      box-shadow: 0 0 10px 10px rgba($bg-color, 1);
+    }
+
+    .my-content {
+      justify-content: flex-start;
+      margin: 0;
+      padding: 0 20px;
+
+      .logo {
+        .logo-img {
+          width: 36px;
+          height: 36px;
+        }
+
+        .logo-txt {
+          display: none;
+        }
+      }
+
+      .items {
+        transform: translateX(-100%); // Empieza oculto (fuera de la pantalla a la izquierda)
+        transition: transform 0.5s ease; // Transición suave para el efecto de deslizamiento
+
+        .item {
+          display: none;
+        }
+      }
+    }
+
+    .close {
+      display: block;
+      position: absolute;
+      top: 30px;
+      right: 20px;
+
+      .fa {
+        font-size: 22px;
+      }
+    }
+
+    &.expanded {
+      position: fixed;
+      height: 100vh;
+      min-height: 100vh;
+      max-height: 100vh;
+      width: 100%;
+      z-index: 110;
+      background: $bg-gradient;
+
+      .my-content {
+        display: block;
+        flex-direction: column;
+        gap: 30px;
+        margin: 0 12%;
+        padding: 0;
+        height: auto;
+
+        .logo {
+          position: absolute;
+          top: 22px;
+          left: 20px;
+
+          .logo-img {
+            width: 36px;
+            height: 36px;
+          }
+
+          .logo-txt {
+            display: none;
+          }
+        }
+
+        .items {
+          transform: translateX(0); // Desplaza el menú para que sea visible
+          transition: transform 0.5s ease; // Transición suave para el efecto de deslizamiento
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          gap: 30px;
+          margin-top: -$bar-height;
+
+          .item {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }
