@@ -1,7 +1,7 @@
 @import "../../../assets/style/_types.scss";
 @import "../../../assets/style/_variables.scss";
 @import "../../../assets/style/_colors.scss";
-
+@import "../../../assets/style/_animations.scss";
 
 .content {
   position: relative;
@@ -144,47 +144,5 @@
         }
       }
     }
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(5%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(5%);
-  }
-}
-
-@keyframes rotateUp {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-180deg);
-  }
-}
-
-@keyframes rotateDown {
-  from {
-    transform: rotate(-180deg);
-  }
-  to {
-    transform: rotate(0deg);
   }
 }

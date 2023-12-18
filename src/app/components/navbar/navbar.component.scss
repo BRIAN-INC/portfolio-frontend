@@ -5,6 +5,8 @@
 .my-container {
   background-color: transparent;
   position: sticky;
+  width: 100%;
+  height: 100%;
   top: 0;
   font-size: 14px;
   color: $txt-white-color;
@@ -12,57 +14,60 @@
   transition: background-color 0.5s ease, box-shadow 0.5s ease;
   transition-property: background-color, box-shadow;
 
-  &.bg-scrolled {
+  &.no-expanded.bg-scrolled {
     background: $bg-gradient;
     box-shadow: 0 0 10px 10px rgba($bg-color, 0.5);
   }
 
-  .close {
-    display: none;
-    cursor: pointer;
-  }
-
-  .my-content {
+  .navbar {
     height: $bar-height;
     width: 100%;
     margin: 0 15%;
     padding: 0 32px;
     justify-content: space-between;
 
-    .logo {
-      gap: 12px;
-      cursor: pointer;
+    .nav-base {
+      .logo {
+        gap: 12px;
+        cursor: pointer;
 
-      .logo-img {
-        width: 42px;
-        height: 42px;
-        margin: 0;
-        padding: 0;
+        .logo-img {
+          width: 42px;
+          height: 42px;
+          margin: 0;
+          padding: 0;
+        }
+
+        .logo-txt {
+          margin: 0;
+          padding: 0;
+          color: $txt-white-color;
+          font-size: 20px;
+          font-weight: 500;
+          text-decoration: none;
+          font-family: Inter, system-ui, sans-serif;
+        }
       }
-
-      .logo-txt {
-        margin: 0;
-        padding: 0;
-        color: $txt-white-color;
-        font-size: 20px;
-        font-weight: 500;
-        text-decoration: none;
-        font-family: Inter, system-ui, sans-serif;
+      .close {
+        display: none;
+        cursor: pointer;
       }
     }
 
-    .items {
-      text-decoration: none;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: 10px;
+    .nav-content {
+      .items {
+        text-decoration: none;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 10px;
+      }
     }
   }
 }
 
 @media screen and (max-width: $desktop) {
-  .my-container .my-content {
+  .my-container .navbar {
     margin: 0 12%;
     padding: 0 32px;
   }
@@ -70,77 +75,27 @@
 
 @media screen and (max-width: $tablet) {
   .my-container {
-    height: $bar-height;
-    width: 100%;
-    z-index: 110;
-
-    &.bg-scrolled {
-      box-shadow: 0 0 10px 10px rgba($bg-color, 1);
-    }
-
-    .my-content {
-      justify-content: flex-start;
+    .navbar {
+      height: $bar-height-mobile;
       margin: 0;
-      padding: 0 20px;
+      padding: 0;
+      flex-direction: column;
 
-      .logo {
-        .logo-img {
-          width: 36px;
-          height: 36px;
+      .nav-base {
+        width: 100%;
+        height: $bar-height-mobile;
+        padding: 0 20px;
+        justify-content: space-between;
+
+        .close {
+          display: block;
+
+          .fa {
+            font-size: 22px;
+          }
         }
-
-        .logo-txt {
-          display: none;
-        }
-      }
-
-      .items {
-        transform: translateX(-100%); // Empieza oculto (fuera de la pantalla a la izquierda)
-        transition: transform 0.5s ease; // Transición suave para el efecto de deslizamiento
-
-        .item {
-          display: none;
-        }
-      }
-    }
-
-    .close {
-      display: block;
-      position: absolute;
-      top: 30px;
-      right: 20px;
-
-      .fa {
-        font-size: 22px;
-
-        &.fa-xmark:hover {
-          animation: rotate 1s linear infinite;
-        }
-      }
-    }
-
-    &.expanded {
-      position: fixed;
-      height: 100vh;
-      min-height: 100vh;
-      max-height: 100vh;
-      width: 100%;
-      z-index: 110;
-      background: $bg-gradient;
-
-      .my-content {
-        display: block;
-        flex-direction: column;
-        gap: 30px;
-        margin: 0 12%;
-        padding: 0;
-        height: auto;
 
         .logo {
-          position: absolute;
-          top: 22px;
-          left: 20px;
-
           .logo-img {
             width: 36px;
             height: 36px;
@@ -150,15 +105,27 @@
             display: none;
           }
         }
+      }
+
+      .nav-content {
+        // Animation
+        position: absolute;
+        top: $bar-height-mobile;
+        background-color: #0b2338;
+        // Content
+        width: 100%;
+        height: calc(100vh - $bar-height-mobile);
+        padding-bottom: $bar-height-mobile;
+        flex-direction: column;
+        justify-content: center;
 
         .items {
-          transform: translateX(0); // Desplaza el menú para que sea visible
-          transition: transform 0.5s ease; // Transición suave para el efecto de deslizamiento
           display: flex;
           width: 100%;
+          height: 100%;
+          padding: 0 12%;
           flex-direction: column;
           gap: 30px;
-          margin-top: -$bar-height;
 
           .item {
             display: block;
@@ -167,14 +134,27 @@
         }
       }
     }
-  }
-}
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+    &.no-expanded {
+      .nav-base {
+        background-color: transparent;
+      }
+
+      .nav-content {
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+    }
+
+    &.expanded {
+      .nav-base {
+        background-color: #0b2338;
+      }
+
+      .nav-content {
+        transform: translateX(0);
+        transition: transform 0.5s ease;
+      }
+    }
   }
 }

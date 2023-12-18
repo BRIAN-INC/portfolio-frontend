@@ -18,9 +18,8 @@ export class NavbarComponent {
   // Data
   submenusProfile: Submenu[] = [];
   submenusHome: Submenu[] = [];
-  gitHubUrl: string = 'https://github.com/kiridepapel';
-  linkedInUrl: string =
-    'https://www.linkedin.com/in/brian-uceda-hirata-880b68237/';
+  gitHubUrl: string = 'https://github.com/kiridepapel/';
+  linkedInUrl: string = 'https://www.linkedin.com/in/kiridepapel/';
 
   constructor(private navbarService: NavbarService) {}
 
