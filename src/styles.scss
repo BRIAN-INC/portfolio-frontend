@@ -1,2 +1,36 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "./assets/style/_colors.scss";
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px; /* Ancho */
+}
+
+::-webkit-scrollbar-track {
+  background: $semi-secondary-color; /* Color de fondo  */
+}
+
+::-webkit-scrollbar-thumb {
+  background: $tertiary-color; /* Color principal */
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $quaternary-color; /* Color de la barra al hacer hover */
+}
+
+::-webkit-scrollbar-button {
+  background: $semi-secondary-color; /* Color de los botones de la barra */
+}
+
+::-webkit-scrollbar-button:hover, ::-webkit-scrollbar-button:active {
+  background: $quaternary-color; /* Color de los botones al hacer hover y al hacer click */
+}

@@ -1,26 +1,28 @@
+import { NavbarService } from './../../services/navbar.service';
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { Submenu } from '../../models/submenu.model';
+import { submenusHomeData, submenusProfileData } from '../../data/submenu.data';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
   isExpanded = false;
   isScrolled = false;
   // Data
   submenusProfile: Submenu[] = [];
+  submenusHome: Submenu[] = [];
   gitHubUrl: string = 'https://github.com/kiridepapel';
   linkedInUrl: string =
     'https://www.linkedin.com/in/brian-uceda-hirata-880b68237/';
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private navbarService: NavbarService) {}
 
   ngOnInit(): void {
     this.loadSubmenusProfile();
@@ -40,33 +42,18 @@ export class NavbarComponent {
     }
   }
 
+  public navigate(url: string): void {
+    if (!url) return;
+    window.location.href = url;
+  }
+
   loadSubmenusProfile(): void {
-    this.submenusProfile = [
-      {
-        icon: 'fas fa-user',
-        text: 'Profile',
-        shortDescription: 'Manage your profile',
-        route: '/profile',
-        blank: false,
-      },
-      {
-        icon: 'fas fa-cog',
-        text: 'Settings',
-        shortDescription: 'Manage your settings',
-        route: '/settings',
-        blank: false,
-      },
-      {
-        icon: 'fas fa-sign-out-alt',
-        text: 'Logout',
-        shortDescription: 'Logout from your account',
-        route: '/logout',
-        blank: false,
-      },
-    ];
+    this.submenusHome = submenusHomeData;
+    this.submenusProfile = submenusProfileData;
   }
 
   toggleMenu(): void {
     this.isExpanded = !this.isExpanded;
+    this.navbarService.clearActiveButton();
   }
 }

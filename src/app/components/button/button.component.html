@@ -1,16 +1,53 @@
-<button [ngClass]="['btn', type]" [ngStyle]="{
-        'background-color': backgroundColor,
-        'color': color,
-        'border': hasBorder ? '1px solid ' + borderColor : 'none',
-        'padding': padding
-      }"
-      [disabled]="disabled"
-      (click)="navigate()">
-  @if (icon) {
-    <i class="icon-left" [class]="icon"></i>
+<div class="content">
+  <!-- Button -->
+  <button
+    [ngClass]="['btn', type]"
+    [ngStyle]="{
+      'background-color': backgroundColor,
+      color: color,
+      border: hasBorder ? '1px solid ' + borderColor : 'none',
+      padding: padding
+    }"
+    [disabled]="disabled"
+    (click)="toggleSubmenus()"
+    (click)="navigate()"
+    (mouseenter)="showSubmenus()"
+    (mouseleave)="hideSubmenus()"
+  >
+    @if (icon) {
+      <i class="icon-left" [class]="icon"></i>
+    }
+    <span>{{ text }}</span>
+    @if (haveSubmenus) {
+      <i class="icon-right fa-solid fa-chevron-down" [class]="isButtonActive() ? 'icon-rotate-up' : 'icon-rotate-down'"></i>
+    }
+  </button>
+
+  <!-- Submenu -->
+  @if(haveSubmenus) {
+    <div
+      class="submenu-container"
+      [ngClass]="this.screenWidth > 920 ? animationClass : (isButtonActive() ? 'show' : '')"
+      (mouseenter)="showSubmenus()"
+      (mouseleave)="hideSubmenus()"
+    >
+      <div class="arrow-up"></div>
+      <div class="submenu">
+        <ul class="submenu-list flex">
+          @for (submenu of submenus; track submenu.text) {
+            <li class="submenu-item flex">
+              <a
+                class="item flex"
+                href="{{ submenu.route }}"
+                target="{{ submenu.blank ? '_blank' : '_self' }}"
+              >
+                <i class="icon icon-left" [class]="submenu.icon"></i>
+                <span>{{ submenu.text }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
   }
-  <span>{{ text }}</span>
-  @if (haveSubmenus) {
-    <i class="icon-right fa-solid fa-chevron-down"></i>
-  }
-</button>
+</div>

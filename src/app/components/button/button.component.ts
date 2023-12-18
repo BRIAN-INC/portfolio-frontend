@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Submenu } from '../../models/submenu.model';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-button',
@@ -10,6 +11,8 @@ import { Submenu } from '../../models/submenu.model';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
+  // Angular variables
+  private id: string = '';
   @Input() icon: string = '';
   @Input() text: string = 'Button';
   @Input() type: string = 'transparent';
@@ -18,21 +21,72 @@ export class ButtonComponent {
   @Input() disabled: boolean = false;
   @Input() blank: boolean = false;
   @Input() submenus: Submenu[] = [];
-  public haveSubmenus: boolean = false;
   color: string = '';
   backgroundColor: string = '';
   hasBorder: boolean = false;
   borderColor: string = '';
+  // My variables
+  public haveSubmenus: boolean = false;
+  public animationClass: string = '';
+  private hideSubmenuTimer: any;
+  public screenWidth: number = window.innerWidth;
 
-  constructor() {}
+  constructor(private navbarService: NavbarService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    if (!this.id) this.id = Math.random().toString(32).slice(2);
     this.selectColors();
     this.defineIfHaveSubmenus();
   }
 
+  public toggleSubmenus(): void {
+    console.log('antes: ' + this.isButtonActive());
+    if (this.navbarService.getActiveButton() === this.id) {
+      this.hideAnimation();
+    } else {
+      if (this.animationClass == 'show') {
+        this.hideAnimation();
+      } else {
+        this.navbarService.setActiveButton(this.id);
+        this.showSubmenus();
+      }
+    }
+    console.log('despues: ' + this.isButtonActive());
+  }
+
+  public showSubmenus(): void {
+    if (this.screenWidth <= 920) return; // Celular
+    this.navbarService.setActiveButton(this.id);
+    if (this.hideSubmenuTimer) {
+      clearTimeout(this.hideSubmenuTimer);
+    }
+    this.animationClass = 'show';
+  }
+
+  public hideSubmenus(): void {
+    if (this.screenWidth <= 920) return; // Celular
+    if (this.animationClass != '') {
+      this.hideAnimation();
+    }
+  }
+
+  private hideAnimation(): void {
+    // Limpia el boton activo del service
+    this.navbarService.clearActiveButton();
+    // Oculta progresivamente el submenu
+    this.hideSubmenuTimer = setTimeout(() => {
+      this.animationClass = 'hide';
+      this.hideSubmenuTimer = setTimeout(() => {
+        this.animationClass = '';
+      }, 100);
+    }, 50);
+  }
+
+  isButtonActive(): boolean {
+    return this.navbarService.getActiveButton() === this.id;
+  }
+
   public navigate(): void {
-    // If url is '' or null, then do nothing
     if (!this.url) return;
     else if (this.blank) {
       window.open(this.url, '_blank');

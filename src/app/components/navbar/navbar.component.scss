@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
   font-size: 14px;
-  color: $txt-color;
+  color: $txt-white-color;
   z-index: 100;
   transition: background-color 0.5s ease, box-shadow 0.5s ease;
   transition-property: background-color, box-shadow;
@@ -19,6 +19,7 @@
 
   .close {
     display: none;
+    cursor: pointer;
   }
 
   .my-content {
@@ -42,7 +43,7 @@
       .logo-txt {
         margin: 0;
         padding: 0;
-        color: $txt-color;
+        color: $txt-white-color;
         font-size: 20px;
         font-weight: 500;
         text-decoration: none;
@@ -111,6 +112,10 @@
 
       .fa {
         font-size: 22px;
+
+        &.fa-xmark:hover {
+          animation: rotate 1s linear infinite;
+        }
       }
     }
 
@@ -162,5 +167,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

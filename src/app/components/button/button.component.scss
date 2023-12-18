@@ -1,39 +1,190 @@
+@import "../../../assets/style/_types.scss";
 @import "../../../assets/style/_variables.scss";
+@import "../../../assets/style/_colors.scss";
 
-.btn {
-  font-size: 13px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2.5px;
-  width: 100%;
-  font-weight: 500;
-  font-family: Inter, system-ui, sans-serif;
-  border: none;
-  outline: none !important;
-  box-shadow: none !important;
-  transition: all 0.2s ease-in-out;
 
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
+.content {
+  position: relative;
+
+  .btn {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2.5px;
+    width: 100%;
+    font-weight: 500;
+    font-family: Inter, system-ui, sans-serif;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    .icon-left {
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .icon-right {
+      margin-left: 10px;
+      font-size: 9px;
+    }
+
+    .icon-rotate-up {
+      animation: rotateUp 0.3s forwards;
+    }
+
+    .icon-rotate-down {
+      animation: rotateDown 0.3s forwards;
+    }
   }
 
-  .icon-left {
-    margin-right: 10px;
-    font-size: 14px;
-  }
+  .submenu-container {
+    position: absolute;
+    top: 30px;
+    opacity: 0;
+    transform: translateY(-100%);
+    display: none;
 
-  .icon-right {
-    margin-left: 10px;
-    font-size: 9px;
+    &.show {
+      animation: slideDown 250ms ease-out forwards;
+      display: block;
+    }
+
+    &.hide {
+      animation: slideUp 250ms ease-in forwards;
+      display: block;
+    }
+
+    .arrow-up {
+      margin-left: 15px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 12px solid $tertiary-color;
+      background-color: transparent;
+    }
+
+    .submenu {
+      background-color: $semi-secondary-color;
+      border: 1px solid $tertiary-color;
+      border-radius: 5px;
+
+      .submenu-list {
+        border-radius: 5px;
+        margin: 0;
+        padding: 10px;
+        list-style: none;
+        flex-direction: column;
+        gap: 10px;
+
+        .submenu-item {
+          width: 100%;
+
+          .item {
+            border-radius: 5px;
+            justify-content: flex-start;
+            padding: 10px;
+            width: 100%;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            color: $txt-secondary-color;
+            font-size: 13px;
+            font-weight: 500;
+            gap: 10px;
+
+            .icon {
+              color: $txt-secondary-color;
+            }
+
+            &:hover {
+              background-color: $secondary-color;
+              color: $txt-white-color;
+
+              .icon {
+                color: $quaternary-color;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 @media screen and (max-width: $tablet) {
-  .btn {
-    font-size: 16px;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+  .content {
+    .btn {
+      font-size: 16px;
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+    }
+
+    .submenu-container {
+      position: static;
+      padding: 0;
+      margin-top: 10px;
+
+      .arrow-up {
+        display: none;
+      }
+
+      .submenu {
+        display: block;
+
+        .submenu-list .submenu-item .main {
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+}
+
+@keyframes rotateUp {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes rotateDown {
+  from {
+    transform: rotate(-180deg);
+  }
+  to {
+    transform: rotate(0deg);
   }
 }
