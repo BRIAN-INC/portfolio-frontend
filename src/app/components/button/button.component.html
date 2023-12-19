@@ -6,43 +6,62 @@
       'background-color': backgroundColor,
       color: color,
       border: hasBorder ? '1px solid ' + borderColor : 'none',
-      padding: padding
+      padding: padding,
+      cursor: uri === '' ? 'default' : 'pointer'
     }"
     [disabled]="disabled"
-    (click)="toggleSubmenus()"
+    (mouseenter)="haveSubmenus ? showSubmenus() : ''"
+    (mouseleave)="havePreviewImg ? hideSubmenus() : ''"
     (click)="navigate(uri)"
-    (mouseenter)="showSubmenus()"
-    (mouseleave)="hideSubmenus()"
+    (click)="toggleSubmenus()"
   >
+  <!-- toggleSubmenus() solo funciona en celular -->
     @if (icon) {
       <i class="icon-left" [class]="icon"></i>
     }
     <span>{{ text }}</span>
-    @if (haveSubmenus) {
-      <i class="icon-right fa-solid fa-chevron-down" [class]="isButtonActive() ? 'icon-rotate-up' : 'icon-rotate-down'"></i>
+    @if (haveSubmenus && !havePreviewImg) {
+      <i
+        class="icon-right fa-solid fa-chevron-down"
+        [class]="isButtonActive() ? 'icon-rotate-up' : 'icon-rotate-down'">
+      </i>
     }
   </button>
 
   <!-- Submenu -->
-  @if(haveSubmenus) {
+  <!-- @if(haveSubmenus) {} -->
+  @if(haveSubmenus && (!havePreviewImg || havePreviewImg && isDesktop())) {
     <div
       class="submenu-container"
-      [ngClass]="this.screenWidth > 920 ? animationClass : (isButtonActive() ? 'show' : '')"
-      (mouseenter)="showSubmenus()"
+      [ngClass]="[
+        isDesktop() ? animationClass : '',
+        isButtonActive() ? 'show' : ''
+      ]"
+      [class.is-preview-img]="isButtonActive() && havePreviewImg"
       (mouseleave)="hideSubmenus()"
+      (click)="toggleSubmenus()"
     >
       <div class="arrow-up"></div>
-      <div class="submenu">
+      <div class="submenu"
+        (mouseenter)="havePreviewImg ? hideSubmenus() : ''"
+      >
         <ul class="submenu-list flex">
           @for (submenu of submenus; track submenu.text) {
             <li class="submenu-item flex">
               <a
                 class="item flex"
-                (click)="navigate(submenu.uri)"
+                [ngClass]="{'is-preview-img' : havePreviewImg}"
+                (click)="navigate(submenu.uri!)"
                 target="{{ submenu.blank ? '_blank' : '_self' }}"
               >
-                <i class="icon icon-left" [class]="submenu.icon"></i>
-                <span>{{ submenu.text }}</span>
+                @if (!havePreviewImg) {
+                  <i class="icon icon-left" [class]="submenu.icon"></i>
+                  <span>{{ submenu.text }}</span>
+                } @else if (isDesktop()) {
+                  <div class="preview-img flex">
+                    <img src="{{ submenu.previewImg }}" alt="{{ submenu.text }} preview-img" />
+                  </div>
+                }
               </a>
             </li>
           }

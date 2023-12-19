@@ -6,6 +6,8 @@ import { Submenu } from '../../models/submenu.model';
 import {
   submenusPortfolioData,
   submenusDocsData,
+  submenusGitHubData,
+  submenusLinkedInData,
 } from '../../data/submenu.data';
 import { environment } from '../../../environments/environment.prod';
 
@@ -22,6 +24,8 @@ export class NavbarComponent {
   // Data
   submenusPortfolio: Submenu[] = [];
   submenusDocs: Submenu[] = [];
+  submenusGitHub: Submenu[] = [];
+  submenusLinkeIn: Submenu[] = [];
   gitHubUrl: string = 'https://github.com/kiridepapel/';
   linkedInUrl: string = 'https://www.linkedin.com/in/kiridepapel/';
 
@@ -53,6 +57,8 @@ export class NavbarComponent {
   loadSubmenusProfile(): void {
     this.submenusPortfolio = submenusPortfolioData;
     this.submenusDocs = submenusDocsData;
+    this.submenusGitHub = submenusGitHubData;
+    this.submenusLinkeIn = submenusLinkedInData;
   }
 
   toggleMenu(): void {

@@ -27,7 +27,9 @@ export class ButtonComponent {
   hasBorder: boolean = false;
   borderColor: string = '';
   // My variables
+  public showHoverAnimWidth: number = 1040;
   public haveSubmenus: boolean = false;
+  public havePreviewImg: boolean = false;
   public animationClass: string = '';
   private hideSubmenuTimer: any;
   public screenWidth: number = window.innerWidth;
@@ -37,7 +39,7 @@ export class ButtonComponent {
   public ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
     this.selectColors();
-    this.defineIfHaveSubmenus();
+    this.defineIfHaveData();
   }
 
   public toggleSubmenus(): void {
@@ -54,7 +56,7 @@ export class ButtonComponent {
   }
 
   public showSubmenus(): void {
-    if (this.screenWidth <= 920) return; // Celular
+    if (this.screenWidth <= this.showHoverAnimWidth) return; // Celular
     this.navbarService.setActiveButton(this.id);
     if (this.hideSubmenuTimer) {
       clearTimeout(this.hideSubmenuTimer);
@@ -63,7 +65,7 @@ export class ButtonComponent {
   }
 
   public hideSubmenus(): void {
-    if (this.screenWidth <= 920) return; // Celular
+    if (this.screenWidth <= this.showHoverAnimWidth) return; // Celular
     if (this.animationClass != '') {
       this.hideAnimation();
     }
@@ -81,18 +83,26 @@ export class ButtonComponent {
     }, 50);
   }
 
-  isButtonActive(): boolean {
+  public isButtonActive(): boolean {
     return this.navbarService.getActiveButton() === this.id;
   }
 
+  public isDesktop(): boolean {
+    return this.screenWidth > this.showHoverAnimWidth;
+  }
+
   public navigate(uri: string): void {
+    console.log(uri);
     if (!uri) return;
     if (this.blank) window.open(uri, '_blank');
     else window.location.href = uri;
   }
 
-  private defineIfHaveSubmenus(): void {
+  private defineIfHaveData(): void {
     this.haveSubmenus = this.submenus.length > 0;
+    this.havePreviewImg = this.submenus.some((submenu) => {
+      return (submenu.previewImg != null);
+    });
   }
 
   private selectColors(): void {
@@ -100,6 +110,7 @@ export class ButtonComponent {
       case 'transparent':
         this.color = 'rgb(198, 211, 226)';
         this.backgroundColor = 'transparent';
+        this.padding = '3px 20px 3px 5px';
         break;
       case 'primary':
         this.color = '#fff';

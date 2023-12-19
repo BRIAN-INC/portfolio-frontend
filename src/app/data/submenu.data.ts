@@ -57,3 +57,15 @@ export const submenusDocsData: Submenu[] = [
     blank: false,
   },
 ];
+
+export const submenusGitHubData: Submenu[] = [
+  {
+    previewImg: 'assets/img/github-preview.webp',
+  },
+];
+
+export const submenusLinkedInData: Submenu[] = [
+  {
+    previewImg: 'assets/img/linkedin-preview.webp',
+  },
+];

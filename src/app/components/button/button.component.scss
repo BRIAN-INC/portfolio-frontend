@@ -21,7 +21,6 @@
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      cursor: pointer;
       opacity: 0.7;
     }
 
@@ -46,10 +45,16 @@
 
   .submenu-container {
     position: absolute;
-    top: 30px;
+    top: 0px;
+    padding-top: 30px;
     opacity: 0;
     transform: translateY(-100%);
     display: none;
+
+    &.is-preview-img {
+      top: 30px;
+      padding-top: 0px;
+    }
 
     &.show {
       animation: slideDown 250ms ease-out forwards;
@@ -102,6 +107,12 @@
             font-weight: 500;
             gap: 10px;
 
+            &.is-preview-img {
+              padding: 0;
+              flex-direction: column;
+              cursor: default;
+            }
+
             .icon {
               color: $txt-secondary-color;
               width: 18px;
@@ -113,6 +124,17 @@
 
               .icon {
                 color: $quaternary-color;
+              }
+            }
+
+            .preview-img {
+              width: 215px;
+              height: auto;
+
+              img {
+                width: 100%;
+                height: auto;
+                border-radius: 5px;
               }
             }
           }

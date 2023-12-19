@@ -45,16 +45,22 @@
   }
 }
 
+@media screen and (max-width: $desktop) {
+  .kw-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-row-gap: 30px;
+  }
+}
 
-@media screen and (max-width: $tablet) {
+
+@media screen and (max-width: $mobile-md) {
   .kw-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     grid-row-gap: 30px;
 
     .logo-content {
-      justify-content: center;
-
       .logo {
         .logo-img {
           width: 36px;
@@ -71,10 +77,6 @@
     .footer-content {
       flex-direction: column;
       gap: 30px;
-
-      .footer-part {
-        gap: 5px;
-      }
     }
   }
 }
