@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Submenu } from '../../models/submenu.model';
 import { NavbarService } from '../../services/navbar.service';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-button',
@@ -17,7 +18,7 @@ export class ButtonComponent {
   @Input() text: string = 'Button';
   @Input() type: string = 'transparent';
   @Input() padding: string = '3px 20px';
-  @Input() url: string = '';
+  @Input() uri: string = '';
   @Input() disabled: boolean = false;
   @Input() blank: boolean = false;
   @Input() submenus: Submenu[] = [];
@@ -40,7 +41,6 @@ export class ButtonComponent {
   }
 
   public toggleSubmenus(): void {
-    console.log('antes: ' + this.isButtonActive());
     if (this.navbarService.getActiveButton() === this.id) {
       this.hideAnimation();
     } else {
@@ -51,7 +51,6 @@ export class ButtonComponent {
         this.showSubmenus();
       }
     }
-    console.log('despues: ' + this.isButtonActive());
   }
 
   public showSubmenus(): void {
@@ -86,13 +85,10 @@ export class ButtonComponent {
     return this.navbarService.getActiveButton() === this.id;
   }
 
-  public navigate(): void {
-    if (!this.url) return;
-    else if (this.blank) {
-      window.open(this.url, '_blank');
-    } else {
-      window.location.href = this.url;
-    }
+  public navigate(uri: string): void {
+    if (!uri) return;
+    if (this.blank) window.open(uri, '_blank');
+    else window.location.href = uri;
   }
 
   private defineIfHaveSubmenus(): void {

@@ -3,7 +3,11 @@ import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { Submenu } from '../../models/submenu.model';
-import { submenusHomeData, submenusProfileData } from '../../data/submenu.data';
+import {
+  submenusPortfolioData,
+  submenusDocsData,
+} from '../../data/submenu.data';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +20,8 @@ export class NavbarComponent {
   isExpanded = false;
   isScrolled = false;
   // Data
-  submenusProfile: Submenu[] = [];
-  submenusHome: Submenu[] = [];
+  submenusPortfolio: Submenu[] = [];
+  submenusDocs: Submenu[] = [];
   gitHubUrl: string = 'https://github.com/kiridepapel/';
   linkedInUrl: string = 'https://www.linkedin.com/in/kiridepapel/';
 
@@ -41,14 +45,14 @@ export class NavbarComponent {
     }
   }
 
-  public navigate(url: string): void {
+  public navigate(url?: string): void {
     if (!url) return;
     window.location.href = url;
   }
 
   loadSubmenusProfile(): void {
-    this.submenusHome = submenusHomeData;
-    this.submenusProfile = submenusProfileData;
+    this.submenusPortfolio = submenusPortfolioData;
+    this.submenusDocs = submenusDocsData;
   }
 
   toggleMenu(): void {

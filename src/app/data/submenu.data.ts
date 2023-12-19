@@ -1,63 +1,59 @@
 import { Submenu } from "../models/submenu.model";
 
-export const submenusHomeData: Submenu[] = [
+// Por ahora se recomienda no poner más de 6 submenus,
+// ya que se desborda del navbar en pantallas pequeñas
+
+export const submenusPortfolioData: Submenu[] = [
   {
     icon: 'fas fa-home',
     text: 'Home',
     shortDescription: 'Go to home',
-    route: '/home',
+    uri: '#home',
     blank: false,
   },
   {
-    icon: 'fas fa-user',
+    icon: 'fa-solid fa-person-dots-from-line',
     text: 'About',
     shortDescription: 'Go to about',
-    route: '/about',
+    uri: '#about',
     blank: false,
   },
   {
     icon: 'fas fa-code',
+    text: 'Skills',
+    shortDescription: 'Go to skills',
+    uri: '#skills',
+    blank: false,
+  },
+  {
+    icon: 'fas fa-cogs',
     text: 'Technologies',
     shortDescription: 'Go to technologies',
-    route: '/technologies',
+    uri: '#technologies',
     blank: false,
   },
   {
-    icon: 'fas fa-code',
+    icon: 'fas fa-project-diagram',
     text: 'Projects',
     shortDescription: 'Go to projects',
-    route: '/projects',
+    uri: '#projects',
     blank: false,
   },
   {
     icon: 'fas fa-envelope',
     text: 'Contact',
     shortDescription: 'Go to contact',
-    route: '/contact',
+    uri: '#contact',
     blank: false,
   },
 ];
 
-export const submenusProfileData: Submenu[] = [
+export const submenusDocsData: Submenu[] = [
   {
-    icon: 'fas fa-user',
-    text: 'Profile',
-    shortDescription: 'Manage your profile',
-    route: '/profile',
-    blank: false,
-  },
-  {
-    icon: 'fas fa-cog',
-    text: 'Settings',
-    shortDescription: 'Manage your settings',
-    route: '/settings',
-    blank: false,
-  },
-  {
-    icon: 'fas fa-sign-out-alt',
-    text: 'Logout',
-    shortDescription: 'Logout from your account',
-    route: '/logout',
+    icon: 'fa-solid fa-book',
+    text: 'Monolith Food',
+    shortDescription: 'Manage your nutrition',
+    uri: '/docs/monolith-food',
     blank: false,
   },
 ];

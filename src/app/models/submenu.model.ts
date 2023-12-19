@@ -2,6 +2,6 @@ export class Submenu {
   icon: string = '';
   text: string = '';
   shortDescription: string = '';
-  route: string = '';
+  uri: string = '';
   blank: boolean = false;
 }

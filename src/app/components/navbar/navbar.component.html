@@ -13,13 +13,13 @@
     </div>
     <div class="nav-content flex">
       <ul class="items flex">
-        <li class="item"><app-button text="Home" type="transparent" padding="3px 20px 3px 5px"
-            [submenus]="submenusHome"></app-button></li>
-        <li class="item"><app-button text="Profile" type="transparent" padding="3px 20px 3px 5px"
-            [submenus]="submenusProfile"></app-button></li>
-        <li class="item"><app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary" url="{{ gitHubUrl }}"
+        <li class="item"><app-button text="Portafolio" type="transparent" padding="3px 20px 3px 5px"
+            [submenus]="submenusPortfolio"></app-button></li>
+        <li class="item"><app-button text="Documentación" type="transparent" padding="3px 20px 3px 5px"
+            [submenus]="submenusDocs"></app-button></li>
+        <li class="item"><app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary" uri="{{ gitHubUrl }}"
             [blank]="true"></app-button></li>
-        <li class="item"><app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary" url="{{ linkedInUrl }}"
+        <li class="item"><app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary" uri="{{ linkedInUrl }}"
             [blank]="true"></app-button></li>
       </ul>
     </div>

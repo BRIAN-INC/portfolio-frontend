@@ -10,7 +10,7 @@
     }"
     [disabled]="disabled"
     (click)="toggleSubmenus()"
-    (click)="navigate()"
+    (click)="navigate(uri)"
     (mouseenter)="showSubmenus()"
     (mouseleave)="hideSubmenus()"
   >
@@ -38,7 +38,7 @@
             <li class="submenu-item flex">
               <a
                 class="item flex"
-                href="{{ submenu.route }}"
+                (click)="navigate(submenu.uri)"
                 target="{{ submenu.blank ? '_blank' : '_self' }}"
               >
                 <i class="icon icon-left" [class]="submenu.icon"></i>

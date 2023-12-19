@@ -86,21 +86,25 @@
 
         .submenu-item {
           width: 100%;
+          cursor: pointer;
 
           .item {
             border-radius: 5px;
             justify-content: flex-start;
             padding: 10px;
+            // padding-right: 20px;
             width: 100%;
             transition: all 0.2s ease-in-out;
             text-decoration: none;
             color: $txt-secondary-color;
+            white-space: nowrap;
             font-size: 13px;
             font-weight: 500;
             gap: 10px;
 
             .icon {
               color: $txt-secondary-color;
+              width: 18px;
             }
 
             &:hover {

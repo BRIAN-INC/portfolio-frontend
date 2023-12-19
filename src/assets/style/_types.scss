@@ -1,3 +1,5 @@
+@import "./_colors.scss";
+
 .flex {
   display: flex;
   justify-content: center;
@@ -8,4 +10,26 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+}
+
+.logo {
+  gap: 12px;
+  cursor: pointer;
+
+  .logo-img {
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .logo-txt {
+    margin: 0;
+    padding: 0;
+    color: $txt-white-color;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: Inter, system-ui, sans-serif;
+  }
 }
