@@ -30,43 +30,47 @@
 
   <!-- Submenu -->
   <!-- @if(haveSubmenus) {} -->
-  @if(haveSubmenus && (!havePreviewImg || havePreviewImg && isDesktop())) {
-    <div
-      class="submenu-container"
-      [ngClass]="[
-        isDesktop() ? animationClass : '',
-        isButtonActive() ? 'show' : ''
-      ]"
-      [class.is-preview-img]="isButtonActive() && havePreviewImg"
-      (mouseleave)="hideSubmenus()"
-      (click)="toggleSubmenus()"
-    >
-      <div class="arrow-up"></div>
-      <div class="submenu"
-        (mouseenter)="havePreviewImg ? hideSubmenus() : ''"
+  @defer (on viewport) {
+    @if(haveSubmenus && (!havePreviewImg || havePreviewImg && isDesktop())) {
+      <div
+        class="submenu-container"
+        [ngClass]="[
+          isDesktop() ? animationClass : '',
+          isButtonActive() ? 'show' : ''
+        ]"
+        [class.is-preview-img]="isButtonActive() && havePreviewImg"
+        (mouseleave)="hideSubmenus()"
+        (click)="toggleSubmenus()"
       >
-        <ul class="submenu-list flex">
-          @for (submenu of submenus; track submenu.text) {
-            <li class="submenu-item flex">
-              <a
-                class="item flex"
-                [ngClass]="{'is-preview-img' : havePreviewImg}"
-                (click)="navigate(submenu.uri!)"
-                target="{{ submenu.blank ? '_blank' : '_self' }}"
-              >
-                @if (!havePreviewImg) {
-                  <i class="icon icon-left" [class]="submenu.icon"></i>
-                  <span>{{ submenu.text }}</span>
-                } @else if (isDesktop()) {
-                  <div class="preview-img flex">
-                    <img src="{{ submenu.previewImg }}" alt="{{ submenu.text }} preview-img" />
-                  </div>
-                }
-              </a>
-            </li>
-          }
-        </ul>
+        <div class="arrow-up"></div>
+        <div class="submenu"
+          (mouseenter)="havePreviewImg ? hideSubmenus() : ''"
+        >
+          <ul class="submenu-list flex">
+            @for (submenu of submenus; track submenu.text) {
+              <li class="submenu-item flex">
+                <a
+                  class="item flex"
+                  [ngClass]="{'is-preview-img' : havePreviewImg}"
+                  (click)="navigate(submenu.uri!)"
+                  target="{{ submenu.blank ? '_blank' : '_self' }}"
+                >
+                  @if (!havePreviewImg) {
+                    <i class="icon icon-left" [class]="submenu.icon"></i>
+                    <span>{{ submenu.text }}</span>
+                  } @else if (isDesktop()) {
+                    <div class="preview-img flex">
+                      <img src="{{ submenu.previewImg }}" alt="{{ submenu.text }} preview-img" />
+                    </div>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
       </div>
-    </div>
+    }
+  } @placeholder {
+    <span>Cargando...</span>
   }
 </div>
