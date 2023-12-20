@@ -8,66 +8,104 @@
 }
 
 .kw-container {
-  z-index: 100;
+  z-index: 90;
+  position: relative;
+  top: -$bar-height;
   background: $bg-gradient;
+  height: calc(100% - $bar-height);
 
   .kw-section {
     height: 100%;
     margin: 0 $section-mg-lr;
     padding: 0 $section-pg-lr;
-    padding-top: $section-pg-top;
-    padding-bottom: $section-pg-bottom;
+    padding-top: calc($section-pg-top * 2);
     flex-direction: column;
     justify-content: flex-start;
 
+    &.last-section {
+      padding-bottom: $section-pg-bottom;
+    }
+
     &#home {
-      min-height: calc(100vh - $bar-height);
-      // background: #575586;
+      height: calc(100vh - $bar-height);
+
+      .simultated-content {
+        width: 100%;
+        height: 100%;
+        background: #575586;
+      }
     }
 
     &#about {
-      // background: #304366;
+      height: calc(100vh - $bar-height);
+
+      .simultated-content {
+        width: 100%;
+        height: 100%;
+        background: #304366;
+      }
     }
 
     &#skills {
-      // background: #3d6196;
+      height: calc(100vh - $bar-height);
+
+      .simultated-content {
+        width: 100%;
+        height: 100%;
+        background: #3d6196;
+      }
     }
 
     &#technologies {
-      // background: #454591;
+      height: calc(100vh - $bar-height);
+
+      .simultated-content {
+        width: 100%;
+        height: 100%;
+        background: #454591;
+      }
     }
 
     &#projects {
-      // background: #39399b;
+      height: calc(100vh - $bar-height);
+
+      .simultated-content {
+        width: 100%;
+        height: 100%;
+        background: #39399b;
+      }
     }
 
     &#contact {
-      // background: #6969a3;
+      height: calc(100vh - $bar-height);
+
+      .simultated-content {
+        width: 100%;
+        height: 100%;
+        background: #6969a3;
+      }
     }
 
     &#footer {
       margin: 0;
-      padding-left: $section-mg-lr;
-      padding-right: $section-mg-lr;
+      height: 100%;
+      padding: 0 $section-mg-lr;
+      padding-top: $section-pg-top;
+      padding-bottom: $section-pg-bottom;
       background: #192338;
-    }
-
-    span {
+      position: absolute;
       width: 100%;
-      text-align: center;
-      // background: #5189b8;
+      height: auto;
     }
   }
 }
 
 @media screen and (max-width: $tablet) {
   .kw-container {
+    top: -$bar-height-mobile;
+
     .kw-section {
       margin: 0;
-
-      &#home {
-        min-height: calc(100vh - $bar-height-mobile);
-      }
 
       &#footer {
         padding-top: calc($section-pg-top / 2);

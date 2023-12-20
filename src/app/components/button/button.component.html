@@ -5,12 +5,12 @@
     [ngStyle]="{
       'background-color': backgroundColor,
       color: color,
-      border: hasBorder ? '1px solid ' + borderColor : 'none',
+      border: (hasBorder) ? '1px solid ' + borderColor : 'none',
       padding: padding,
-      cursor: uri === '' ? 'default' : 'pointer'
+      cursor: (uri === '' && isDesktop()) ? 'default' : 'pointer'
     }"
     [disabled]="disabled"
-    (mouseenter)="haveSubmenus ? showSubmenus() : ''"
+    (mouseover)="haveSubmenus ? showSubmenus() : ''"
     (mouseleave)="havePreviewImg ? hideSubmenus() : ''"
     (click)="navigate(uri)"
     (click)="toggleSubmenus()"
@@ -40,11 +40,11 @@
         ]"
         [class.is-preview-img]="isButtonActive() && havePreviewImg"
         (mouseleave)="hideSubmenus()"
-        (click)="toggleSubmenus()"
+        (click)="!isDesktop() ? toggleSubmenus() : ''"
       >
         <div class="arrow-up"></div>
         <div class="submenu"
-          (mouseenter)="havePreviewImg ? hideSubmenus() : ''"
+          (mouseover)="havePreviewImg ? hideSubmenus() : ''"
         >
           <ul class="submenu-list flex">
             @for (submenu of submenus; track submenu.text) {
@@ -71,6 +71,6 @@
       </div>
     }
   } @placeholder {
-    <span>Cargando...</span>
+    <div class="loading">a</div>
   }
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Submenu } from '../../models/submenu.model';
 import { NavbarService } from '../../services/navbar.service';
 import { environment } from '../../../environments/environment.prod';
@@ -34,7 +34,10 @@ export class ButtonComponent {
   private hideSubmenuTimer: any;
   public screenWidth: number = window.innerWidth;
 
-  constructor(private navbarService: NavbarService) {}
+  constructor(
+    private viewportScroller: ViewportScroller,
+    private navbarService: NavbarService
+  ) {}
 
   public ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
@@ -57,6 +60,7 @@ export class ButtonComponent {
 
   public showSubmenus(): void {
     if (this.screenWidth <= this.showHoverAnimWidth) return; // Celular
+    this.navbarService.clearActiveButton();
     this.navbarService.setActiveButton(this.id);
     if (this.hideSubmenuTimer) {
       clearTimeout(this.hideSubmenuTimer);
@@ -92,16 +96,37 @@ export class ButtonComponent {
   }
 
   public navigate(uri: string): void {
-    console.log(uri);
     if (!uri) return;
+    this.hideSubmenus();
+
     if (this.blank) window.open(uri, '_blank');
-    else window.location.href = uri;
+    else {
+      // if (uri.startsWith('#')) {
+      //   this.goToSectionWithScroll(uri);
+      // }
+      window.location.href = uri;
+    }
   }
+
+  // private goToSectionWithScroll(uri: string): void {
+  //   // console.log('bar-height: ');
+  //   if (!this.isDesktop()) return;
+
+  //   this.hideSubmenuTimer = setTimeout(() => {
+  //     const section = document.querySelector(uri);
+  //     let navbarHeight: number = 80;
+
+  //     if (section) {
+  //       const offset = section.getBoundingClientRect().top - navbarHeight;
+  //       this.viewportScroller.scrollToPosition([0, offset]);
+  //     }
+  //   }, 50);
+  // }
 
   private defineIfHaveData(): void {
     this.haveSubmenus = this.submenus.length > 0;
     this.havePreviewImg = this.submenus.some((submenu) => {
-      return (submenu.previewImg != null);
+      return submenu.previewImg != null;
     });
   }
 
