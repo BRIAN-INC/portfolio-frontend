@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Submenu } from '../../models/submenu.model';
 import { NavbarService } from '../../services/navbar.service';
-import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-button',
@@ -34,15 +33,13 @@ export class ButtonComponent {
   private hideSubmenuTimer: any;
   public screenWidth: number = window.innerWidth;
 
-  constructor(
-    private viewportScroller: ViewportScroller,
-    private navbarService: NavbarService
-  ) {}
+  constructor(private navbarService: NavbarService) {}
 
   public ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
     this.selectColors();
     this.defineIfHaveData();
+    // console.log('this id (' + this.text + '): ' + this.id);
   }
 
   public toggleSubmenus(): void {
@@ -53,38 +50,57 @@ export class ButtonComponent {
         this.hideAnimation();
       } else {
         this.navbarService.setActiveButton(this.id);
-        this.showSubmenus();
+        this.showSubmenus('toggleSubmenus');
       }
     }
   }
 
-  public showSubmenus(): void {
+  public showSubmenus(desde: string): void {
+    // console.log('---------');
+    // console.log(
+    //   'showSubmenus(' + desde + '): ' + this.navbarService.getActiveButton()
+    // );
     if (this.screenWidth <= this.showHoverAnimWidth) return; // Celular
+    // console.log('pasó el if');
     this.navbarService.clearActiveButton();
     this.navbarService.setActiveButton(this.id);
     if (this.hideSubmenuTimer) {
       clearTimeout(this.hideSubmenuTimer);
     }
     this.animationClass = 'show';
+    // console.log(
+    //   'terminó el showSubmenus(): ' + this.navbarService.getActiveButton()
+    // );
   }
 
-  public hideSubmenus(): void {
-    if (this.screenWidth <= this.showHoverAnimWidth) return; // Celular
-    if (this.animationClass != '') {
-      this.hideAnimation();
+  public hideSubmenus(desde: string): void {
+    if (this.isButtonActive()) {
+      // console.log(
+      //   'hideSubmenus(' + desde + '): ' + this.navbarService.getActiveButton()
+      // );
+      // console.log('entrando');
+      if (this.screenWidth <= this.showHoverAnimWidth || !this.isButtonActive())
+        return; // Celular
+      // console.log('logró entrar');
+      if (this.animationClass != '') {
+        this.hideAnimation();
+      }
     }
   }
 
   private hideAnimation(): void {
-    // Limpia el boton activo del service
-    this.navbarService.clearActiveButton();
     // Oculta progresivamente el submenu
+    this.navbarService.clearActiveButton();
     this.hideSubmenuTimer = setTimeout(() => {
       this.animationClass = 'hide';
       this.hideSubmenuTimer = setTimeout(() => {
         this.animationClass = '';
       }, 100);
     }, 50);
+    // console.log(
+    //   'final de hideSubmenus(): ' + this.navbarService.getActiveButton()
+    // );
+    // console.log('---------');
   }
 
   public isButtonActive(): boolean {
@@ -97,31 +113,13 @@ export class ButtonComponent {
 
   public navigate(uri: string): void {
     if (!uri) return;
-    this.hideSubmenus();
+    this.hideSubmenus('navigate');
 
     if (this.blank) window.open(uri, '_blank');
     else {
-      // if (uri.startsWith('#')) {
-      //   this.goToSectionWithScroll(uri);
-      // }
       window.location.href = uri;
     }
   }
-
-  // private goToSectionWithScroll(uri: string): void {
-  //   // console.log('bar-height: ');
-  //   if (!this.isDesktop()) return;
-
-  //   this.hideSubmenuTimer = setTimeout(() => {
-  //     const section = document.querySelector(uri);
-  //     let navbarHeight: number = 80;
-
-  //     if (section) {
-  //       const offset = section.getBoundingClientRect().top - navbarHeight;
-  //       this.viewportScroller.scrollToPosition([0, offset]);
-  //     }
-  //   }, 50);
-  // }
 
   private defineIfHaveData(): void {
     this.haveSubmenus = this.submenus.length > 0;

@@ -19,6 +19,13 @@ export const submenusPortfolioData: Submenu[] = [
     blank: false,
   },
   {
+    icon: 'fas fa-project-diagram',
+    text: 'Projects',
+    shortDescription: 'Go to projects',
+    uri: '#projects',
+    blank: false,
+  },
+  {
     icon: 'fas fa-code',
     text: 'Skills',
     shortDescription: 'Go to skills',
@@ -30,13 +37,6 @@ export const submenusPortfolioData: Submenu[] = [
     text: 'Technologies',
     shortDescription: 'Go to technologies',
     uri: '#technologies',
-    blank: false,
-  },
-  {
-    icon: 'fas fa-project-diagram',
-    text: 'Projects',
-    shortDescription: 'Go to projects',
-    uri: '#projects',
     blank: false,
   },
   {

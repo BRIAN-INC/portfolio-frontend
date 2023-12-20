@@ -9,7 +9,6 @@ import {
   submenusGitHubData,
   submenusLinkedInData,
 } from '../../data/submenu.data';
-import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-navbar',

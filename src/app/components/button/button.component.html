@@ -1,4 +1,12 @@
-<div class="content">
+<div class="content"
+  [ngClass]="[
+    isButtonActive() ? 'show' : '',
+    isDesktop() ? animationClass : ''
+  ]"
+  (mouseenter)="haveSubmenus ? showSubmenus('btn-mouseover') : ''"
+  (mouseleave)="hideSubmenus('btn-mouseleave')"
+  (click)="toggleSubmenus()"
+>
   <!-- Button -->
   <button
     [ngClass]="['btn', type]"
@@ -7,13 +15,9 @@
       color: color,
       border: (hasBorder) ? '1px solid ' + borderColor : 'none',
       padding: padding,
-      cursor: (uri === '' && isDesktop()) ? 'default' : 'pointer'
     }"
     [disabled]="disabled"
-    (mouseover)="haveSubmenus ? showSubmenus() : ''"
-    (mouseleave)="havePreviewImg ? hideSubmenus() : ''"
     (click)="navigate(uri)"
-    (click)="toggleSubmenus()"
   >
   <!-- toggleSubmenus() solo funciona en celular -->
     @if (icon) {
@@ -34,17 +38,12 @@
     @if(haveSubmenus && (!havePreviewImg || havePreviewImg && isDesktop())) {
       <div
         class="submenu-container"
-        [ngClass]="[
-          isDesktop() ? animationClass : '',
-          isButtonActive() ? 'show' : ''
-        ]"
         [class.is-preview-img]="isButtonActive() && havePreviewImg"
-        (mouseleave)="hideSubmenus()"
         (click)="!isDesktop() ? toggleSubmenus() : ''"
       >
         <div class="arrow-up"></div>
         <div class="submenu"
-          (mouseover)="havePreviewImg ? hideSubmenus() : ''"
+          (mouseover)="havePreviewImg ? hideSubmenus('submenu-mouseover') : ''"
         >
           <ul class="submenu-list flex">
             @for (submenu of submenus; track submenu.text) {

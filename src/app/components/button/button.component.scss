@@ -5,6 +5,7 @@
 
 .content {
   position: relative;
+  cursor: pointer;
 
   .btn {
     font-size: 13px;
@@ -43,6 +44,20 @@
     }
   }
 
+    &.show {
+      .submenu-container {
+        animation: slideDown 250ms ease-out forwards;
+      display: block;
+      }
+    }
+
+    &.hide {
+      .submenu-container {
+        animation: slideUp 250ms ease-in forwards;
+        display: block;
+      }
+    }
+
   .submenu-container {
     position: absolute;
     top: 0px;
@@ -54,16 +69,6 @@
     &.is-preview-img {
       top: 30px;
       padding-top: 0px;
-    }
-
-    &.show {
-      animation: slideDown 250ms ease-out forwards;
-      display: block;
-    }
-
-    &.hide {
-      animation: slideUp 250ms ease-in forwards;
-      display: block;
     }
 
     .arrow-up {
