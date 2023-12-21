@@ -2,7 +2,7 @@
   <footer class="kw-container grid">
     <div class="logo-content flex">
       <div class="logo flex" (click)="navigate('/', false)">
-        <img class="logo-img" src="assets/svg/northflank.svg" alt="logo" />
+        <img class="logo-img" src="assets/svgs/northflank.svg" alt="logo" />
         <a class="logo-txt">Kiridepapel</a>
       </div>
     </div>
@@ -15,6 +15,7 @@
           @for (item of submenusPortfolio; track $index) {
             <a
               class="footer-link"
+              [class.demo-dialog]="isDialogButton(item)"
               (click)="navigate(item.uri, item.blank!)"
             >
               @if (item.icon) {
@@ -33,6 +34,7 @@
           @for (item of submenusDocs; track $index) {
             <a
               class="footer-link"
+              [class.demo-dialog]="isDialogButton(item)"
               (click)="navigate(item.uri, item.blank!)"
             >
               @if (item.icon) {
@@ -51,12 +53,13 @@
           @for (item of submenusInfo; track $index) {
             <a
               class="footer-link"
-              (click)="navigate(item.uri, item.blank!)"
+              [class.demo-dialog]="isDialogButton(item)"
+              (click)="!isDialogButton(item) ? navigate(item.uri, item.blank!) : openDialog(item.dialog, item.dialogConfig!)"
             >
               @if (item.icon) {
                 <i class="icon icon-left" [class]="item.icon"></i>
               }
-              {{ item.text }}
+              <span>{{ item.text }}</span>
             </a>
           }
         </div>

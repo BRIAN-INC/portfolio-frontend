@@ -1,4 +1,8 @@
+import { CvComponent } from "../../portfolio/components/cv/cv.component";
 import { Submenu } from "../models/submenu.model";
+import { GlobalService } from "../services/global.service";
+
+const globalService = new GlobalService(); // Instancia del servicio
 
 // Por ahora se recomienda no poner más de 6 submenus,
 // ya que se desborda del navbar en pantallas pequeñas
@@ -66,6 +70,11 @@ export const submenusInfoData: Submenu[] = [
     // uri: 'assets/files/cv.pdf',
     uri: 'https://drive.google.com/file/d/1zV5FcSlaJs0qscRKSNUE76ZUNtVYTs0A/view?usp=sharing',
     blank: true,
+    dialog: CvComponent,
+    dialogConfig: globalService.createDialogConfig(
+      '600px',
+      '80%',
+    ),
   },
   {
     icon: 'fas fa-envelope',
@@ -96,18 +105,16 @@ export const submenusInfoData: Submenu[] = [
     uri: 'https://www.linkedin.com/in/kiridepapel/',
     blank: true,
   },
-  {},
-  {},
 ];
 
 export const submenusGitHubData: Submenu[] = [
   {
-    previewImg: 'assets/img/github-preview.webp',
+    previewImg: 'assets/imgs/github-preview.webp',
   },
 ];
 
 export const submenusLinkedInData: Submenu[] = [
   {
-    previewImg: 'assets/img/linkedin-preview.webp',
+    previewImg: 'assets/imgs/linkedin-preview.webp',
   },
 ];

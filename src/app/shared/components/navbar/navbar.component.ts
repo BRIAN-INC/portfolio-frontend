@@ -1,4 +1,4 @@
-import { NavbarService } from './../../services/navbar.service';
+import { NavbarService } from '../../services/navbar.service';
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
@@ -18,7 +18,6 @@ import {
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isExpanded!: boolean;
   isScrolled = false;
   // Data
   submenusPortfolio: Submenu[] = [];
@@ -30,7 +29,6 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.loadSubmenusProfile();
-    this.isExpanded = this.navbarService.getNavbarState();
   }
 
   public isNavbarExpanded(): boolean {
@@ -39,14 +37,16 @@ export class NavbarComponent {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
+    if (!this.navbarService.isScrollListenerEnabled()) return;
+
     const scrollPosition =
       window.pageYOffset ||
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
 
-    if (scrollPosition > 1) this.isScrolled = true;
-    else this.isScrolled = false;
+    this.isScrolled = scrollPosition > 1;
+    console.log(this.isScrolled);
   }
 
   public navigate(url?: string): void {
@@ -62,7 +62,6 @@ export class NavbarComponent {
   }
 
   toggleMenu(): void {
-    this.isExpanded = !this.isExpanded;
     if (this.isNavbarExpanded())
       this.navbarService.setNavbarState(false);
     else
