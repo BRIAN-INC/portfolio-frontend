@@ -19,6 +19,11 @@ body {
 .mdc-dialog__surface {
   background: $bg-gradient !important;
   border-radius: $dialog-border-radius !important;
+  cursor: default; // Dentro del dialogo
+}
+
+.cdk-overlay-backdrop {
+  cursor: default; // Fuera del dialogo
 }
 
 // * Scroll

@@ -41,21 +41,32 @@
     .icon-rotate-down {
       animation: rotateDown 0.3s forwards;
     }
+
+    &.demo-dialog {
+      .icon {
+        color: $quinary-color;
+      }
+
+      span {
+        color: $quinary-color;
+        text-shadow: 0 0 10px $quinary-color;
+      }
+    }
   }
 
-    &.show {
-      .submenu-container {
-        animation: slideDown 250ms ease-out forwards;
+  &.show {
+    .submenu-container {
+      animation: slideDown 250ms ease-out forwards;
       display: block;
-      }
     }
+  }
 
-    &.hide {
-      .submenu-container {
-        animation: slideUp 250ms ease-in forwards;
-        display: block;
-      }
+  &.hide {
+    .submenu-container {
+      animation: slideUp 250ms ease-in forwards;
+      display: block;
     }
+  }
 
   .submenu-container {
     position: absolute;
@@ -157,9 +168,9 @@
 @media screen and (max-width: $tablet) {
   .content {
     .btn {
-      font-size: 16px;
       padding-top: 5px !important;
       padding-bottom: 5px !important;
+      font-size: 14px !important;
     }
 
     .submenu-container {

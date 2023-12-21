@@ -13,16 +13,11 @@
         <h2 class="footer-title">Portafolio</h2>
         <div class="footer-links flex">
           @for (item of submenusPortfolio; track $index) {
-            <a
-              class="footer-link"
-              [class.demo-dialog]="isDialogButton(item)"
-              (click)="navigate(item.uri, item.blank!)"
-            >
-              @if (item.icon) {
-                <i class="icon icon-left" [class]="item.icon"></i>
-              }
-              {{ item.text }}
-            </a>
+            <app-button class="app-btn"
+              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7"
+              type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
+              [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
+            ></app-button>
           }
         </div>
       </div>
@@ -32,16 +27,11 @@
         <h2 class="footer-title">Documentaciones</h2>
         <div class="footer-links flex">
           @for (item of submenusDocs; track $index) {
-            <a
-              class="footer-link"
-              [class.demo-dialog]="isDialogButton(item)"
-              (click)="navigate(item.uri, item.blank!)"
-            >
-              @if (item.icon) {
-                <i class="icon icon-left" [class]="item.icon"></i>
-              }
-              {{ item.text }}
-            </a>
+            <app-button class="app-btn"
+              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7"
+              type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
+              [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
+            ></app-button>
           }
         </div>
       </div>
@@ -51,21 +41,16 @@
         <h2 class="footer-title">Información</h2>
         <div class="footer-links flex">
           @for (item of submenusInfo; track $index) {
-            <a
-              class="footer-link"
-              [class.demo-dialog]="isDialogButton(item)"
-              (click)="!isDialogButton(item) ? navigate(item.uri, item.blank!) : openDialog(item.dialog, item.dialogConfig!)"
-            >
-              @if (item.icon) {
-                <i class="icon icon-left" [class]="item.icon"></i>
-              }
-              <span>{{ item.text }}</span>
-            </a>
+            <app-button class="app-btn"
+              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7"
+              type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
+              [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
+            ></app-button>
           }
         </div>
       </div>
     </div>
   </footer>
 } @placeholder {
-  <span>Cargando...</span>
+  <span class="loading">Cargando...</span>
 }

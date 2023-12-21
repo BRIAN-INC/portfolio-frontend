@@ -2,26 +2,34 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Submenu } from '../../models/submenu.model';
 import { NavbarService } from '../../services/navbar.service';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
   // Input variables
   private id: string = '';
+  // * Button: Decoration
   @Input() icon: string = '';
   @Input() text: string = 'Button';
+  @Input() color?: string = '#c6d3e2';
+  @Input() fontSize?: string = '13px';
+  @Input() fontWeight?: string = '500';
   @Input() type: string = 'transparent';
   @Input() padding: string = '3px 20px';
+  // * Button: Usability
   @Input() uri: string = '';
   @Input() disabled: boolean = false;
   @Input() blank: boolean = false;
   @Input() submenus: Submenu[] = [];
-  color: string = '';
+  @Input() dialog?: any = null;
+  @Input() dialogConfig?: MatDialogConfig = undefined;
+  // CSS Variables
   backgroundColor: string = '';
   hasBorder: boolean = false;
   borderColor: string = '';
@@ -30,11 +38,15 @@ export class ButtonComponent {
   // My variables
   public haveSubmenus: boolean = false;
   public havePreviewImg: boolean = false;
+  public isDialogButton: boolean = false;
   public animationClass: string = '';
   private hideSubmenuTimer: any;
   private screenWidth: number = window.innerWidth;
 
-  constructor(private navbarService: NavbarService) {}
+  constructor(
+    private navbarService: NavbarService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
@@ -55,25 +67,30 @@ export class ButtonComponent {
     }
   }
 
+  public changeNavbarState(newState: boolean): void {
+    this.navbarService.setNavbarState(newState);
+  }
+
   public showSubmenus(desde: string): void {
     if (this.getWindowWidth <= this.showHoverAnimWidth) return; // Celular
 
     this.navbarService.clearActiveButton();
     this.navbarService.setActiveButton(this.id);
 
-    if (this.hideSubmenuTimer)
-      clearTimeout(this.hideSubmenuTimer);
+    if (this.hideSubmenuTimer) clearTimeout(this.hideSubmenuTimer);
 
     this.animationClass = 'show';
   }
 
   public hideSubmenus(desde: string): void {
     if (this.isButtonActive()) {
-      if (this.getWindowWidth <= this.showHoverAnimWidth || !this.isButtonActive())
+      if (
+        this.getWindowWidth <= this.showHoverAnimWidth ||
+        !this.isButtonActive()
+      )
         return; // Celular
 
-      if (this.animationClass != '')
-        this.hideAnimation();
+      if (this.animationClass != '') this.hideAnimation();
     }
   }
 
@@ -105,11 +122,21 @@ export class ButtonComponent {
   public navigate(uri: string): void {
     if (!uri) return;
 
-    this.navbarService.setNavbarState(false);
     this.hideSubmenus('navigate');
+    this.navbarService.setNavbarState(false);
 
     if (this.blank) window.open(uri, '_blank');
     else window.location.href = uri;
+  }
+
+  public openDialog(component: any, dialogConfig: MatDialogConfig): void {
+    this.navbarService.disableScrollListener();
+
+    const dialogRef = this.matDialog.open(component, dialogConfig);
+
+    dialogRef.afterOpened().subscribe(() => {
+      this.navbarService.enableScrollListener();
+    });
   }
 
   private defineIfHaveData(): void {
@@ -117,12 +144,16 @@ export class ButtonComponent {
     this.havePreviewImg = this.submenus.some((submenu) => {
       return submenu.previewImg != null;
     });
+    this.isDialogButton =
+      this.dialog !== undefined &&
+      this.dialog !== null &&
+      this.dialogConfig !== undefined &&
+      this.dialogConfig !== null;
   }
 
   private selectColors(): void {
     switch (this.type) {
       case 'transparent':
-        this.color = 'rgb(198, 211, 226)';
         this.backgroundColor = 'transparent';
         this.padding = '3px 20px 3px 5px';
         break;
@@ -133,7 +164,6 @@ export class ButtonComponent {
         this.borderColor = 'rgb(20, 164, 255)';
         break;
       case 'secondary':
-        this.color = 'rgb(198, 211, 226)';
         this.backgroundColor = 'rgb(32, 44, 70)';
         this.hasBorder = true;
         this.borderColor = 'rgb(51, 70, 112)';
@@ -145,7 +175,6 @@ export class ButtonComponent {
         this.borderColor = 'rgb(37, 41, 47)';
         break;
       default:
-        this.color = 'rgb(198, 211, 226)';
         this.backgroundColor = 'transparent';
         break;
     }

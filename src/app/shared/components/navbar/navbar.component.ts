@@ -46,7 +46,6 @@ export class NavbarComponent {
       0;
 
     this.isScrolled = scrollPosition > 1;
-    console.log(this.isScrolled);
   }
 
   public navigate(url?: string): void {
@@ -62,8 +61,9 @@ export class NavbarComponent {
   }
 
   toggleMenu(): void {
-    if (this.isNavbarExpanded())
+    if (this.isNavbarExpanded()) {
       this.navbarService.setNavbarState(false);
+    }
     else
       this.navbarService.setNavbarState(true);
   }
