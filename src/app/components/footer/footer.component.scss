@@ -25,7 +25,7 @@
         margin: 0;
         font-size: 15px;
         font-weight: 500;
-        color: $txt-tertiary-color;
+        color: $txt-quaternary-color;
       }
 
       .footer-links {
@@ -36,9 +36,24 @@
 
         .footer-link {
           cursor: pointer;
-          color: $txt-primary-color;
+          color: $txt-secondary-color;
           text-decoration: none;
           font-size: 14px;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            opacity: 0.7;
+          }
+
+          .icon {
+            color: $txt-secondary-color;
+            width: 16px;
+          }
+
+          .icon-left {
+            margin-right: 5px;
+            font-size: 14px;
+          }
         }
       }
     }

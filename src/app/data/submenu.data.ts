@@ -58,6 +58,48 @@ export const submenusDocsData: Submenu[] = [
   },
 ];
 
+export const submenusInfoData: Submenu[] = [
+  {
+    icon: 'fas fa-file-alt',
+    text: 'CV',
+    shortDescription: 'Watch my Curriculum Vitae',
+    // uri: 'assets/files/cv.pdf',
+    uri: 'https://drive.google.com/file/d/1zV5FcSlaJs0qscRKSNUE76ZUNtVYTs0A/view?usp=sharing',
+    blank: true,
+  },
+  {
+    icon: 'fas fa-envelope',
+    text: 'Email',
+    shortDescription: 'Send me an email',
+    uri: 'mailto:brian.uceda@hotmail.com',
+    blank: false,
+  },
+  {
+    icon: 'fab fa-whatsapp',
+    text: 'WhatsApp',
+    shortDescription: 'Send me a message on WhatsApp',
+    uri: 'https://wa.me/924227432',
+    blank: true,
+  },
+  {}, // Empty object to simulate a separator in the submenu list
+  {
+    icon: 'fa-brands fa-github-alt',
+    text: 'GitHub',
+    shortDescription: 'Go to my GitHub',
+    uri: 'https://github.com/kiridepapel/',
+    blank: true,
+  },
+  {
+    icon: 'fa-brands fa-linkedin',
+    text: 'LinkedIn',
+    shortDescription: 'Go to my LinkedIn',
+    uri: 'https://www.linkedin.com/in/kiridepapel/',
+    blank: true,
+  },
+  {},
+  {},
+];
+
 export const submenusGitHubData: Submenu[] = [
   {
     previewImg: 'assets/img/github-preview.webp',

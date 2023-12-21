@@ -1,16 +1,16 @@
-// Window sizes for media queries
-$mobile-sm: 420px;
+// ? Media queries
+$mobile-sm: 500px;
 $mobile-md: 768px;
-$tablet: 1040px;
+$tablet: 1050px;
 $desktop: 1320px;
 $widescreen: 1440px;
 
-// Navbar sizes
+// ? Navbar
 $bar-height: 80px;
 $bar-height-mobile: 70px;
 
-// Section
+// ? Sections
 $section-mg-lr: 12%;
-$section-pg-lr: 32px;
+$section-pg-lr: 24px;
 $section-pg-top: 64px;
-$section-pg-bottom: 64px;
+$section-pg-bottom: 64px; // Aplicated on last-section and footer

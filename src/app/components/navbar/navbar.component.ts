@@ -18,20 +18,23 @@ import {
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isExpanded = false;
+  isExpanded!: boolean;
   isScrolled = false;
   // Data
   submenusPortfolio: Submenu[] = [];
   submenusDocs: Submenu[] = [];
   submenusGitHub: Submenu[] = [];
   submenusLinkeIn: Submenu[] = [];
-  gitHubUrl: string = 'https://github.com/kiridepapel/';
-  linkedInUrl: string = 'https://www.linkedin.com/in/kiridepapel/';
 
   constructor(private navbarService: NavbarService) {}
 
   ngOnInit(): void {
     this.loadSubmenusProfile();
+    this.isExpanded = this.navbarService.getNavbarState();
+  }
+
+  public isNavbarExpanded(): boolean {
+    return this.navbarService.getNavbarState() === true;
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -41,11 +44,9 @@ export class NavbarComponent {
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
-    if (scrollPosition > 1) {
-      this.isScrolled = true;
-    } else {
-      this.isScrolled = false;
-    }
+
+    if (scrollPosition > 1) this.isScrolled = true;
+    else this.isScrolled = false;
   }
 
   public navigate(url?: string): void {
@@ -62,6 +63,9 @@ export class NavbarComponent {
 
   toggleMenu(): void {
     this.isExpanded = !this.isExpanded;
-    this.navbarService.clearActiveButton();
+    if (this.isNavbarExpanded())
+      this.navbarService.setNavbarState(false);
+    else
+      this.navbarService.setNavbarState(true);
   }
 }

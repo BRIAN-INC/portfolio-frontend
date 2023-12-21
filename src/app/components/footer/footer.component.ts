@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment.prod';
 import { Submenu } from '../../models/submenu.model';
-import { submenusDocsData, submenusPortfolioData } from '../../data/submenu.data';
+import { submenusDocsData, submenusInfoData, submenusPortfolioData } from '../../data/submenu.data';
 
 @Component({
   selector: 'app-footer',
@@ -13,14 +13,18 @@ import { submenusDocsData, submenusPortfolioData } from '../../data/submenu.data
 export class FooterComponent {
   public submenusPortfolio: Submenu[] = [];
   public submenusDocs: Submenu[] = [];
+  public submenusInfo: Submenu[] = [];
 
   ngOnInit(): void {
     this.submenusPortfolio = submenusPortfolioData;
     this.submenusDocs = submenusDocsData;
+    this.submenusInfo = submenusInfoData;
   }
 
-  public navigate(url?: string): void {
+  public navigate(url?: string, target?: boolean): void {
     if (!url) return;
-    window.location.href = url;
+
+    if (target) window.open(url, '_blank');
+    else window.location.href = url;
   }
 }
