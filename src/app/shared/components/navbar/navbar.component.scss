@@ -60,7 +60,7 @@
       flex-direction: column;
 
       .nav-base {
-        width: 100%;
+        width: -webkit-fill-available;
         height: $bar-height-mobile;
         padding: 0 20px;
         justify-content: space-between;
@@ -99,7 +99,7 @@
 
         .items {
           display: flex;
-          width: 100%;
+          width: -webkit-fill-available;
           height: 100%;
           padding: 0 12%;
           flex-direction: column;
