@@ -1,33 +1,37 @@
 <!-- navbar.component.html -->
-<div class="my-container flex"
-  [ngClass]="{'expanded': isNavbarExpanded(), 'no-expanded': !isNavbarExpanded(), 'bg-scrolled': isScrolled}">
-  <nav class="navbar flex">
-    <div class="nav-base flex">
-      <div class="logo flex" (click)="navigate('/')">
-        <img class="logo-img" src="assets/svgs/logo.svg" alt="logo" />
-        <a class="logo-txt">Kiridepapel</a>
+@defer(on viewport) {
+  <div class="my-container flex"
+    [ngClass]="{'expanded': isNavbarExpanded(), 'no-expanded': !isNavbarExpanded(), 'bg-scrolled': isScrolled}">
+    <nav class="navbar flex">
+      <div class="nav-base flex">
+        <div class="logo flex" (click)="navigate('/')">
+          <img class="logo-img" src="assets/svgs/logo.svg" alt="logo" />
+          <a class="logo-txt">Kiridepapel</a>
+        </div>
+        <div class="close">
+          <i (click)="toggleMenu()" class="fa" [ngClass]="{'fa-xmark': isNavbarExpanded(), 'fa-bars': !isNavbarExpanded()}"></i>
+        </div>
       </div>
-      <div class="close">
-        <i (click)="toggleMenu()" class="fa" [ngClass]="{'fa-xmark': isNavbarExpanded(), 'fa-bars': !isNavbarExpanded()}"></i>
+      <div class="nav-content flex">
+        <ul class="items flex">
+          <li class="item">
+            <app-button text="Portafolio" type="transparent" [submenus]="submenusPortfolio"></app-button>
+          </li>
+          <li class="item">
+            <app-button text="Documentaciones" type="transparent" [submenus]="submenusDocs"></app-button>
+          </li>
+          <li class="item">
+            <app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary" uri="https://github.com/kiridepapel/"
+              [blank]="true" [submenus]="submenusGitHub"></app-button>
+            </li>
+          <li class="item">
+            <app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary" uri="https://www.linkedin.com/in/kiridepapel/"
+              [blank]="true" [submenus]="submenusLinkeIn"></app-button>
+            </li>
+        </ul>
       </div>
-    </div>
-    <div class="nav-content flex">
-      <ul class="items flex">
-        <li class="item">
-          <app-button text="Portafolio" type="transparent" [submenus]="submenusPortfolio"></app-button>
-        </li>
-        <li class="item">
-          <app-button text="Documentaciones" type="transparent" [submenus]="submenusDocs"></app-button>
-        </li>
-        <li class="item">
-          <app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary" uri="https://github.com/kiridepapel/"
-            [blank]="true" [submenus]="submenusGitHub"></app-button>
-          </li>
-        <li class="item">
-          <app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary" uri="https://www.linkedin.com/in/kiridepapel/"
-            [blank]="true" [submenus]="submenusLinkeIn"></app-button>
-          </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+    </nav>
+  </div>
+} @placeholder {
+  <span></span>
+}

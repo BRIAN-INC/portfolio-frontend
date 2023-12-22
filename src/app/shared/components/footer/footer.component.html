@@ -14,7 +14,7 @@
         <div class="footer-links flex">
           @for (item of submenusPortfolio; track $index) {
             <app-button class="app-btn"
-              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7"
+              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
               type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
               [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
             ></app-button>
@@ -28,7 +28,7 @@
         <div class="footer-links flex">
           @for (item of submenusDocs; track $index) {
             <app-button class="app-btn"
-              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7"
+              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
               type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
               [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
             ></app-button>
@@ -42,7 +42,7 @@
         <div class="footer-links flex">
           @for (item of submenusInfo; track $index) {
             <app-button class="app-btn"
-              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7"
+              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
               type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
               [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
             ></app-button>
@@ -52,5 +52,5 @@
     </div>
   </footer>
 } @placeholder {
-  <span class="loading">Cargando...</span>
+  <span></span>
 }

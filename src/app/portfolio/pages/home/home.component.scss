@@ -28,6 +28,10 @@
     flex-direction: column;
     justify-content: flex-start;
 
+    .simultated-content {
+      border-radius: 5px;
+    }
+
     &.last-section {
       padding-bottom: $section-pg-bottom;
     }
@@ -38,7 +42,7 @@
       .simultated-content {
         width: 100%;
         height: 100%;
-        background: #575586;
+        background: #6461b160;
       }
     }
 

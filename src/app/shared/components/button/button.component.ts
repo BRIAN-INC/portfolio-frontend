@@ -17,11 +17,11 @@ export class ButtonComponent {
   // * Button: Decoration
   @Input() icon: string = '';
   @Input() text: string = 'Button';
+  @Input() type: string = 'transparent';
+  @Input() padding?: string;
   @Input() color?: string = '#c6d3e2';
   @Input() fontSize?: string = '13px';
   @Input() fontWeight?: string = '500';
-  @Input() type: string = 'transparent';
-  @Input() padding: string = '3px 20px';
   // * Button: Usability
   @Input() uri: string = '';
   @Input() disabled: boolean = false;
@@ -155,24 +155,27 @@ export class ButtonComponent {
     switch (this.type) {
       case 'transparent':
         this.backgroundColor = 'transparent';
-        this.padding = '3px 20px 3px 5px';
+        if (!this.padding) this.padding = '3px 20px 3px 5px';
         break;
       case 'primary':
         this.color = '#fff';
         this.backgroundColor = 'rgb(20, 164, 255)';
         this.hasBorder = true;
         this.borderColor = 'rgb(20, 164, 255)';
+        this.padding = '5px 20px';
         break;
       case 'secondary':
         this.backgroundColor = 'rgb(32, 44, 70)';
         this.hasBorder = true;
         this.borderColor = 'rgb(51, 70, 112)';
+        this.padding = '5px 20px';
         break;
       case 'tertiary':
         this.color = 'rgb(233, 233, 233)';
         this.backgroundColor = 'rgb(37, 41, 47)';
         this.hasBorder = true;
         this.borderColor = 'rgb(37, 41, 47)';
+        this.padding = '5px 20px';
         break;
       default:
         this.backgroundColor = 'transparent';
