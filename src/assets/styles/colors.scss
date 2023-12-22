@@ -1,8 +1,9 @@
-// Backgrounds
-$bg-color: rgb(10, 30, 47);
-$bg-gradient: linear-gradient(45deg, rgba(10, 30, 47, 1) 0%, rgba(17, 46, 73, 1) 33%, rgba(12, 37, 61, 1) 73%, rgba(10, 34, 54, 1) 100%);
+// Backgrounds Blue
+$bg-color: #0a1e2f;
+$bg-gradient: linear-gradient(45deg, #0a1e2f 0%, #112e49 33%, #0c253d 73%, #0a2236 100%);
 
 $primary-color: $bg-gradient;
+$semi-primary-color: #0b2338;
 $secondary-color: #202c46;
 $semi-secondary-color: #192338;
 $tertiary-color: #334670;
@@ -14,3 +15,21 @@ $txt-primary-color: #c6d3e2;
 $txt-secondary-color: #919ba7;
 $txt-tertiary-color: #7A89A1;
 $txt-quaternary-color: #626e83;
+
+// Backgrounds Green
+// $bg-color: #0a2f1e;
+// $bg-gradient: linear-gradient(145deg, #0f2801 0%, #14523c 33%, #0d6a48 73%, #0a360e 100%);
+
+// $primary-color: $bg-gradient;
+// $semi-primary-color: #0b3a24;
+// $secondary-color: #204638;
+// $semi-secondary-color: #204b32;
+// $tertiary-color: #33705c;
+// $quaternary-color: #03eb8a;
+// $quinary-color: #14ffa5;
+
+// $txt-white-color: #ffffff;
+// $txt-primary-color: #d5e6df;
+// $txt-secondary-color: #baccc5;
+// $txt-tertiary-color: #afcfc3;
+// $txt-quaternary-color: #b4d4c7;

@@ -24,6 +24,8 @@ export class NavbarComponent {
   submenusDocs: Submenu[] = [];
   submenusGitHub: Submenu[] = [];
   submenusLinkeIn: Submenu[] = [];
+  // SCSS Variables
+  public showHoverAnimWidth: number = 1040;
 
   constructor(private navbarService: NavbarService) {}
 
@@ -35,8 +37,16 @@ export class NavbarComponent {
     return this.navbarService.getNavbarState() === true;
   }
 
+  public isScrollEnabled(): boolean {
+    return this.navbarService.isScrollListenerEnabled();
+  }
+
+  public isDesktop(): boolean {
+    return window.innerWidth > this.showHoverAnimWidth;
+  }
+
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
+  public onWindowScroll() {
     if (!this.navbarService.isScrollListenerEnabled()) return;
 
     const scrollPosition =
@@ -63,8 +73,8 @@ export class NavbarComponent {
   toggleMenu(): void {
     if (this.isNavbarExpanded()) {
       this.navbarService.setNavbarState(false);
-    }
-    else
+    } else {
       this.navbarService.setNavbarState(true);
+    }
   }
 }

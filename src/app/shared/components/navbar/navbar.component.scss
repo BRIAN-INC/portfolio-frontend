@@ -89,7 +89,7 @@
         // Animation
         position: absolute;
         top: $bar-height-mobile;
-        background-color: #0b2338;
+        background-color: $semi-primary-color;
         // Content
         width: 100%;
         height: calc(100vh - $bar-height-mobile);
@@ -126,7 +126,7 @@
 
     &.expanded {
       .nav-base {
-        background-color: #0b2338;
+        background-color: $semi-primary-color;
       }
 
       .nav-content {
