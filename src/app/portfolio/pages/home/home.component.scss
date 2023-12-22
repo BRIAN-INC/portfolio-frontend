@@ -37,7 +37,7 @@
     }
 
     &#home {
-      height: calc(100vh - $bar-height);
+      height: calc(100vh - ($bar-height + $section-pg-top + $section-pg-bottom));
 
       .simultated-content {
         width: 100%;
