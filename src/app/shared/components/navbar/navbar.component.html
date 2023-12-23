@@ -1,6 +1,10 @@
 <!-- file: navbar.component.html -->
 <div class="my-container flex"
-  [ngClass]="{'expanded': isNavbarExpanded(), 'no-expanded': !isNavbarExpanded(), 'bg-scrolled': isScrolled || !isDesktop()}">
+  [class.expanded]="isNavbarExpanded()"
+  [ngClass]=" {
+    'bg-scrolled': isScrolled || !isDesktop()
+  }"
+>
   <nav class="navbar flex">
     <div class="nav-base flex">
       <div class="logo flex" (click)="navigate('/')">

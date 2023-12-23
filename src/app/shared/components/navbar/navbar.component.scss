@@ -14,7 +14,7 @@
   transition: background-color 0.5s ease, box-shadow 0.5s ease;
   transition-property: background-color, box-shadow;
 
-  &.no-expanded.bg-scrolled {
+  &:not(.expanded).bg-scrolled {
     background: $bg-gradient;
     box-shadow: 0 0 10px 10px rgba($bg-color, 0.5);
   }
@@ -120,17 +120,7 @@
       }
     }
 
-    &.no-expanded {
-      .nav-base {
-        background-color: transparent;
-      }
-
-      .nav-content {
-        transform: translateX(-100%);
-        transition: transform 0.5s ease;
-      }
-    }
-
+    // Navbar expandido
     &.expanded {
       .nav-base {
         background-color: $semi-primary-color;
@@ -138,6 +128,18 @@
 
       .nav-content {
         transform: translateX(0);
+        transition: transform 0.5s ease;
+      }
+    }
+
+    // Navbar contraído
+    &:not(.expanded) {
+      .nav-base {
+        background: $bg-gradient;
+      }
+
+      .nav-content {
+        transform: translateX(-100%);
         transition: transform 0.5s ease;
       }
     }
