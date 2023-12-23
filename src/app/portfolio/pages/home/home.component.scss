@@ -1,16 +1,11 @@
 @import "../../../../assets/styles/types.scss";
 @import "../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/loaders.scss";
 
 * {
   font-size: 14px;
   color: $txt-white-color;
   position: relative;
-}
-
-.loading {
-  display: block;
-  width: 100%;
-  text-align: center;
 }
 
 .kw-container {

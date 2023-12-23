@@ -33,6 +33,14 @@ export class NavbarComponent {
     this.loadSubmenusProfile();
   }
 
+  public changeTheme(): void {
+    if (localStorage.getItem('theme') === 'dark') {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
   public isNavbarExpanded(): boolean {
     return this.navbarService.getNavbarState() === true;
   }

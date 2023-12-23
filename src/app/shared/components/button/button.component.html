@@ -1,3 +1,4 @@
+<!-- file: button.component.html -->
 <div class="content"
   [ngClass]="[
     isButtonActive() ? 'show' : '',
@@ -25,9 +26,12 @@
   >
   <!-- toggleSubmenus() solo funciona en celular -->
     @if (icon) {
-      <i class="icon icon-left" [class]="icon"></i>
+      <i class="icon" [class]="icon"
+      [ngStyle]="{ 'margin-right': marginRightIcon, 'font-size': iconSize }"></i>
     }
-    <span>{{ text }}</span>
+    @if (text) {
+      <span>{{ text }}</span>
+    }
     @if (haveSubmenus && !havePreviewImg) {
       <i
         class="icon icon-right fa-solid fa-chevron-down"
@@ -38,48 +42,50 @@
 
   <!-- Submenu -->
   @if(haveSubmenus) {
-    @defer (on viewport) {
-      @if(!havePreviewImg || havePreviewImg && isDesktop()) {
-        <div
-          class="submenu-container"
-          [class.is-preview-img]="isButtonActive() && havePreviewImg"
-          [style.padding-top]="havePreviewImg ? '10px' : ''"
-          [style.top]="havePreviewImg ? '25px' : ''"
+    @if(!havePreviewImg || havePreviewImg && isDesktop()) {
+      <div
+        class="submenu-container"
+        [class.is-preview-img]="isButtonActive() && havePreviewImg"
+        [style.padding-top]="havePreviewImg ? '10px' : ''"
+        [style.top]="havePreviewImg ? '25px' : ''"
+      >
+        <div class="arrow-up"></div>
+        <div class="submenu"
+          (mouseover)="havePreviewImg ? hideSubmenus('submenu-mouseover') : ''"
         >
-          <div class="arrow-up"></div>
-          <div class="submenu"
-            (mouseover)="havePreviewImg ? hideSubmenus('submenu-mouseover') : ''"
-          >
-            <ul class="submenu-list flex">
-              @for (submenu of submenus; track submenu.text) {
-                <li class="submenu-item flex">
-                  <a
-                    class="item flex"
-                    [ngClass]="{'is-preview-img' : havePreviewImg}"
-                    (click)="navigate(submenu.uri!)"
-                    (click)="toggleSubmenus()"
-                    (click)="!isDesktop() ? changeNavbarState(false) : ''"
-                    target="{{ submenu.blank ? '_blank' : '_self' }}"
-                  >
-                    @if (!havePreviewImg) {
-                      @if (submenu.icon) {
-                        <i class="icon icon-left" [class]="submenu.icon"></i>
-                      }
-                      <span>{{ submenu.text }}</span>
-                    } @else if (isDesktop()) {
-                      <div class="preview-img flex">
-                        <img src="{{ submenu.previewImg }}" alt="{{ submenu.text }} preview-img" />
-                      </div>
+          <ul class="submenu-list flex">
+            @for (submenu of submenus; track submenu.text) {
+              <li class="submenu-item flex">
+                <a
+                  class="item flex"
+                  [ngClass]="{'is-preview-img' : havePreviewImg}"
+                  (click)="navigate(submenu.uri!)"
+                  (click)="toggleSubmenus()"
+                  (click)="!isDesktop() ? changeNavbarState(false) : ''"
+                  target="{{ submenu.blank ? '_blank' : '_self' }}"
+                >
+                  @if (!havePreviewImg) {
+                    @if (submenu.icon) {
+                      <i class="icon icon-left" [class]="submenu.icon"></i>
                     }
-                  </a>
-                </li>
-              }
-            </ul>
-          </div>
+                    <span
+                      [ngStyle]="{
+                        'font-size': fontSize,
+                        'font-weight': fontWeight
+                      }">
+                      {{ submenu.text }}
+                    </span>
+                  } @else if (isDesktop()) {
+                    <div class="preview-img flex">
+                      <img src="{{ submenu.previewImg }}" alt="{{ submenu.text }} preview-img" />
+                    </div>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
         </div>
-      }
-    } @placeholder {
-      <div class="loading"></div>
+      </div>
     }
   }
 </div>

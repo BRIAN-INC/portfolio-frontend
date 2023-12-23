@@ -4,17 +4,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class NavbarService {
+  private activeButtonId: string | null = null;
   private state: boolean = false;
   private isScrollEnabled = true;
-  private activeButtonId: string | null = null;
+
+  // Buttons
+  public setActiveButton(id: string): void {
+    this.activeButtonId = id;
+  }
+  public getActiveButton(): string | null {
+    return this.activeButtonId;
+  }
+  public clearActiveButton(): void {
+    this.activeButtonId = null;
+  }
 
   // Navbar
-  setNavbarState(state: boolean): void {
+  public setNavbarState(state: boolean): void {
     if (state === false) this.clearActiveButton();
     this.state = state;
   }
-
-  getNavbarState(): boolean {
+  public getNavbarState(): boolean {
     return this.state;
   }
 
@@ -22,25 +32,10 @@ export class NavbarService {
   public disableScrollListener(): void {
     this.isScrollEnabled = false;
   }
-
   public enableScrollListener(): void {
     this.isScrollEnabled = true;
   }
-
   public isScrollListenerEnabled(): boolean {
     return this.isScrollEnabled;
-  }
-
-  // Buttons
-  setActiveButton(id: string): void {
-    this.activeButtonId = id;
-  }
-
-  getActiveButton(): string | null {
-    return this.activeButtonId;
-  }
-
-  clearActiveButton(): void {
-    this.activeButtonId = null;
   }
 }

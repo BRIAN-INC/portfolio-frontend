@@ -1,56 +1,53 @@
-@defer (on viewport) {
-  <footer class="kw-container grid">
-    <div class="logo-content flex">
-      <div class="logo flex" (click)="navigate('/', false)">
-        <img class="logo-img" src="assets/svgs/logo.svg" alt="logo" />
-        <a class="logo-txt">Kiridepapel</a>
+<!-- file: footer.component.html -->
+<footer class="kw-container grid">
+  <div class="logo-content flex">
+    <div class="logo flex" (click)="navigate('/', false)">
+      <img class="logo-img" src="assets/svgs/logo.svg" alt="logo" />
+      <a class="logo-txt">Kiridepapel</a>
+    </div>
+  </div>
+  <div class="footer-content flex">
+
+    <!-- Portfolio section -->
+    <div class="footer-part flex">
+      <h2 class="footer-title">Portafolio</h2>
+      <div class="footer-links flex">
+        @for (item of submenusPortfolio; track $index) {
+          <app-button class="app-btn"
+            icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
+            type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
+            [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
+          ></app-button>
+        }
       </div>
     </div>
-    <div class="footer-content flex">
 
-      <!-- Portfolio section -->
-      <div class="footer-part flex">
-        <h2 class="footer-title">Portafolio</h2>
-        <div class="footer-links flex">
-          @for (item of submenusPortfolio; track $index) {
-            <app-button class="app-btn"
-              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
-              type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
-              [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
-            ></app-button>
-          }
-        </div>
-      </div>
-
-      <!-- Docs section -->
-      <div class="footer-part flex">
-        <h2 class="footer-title">Documentaciones</h2>
-        <div class="footer-links flex">
-          @for (item of submenusDocs; track $index) {
-            <app-button class="app-btn"
-              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
-              type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
-              [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
-            ></app-button>
-          }
-        </div>
-      </div>
-
-      <!-- Information section -->
-      <div class="footer-part flex">
-        <h2 class="footer-title">Información</h2>
-        <div class="footer-links flex">
-          @for (item of submenusInfo; track $index) {
-            <app-button class="app-btn"
-              icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
-              type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
-              [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
-            ></app-button>
-          }
-        </div>
+    <!-- Docs section -->
+    <div class="footer-part flex">
+      <h2 class="footer-title">Documentaciones</h2>
+      <div class="footer-links flex">
+        @for (item of submenusDocs; track $index) {
+          <app-button class="app-btn"
+            icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
+            type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
+            [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
+          ></app-button>
+        }
       </div>
     </div>
-  </footer>
-} @placeholder {
-  <span></span>
-}
+
+    <!-- Information section -->
+    <div class="footer-part flex">
+      <h2 class="footer-title">Información</h2>
+      <div class="footer-links flex">
+        @for (item of submenusInfo; track $index) {
+          <app-button class="app-btn"
+            icon="{{ item.icon }}" text="{{ item.text }}" color="#919ba7" padding="3px 20px 3px 0"
+            type="transparent" uri="{{ item.uri }}" [blank]="item.blank!"
+            [dialog]="item.dialog" [dialogConfig]="item.dialogConfig"
+          ></app-button>
+        }
+      </div>
+    </div>
+  </div>
+</footer>

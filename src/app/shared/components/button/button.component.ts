@@ -16,7 +16,9 @@ export class ButtonComponent {
   private id: string = '';
   // * Button: Decoration
   @Input() icon: string = '';
-  @Input() text: string = 'Button';
+  public marginRightIcon: string = '10px';
+  @Input() iconSize?: string;
+  @Input() text?: string;
   @Input() type: string = 'transparent';
   @Input() padding?: string;
   @Input() color?: string = '#c6d3e2';
@@ -50,6 +52,8 @@ export class ButtonComponent {
 
   ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
+    if (!this.text) this.marginRightIcon = '0px';
+    if (!this.iconSize) this.iconSize = '14px';
     this.selectColors();
     this.defineIfHaveData();
   }
@@ -162,20 +166,20 @@ export class ButtonComponent {
         this.backgroundColor = 'rgb(20, 164, 255)';
         this.hasBorder = true;
         this.borderColor = 'rgb(20, 164, 255)';
-        this.padding = '5px 20px';
+        if (!this.padding) this.padding = '5px 20px';
         break;
       case 'secondary':
         this.backgroundColor = 'rgb(32, 44, 70)';
         this.hasBorder = true;
         this.borderColor = 'rgb(51, 70, 112)';
-        this.padding = '5px 20px';
+        if (!this.padding) this.padding = '5px 20px';
         break;
       case 'tertiary':
         this.color = 'rgb(233, 233, 233)';
         this.backgroundColor = 'rgb(37, 41, 47)';
         this.hasBorder = true;
         this.borderColor = 'rgb(37, 41, 47)';
-        this.padding = '5px 20px';
+        if (!this.padding) this.padding = '5px 20px';
         break;
       default:
         this.backgroundColor = 'transparent';

@@ -12,5 +12,13 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent],
 })
 export class AppComponent {
-  title = 'portfolio-frontend';
+  title = 'Brian Uceda - Portafolio';
+
+  constructor() {}
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem('theme', 'dark');
+    }
+  }
 }
