@@ -1,0 +1,46 @@
+<!-- file: navbar.component.html -->
+<div class="my-container flex"
+  [class.expanded]="isNavbarExpanded()"
+  [ngClass]=" {
+    'bg-scrolled': isScrolled || !isDesktop()
+  }"
+>
+  <nav class="navbar flex">
+    <div class="nav-base flex">
+      <div class="logo flex" (click)="navigate('/')">
+        <img class="logo-img" src="assets/svgs/logo.svg" alt="logo" />
+        <a class="logo-txt">Kiridepapel</a>
+      </div>
+      <div class="close">
+        <i (click)="toggleMenu()" class="fa" [ngClass]="{'fa-xmark': isNavbarExpanded(), 'fa-bars': !isNavbarExpanded()}"></i>
+      </div>
+    </div>
+    <div class="nav-content flex">
+      <ul class="items flex">
+        <li class="item">
+          <app-button text="Portafolio" type="transparent" [submenus]="submenusPortfolio"></app-button>
+        </li>
+        <li class="item">
+          <app-button text="Docs" type="transparent" uri="/docs"></app-button>
+        </li>
+        <li class="item">
+          <app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary"
+            uri="https://github.com/kiridepapel/" [blank]="true" [submenus]="submenusGitHub">
+          </app-button>
+        </li>
+        <li class="item">
+          <app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary"
+            uri="https://www.linkedin.com/in/kiridepapel/" [blank]="true" [submenus]="submenusLinkeIn">
+          </app-button>
+        </li>
+        <li class="item item--together flex">
+          <app-button icon="item__icon fa-solid fa-language" type="transparent" iconSize="16px" padding="0"></app-button>
+          <app-button icon="item__icon fa-solid fa-sun" type="transparent" iconSize="16px" padding="0"></app-button>
+        </li>
+        <!-- <li class="item item__icon" (click)="changeTheme()">
+          <app-button icon="fa-solid fa-sliders" type="transparent" iconSize="16px" padding="0"></app-button>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+</div>

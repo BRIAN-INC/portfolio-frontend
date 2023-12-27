@@ -1,3 +1,4 @@
+@import "./variables.scss";
 @import "./colors.scss";
 
 .flex {
@@ -31,5 +32,55 @@
     font-weight: 500;
     text-decoration: none;
     font-family: Inter, system-ui, sans-serif;
+  }
+}
+
+.kw-section {
+  height: 100%;
+  margin: 0 $section-mg-lr;
+  padding: calc($section-pg-top * 2) $section-pg-lr 0 $section-pg-lr;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .simultated-content {
+    border-radius: 5px;
+  }
+
+  &.last-section {
+    padding-bottom: $section-pg-bottom;
+  }
+}
+
+#footer {
+  margin: 0;
+  height: 100%;
+  width: -webkit-fill-available;
+  padding: 0 $section-mg-lr;
+  padding-top: $section-pg-top;
+  padding-bottom: $section-pg-bottom;
+  background: $semi-secondary-color;
+  position: absolute;
+  height: auto;
+}
+
+@media screen and (max-width: $tablet) {
+  .kw-section {
+    margin-left: calc($section-mg-lr / 2);
+    margin-right: calc($section-mg-lr / 2);
+  }
+
+  #footer {
+    padding-top: calc($section-pg-top / 2);
+    padding-bottom: calc($section-pg-bottom / 2);
+  }
+}
+
+@media screen and (max-width: $mobile-sm) {
+  .kw-container {
+    top: -$bar-height-mobile;
+  }
+
+  .kw-section {
+    margin: 0;
   }
 }

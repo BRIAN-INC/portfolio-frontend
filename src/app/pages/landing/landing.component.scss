@@ -1,0 +1,22 @@
+@import "../../../assets/styles/types.scss";
+@import "../../../assets/styles/loaders.scss";
+
+* {
+  font-size: 14px;
+  color: $txt-white-color;
+  position: relative;
+}
+
+.kw-container {
+  z-index: 90;
+  position: relative;
+  top: -$bar-height;
+  background: $bg-gradient;
+  height: calc(100% - $bar-height);
+}
+
+@media screen and (max-width: $mobile-sm) {
+  .kw-container {
+    top: -$bar-height-mobile;
+  }
+}
