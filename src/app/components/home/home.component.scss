@@ -14,25 +14,35 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
+    position: relative;
+
+    .border-top-left, .border-top-right {
+      display: none;
+    }
 
     .title {
       text-align: center;
       font-family: "Onest", sans-serif;
       font-weight: 700;
-      font-size: 46px;
+      font-size: clamp(32px, 2vw, 42px);
       margin: 0;
       padding: 0;
+
+      .title-name {
+        display: inline;
+      }
     }
 
     .tags {
+      text-wrap: balance;
       margin-top: 25px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       gap: 15px;
     }
 
     .data {
       text-align: center;
-      font-size: 18px;
+      font-size: clamp(14px, 1.5vw, 18px);
       margin-bottom: 30px;
     }
 
@@ -41,20 +51,65 @@
       height: 220px;
       border-radius: 50%;
       object-fit: cover;
+      margin-bottom: 40px;
+      box-shadow: 0 0 50px 0px $quaternary-color;
     }
 
     .buttons {
       gap: 15px;
+
+      .button {
+        width: 130px;
+        height: 40px;
+      }
+
+      .button:nth-child(1) {
+        height: 38px;
+      }
     }
   }
 }
 
-@media screen and (max-width: $tablet) {
+@media screen and (max-width: $mobile-md) {
   #home {
     .simultated-content {
+      .border-top-left, .border-top-right {
+        display: inline-block;
+      }
+
+      .border-top-left {
+        width: 50px;
+        height: 150px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 15px;
+        border: 1px solid #ffffff44;
+        border-bottom: none;
+        border-right: none;
+        z-index: 1;
+      }
+
+      .border-top-right {
+        width: 50px;
+        height: 150px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-top-right-radius: 15px;
+        border: 1px solid #ffffff44;
+        border-bottom: none;
+        border-left: none;
+        z-index: 1;
+      }
+
       .title {
         text-align: center;
-        font-size: 32px;
+
+        .title-name {
+          margin-top: 10px;
+          display: block;
+        }
       }
 
       .tag {
@@ -65,14 +120,21 @@
       .img {
         width: 120px;
         height: 120px;
-      }
-
-      .data {
-        font-size: 14px;
+        margin-bottom: 20px;
       }
 
       .buttons {
-        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .button:nth-child(1), .button:nth-child(2) {
+          order: 1;
+        }
+
+        .button:nth-child(3) {
+          width: calc(2 * 130px + 15px);
+          order: 2;
+        }
       }
     }
   }

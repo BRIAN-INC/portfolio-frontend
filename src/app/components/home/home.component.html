@@ -1,31 +1,33 @@
 <section id="home" class="kw-section flex">
   <div class="simultated-content flex">
-    <!-- <img class="img" src="../../../assets/imgs/brian.webp" alt=""> -->
-    <img class="img" src="../../../assets/svgs/logo.svg" alt="">
+    <span class="border-top-left"></span>
+    <span class="border-top-right"></span>
+    <img class="img" src="../../../assets/imgs/brian.webp" alt="">
+    <!-- <img class="img" src="../../../assets/svgs/logo.svg" alt=""> -->
     <br>
-    <h1 class="title">Hola! soy Brian Uceda Hirata</h1>
+    <h1 class="title">¡Hola! Soy <span class="title-name">Brian Uceda Hirata</span></h1>
     <div class="tags flex">
-      <app-button text="Software Developer" type="tertiary"
-        padding="3px 5px" sizeDesktop="13px" sizeMobile="11px"
-        backgroundColor="#000" color="#fff">
+      <app-button text="Backend Developer"
+        padding="5px 12px" borderRadius="25px" sizeDesktop="12px" sizeMobile="11px"
+        backgroundColor="#658DFD" color="#fff" [pointer]="false">
       </app-button>
-      <app-button text="Web Developer" type="tertiary"
-        padding="3px 5px" sizeDesktop="13px" sizeMobile="11px"
-        backgroundColor="#000" color="#fff">
+      <app-button text="Software Developer"
+        padding="5px 12px" borderRadius="25px" sizeDesktop="12px" sizeMobile="11px"
+        backgroundColor="#658DFD" color="#fff" [pointer]="false">
       </app-button>
     </div>
     <p class="data">Estudiante universitario especializado en el Desarrollo de aplicaciones Backend</p>
     <div class="buttons flex">
-      <app-button class="button" icon="fa-brands fa-linkedin" text="LinkedIn" type="primary"
-        padding="8px 30px" sizeDesktop="15px" sizeMobile="12px"
+      <app-button class="button linkedin" icon="fa-brands fa-linkedin" text="LinkedIn" type="primary"
+        padding="auto" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px"
         uri="https://www.linkedin.com/in/kiridepapel/" [blank]="true">
       </app-button>
       <app-button class="button" icon="fa-brands fa-github-alt" text="GitHub" type="secondary"
-        padding="10px 30px" sizeDesktop="15px" sizeMobile="12px"
+        padding="auto" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px"
         uri="https://github.com/kiridepapel/" [blank]="true">
       </app-button>
       <app-button class="button" icon="fas fa-envelope" text="Correo" type="secondary"
-        padding="10px 30px" sizeDesktop="15px" sizeMobile="12px"
+        padding="auto" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px"
         uri="mailto:brian.uceda@hotmail.com" [blank]="true">
       </app-button>
     </div>

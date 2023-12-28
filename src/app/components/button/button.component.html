@@ -4,6 +4,9 @@
     isButtonActive() ? 'show' : '',
     isDesktop() ? animationClass : ''
   ]"
+  [ngStyle]="{
+    cursor: (pointer) ? 'pointer' : 'default',
+  }"
   (mouseenter)="haveSubmenus ? showSubmenus('btn-mouseover') : ''"
   (mouseleave)="hideSubmenus('btn-mouseleave')"
   (click)="isDesktop() ? toggleSubmenus() : ''"
@@ -13,6 +16,7 @@
     [ngClass]="['btn', type]"
     [class.demo-dialog]="isDialogButton"
     [ngStyle]="{
+      cursor: (pointer) ? 'pointer' : 'default',
       'background-color': backgroundColor,
       color: color,
       'font-size': calculateFontSize(false),

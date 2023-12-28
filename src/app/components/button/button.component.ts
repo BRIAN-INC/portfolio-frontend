@@ -23,7 +23,7 @@ export class ButtonComponent {
   @Input() icon: string = '';
   public marginRightIcon: string = '10px';
   @Input() text?: string;
-  @Input() type: string = 'transparent';
+  @Input() type?: string;
   @Input() padding?: string;
   @Input() borderRadius?: string;
   @Input() color?: string;
@@ -32,6 +32,7 @@ export class ButtonComponent {
   @Input() sizeMobile?: string;
   @Input() fontWeight?: string = '500';
   // * Button: Usability
+  @Input() pointer?: boolean = true;
   @Input() uri: string = '';
   @Input() disabled: boolean = false;
   @Input() blank: boolean = false;
@@ -59,12 +60,7 @@ export class ButtonComponent {
 
   ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
-    if (!this.text) this.marginRightIcon = '0px';
-    if (!this.borderRadius) this.borderRadius = '2.5px';
-    if (!this.color) this.color = '#c6d3e2';
-    if (!this.backgroundColor) this.backgroundColor = 'transparent';
-    if (!this.sizeDesktop) this.sizeDesktop = '13px';
-    if (!this.sizeMobile) this.sizeMobile = '12px';
+    this.initializeVariables();
     this.selectColors();
     this.defineIfHaveData();
   }
@@ -172,6 +168,16 @@ export class ButtonComponent {
     });
   }
 
+  private initializeVariables(): void {
+    if (!this.type) this.type = 'personalized';
+    if (!this.text) this.marginRightIcon = '0px';
+    if (!this.borderRadius) this.borderRadius = '2.5px';
+    if (!this.color) this.color = '#c6d3e2';
+    if (!this.backgroundColor) this.backgroundColor = 'transparent';
+    if (!this.sizeDesktop) this.sizeDesktop = '13px';
+    if (!this.sizeMobile) this.sizeMobile = '12px';
+  }
+
   private defineIfHaveData(): void {
     this.haveSubmenus = this.submenus.length > 0;
     this.havePreviewImg = this.submenus.some((submenu) => {
@@ -185,6 +191,7 @@ export class ButtonComponent {
   }
 
   private selectColors(): void {
+    console.log('tipo: ' + this.type)
     switch (this.type) {
       case 'transparent':
         this.backgroundColor = 'transparent';
