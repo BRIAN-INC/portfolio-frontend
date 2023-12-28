@@ -2,12 +2,12 @@
 @import "../../../assets/styles/loaders.scss";
 
 #home {
+  font-family: "Onest", sans-serif;
   min-height: calc(
     100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
   );
-  justify-content: center;
   height: 100%;
-  font-family: "Onest", sans-serif;
+  justify-content: center;
 
   .simultated-content {
     width: 100%;
@@ -62,10 +62,10 @@
         min-width: 100px;
         width: auto;
         height: 40px;
-      }
 
-      .button:nth-child(1) {
-        height: 38px;
+        &:nth-child(1) {
+          height: 38px;
+        }
       }
     }
   }

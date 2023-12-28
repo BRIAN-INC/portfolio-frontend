@@ -2,7 +2,12 @@
 @import "../../../assets/styles/loaders.scss";
 
 #about-me {
-  // height: calc(100vh - $bar-height);
+  // min-height: calc(
+  //   100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
+  // );
+  justify-content: center;
+  height: 100%;
+  font-family: "Onest", sans-serif;
 
   .simultated-content {
     width: 100%;
