@@ -15,9 +15,10 @@
     [ngStyle]="{
       'background-color': backgroundColor,
       color: color,
-      'font-size': fontSize,
+      'font-size': calculateFontSize(false),
       'font-weight': fontWeight,
       border: (hasBorder) ? '1px solid ' + borderColor : 'none',
+      'border-radius': borderRadius,
       padding: padding,
     }"
     [disabled]="disabled"
@@ -27,7 +28,7 @@
   <!-- toggleSubmenus() solo funciona en celular -->
     @if (icon) {
       <i class="icon" [class]="icon"
-      [ngStyle]="{ 'margin-right': marginRightIcon, 'font-size': iconSize }"></i>
+      [ngStyle]="{ 'margin-right': marginRightIcon, 'font-size': calculateFontSize(false) }"></i>
     }
     @if (text) {
       <span>{{ text }}</span>
@@ -64,11 +65,13 @@
                 >
                   @if (!havePreviewImg) {
                     @if (submenu.icon) {
-                      <i class="icon icon-left" [class]="submenu.icon"></i>
+                      <i class="icon icon-left" [class]="submenu.icon"
+                        [ngStyle]="{'font-size': calculateFontSize(true)}">
+                      </i>
                     }
                     <span
                       [ngStyle]="{
-                        'font-size': fontSize,
+                        'font-size': calculateFontSize(true),
                         'font-weight': fontWeight
                       }">
                       {{ submenu.text }}

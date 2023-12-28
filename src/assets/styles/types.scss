@@ -67,6 +67,7 @@
   .kw-section {
     margin-left: calc($section-mg-lr / 2);
     margin-right: calc($section-mg-lr / 2);
+    padding: calc($section-pg-top * 2) calc($section-pg-lr - 100px) 0 calc($section-pg-lr - 100px);
   }
 
   #footer {
@@ -82,5 +83,6 @@
 
   .kw-section {
     margin: 0;
+    padding: calc($section-pg-top * 2) calc($section-pg-lr - 200px) 0 calc($section-pg-lr - 200px);
   }
 }

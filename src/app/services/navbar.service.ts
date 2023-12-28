@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class NavbarService {
   private activeButtonId: string | null = null;
-  private state: boolean = false;
+  private state: boolean = true;
   private isScrollEnabled = true;
 
   // Buttons

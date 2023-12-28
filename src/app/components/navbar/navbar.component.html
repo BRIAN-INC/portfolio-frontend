@@ -18,24 +18,34 @@
     <div class="nav-content flex">
       <ul class="items flex">
         <li class="item">
-          <app-button text="Portafolio" type="transparent" [submenus]="submenusPortfolio"></app-button>
+          <app-button text="Portafolio" type="transparent" [submenus]="submenusPortfolio"
+            sizeDesktop="13px" sizeMobile="15px">
+          </app-button>
         </li>
         <li class="item">
-          <app-button text="Docs" type="transparent" uri="/docs"></app-button>
+          <app-button text="Docs" type="transparent" uri="/docs"
+            sizeDesktop="13px" sizeMobile="15px">
+          </app-button>
         </li>
         <li class="item">
           <app-button icon="fa-brands fa-github-alt" text="GitHub" type="secondary"
-            uri="https://github.com/kiridepapel/" [blank]="true" [submenus]="submenusGitHub">
+            uri="https://github.com/kiridepapel/" [blank]="true" [submenus]="submenusGitHub"
+            sizeDesktop="13px" sizeMobile="15px">
           </app-button>
         </li>
         <li class="item">
           <app-button icon="fa-brands fa-linkedin" text="LinkedIn" type="primary"
-            uri="https://www.linkedin.com/in/kiridepapel/" [blank]="true" [submenus]="submenusLinkeIn">
+            uri="https://www.linkedin.com/in/kiridepapel/" [blank]="true" [submenus]="submenusLinkeIn"
+            sizeDesktop="13px" sizeMobile="15px">
           </app-button>
         </li>
         <li class="item item--together flex">
-          <app-button icon="item__icon fa-solid fa-language" type="transparent" iconSize="16px" padding="0"></app-button>
-          <app-button icon="item__icon fa-solid fa-sun" type="transparent" iconSize="16px" padding="0"></app-button>
+          <app-button icon="item__icon fa-solid fa-language" type="transparent" padding="0"
+            sizeDesktop="16px" sizeMobile="16px">
+          </app-button>
+          <app-button icon="item__icon fa-solid fa-sun" type="transparent" padding="0"
+            sizeDesktop="16px" sizeMobile="16px">
+          </app-button>
         </li>
         <!-- <li class="item item__icon" (click)="changeTheme()">
           <app-button icon="fa-solid fa-sliders" type="transparent" iconSize="16px" padding="0"></app-button>

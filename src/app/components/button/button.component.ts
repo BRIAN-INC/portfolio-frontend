@@ -22,12 +22,14 @@ export class ButtonComponent {
   // * Button: Decoration
   @Input() icon: string = '';
   public marginRightIcon: string = '10px';
-  @Input() iconSize?: string;
   @Input() text?: string;
   @Input() type: string = 'transparent';
   @Input() padding?: string;
-  @Input() color?: string = '#c6d3e2';
-  @Input() fontSize?: string = '13px';
+  @Input() borderRadius?: string;
+  @Input() color?: string;
+  @Input() backgroundColor?: string;
+  @Input() sizeDesktop?: string;
+  @Input() sizeMobile?: string;
   @Input() fontWeight?: string = '500';
   // * Button: Usability
   @Input() uri: string = '';
@@ -37,7 +39,6 @@ export class ButtonComponent {
   @Input() dialog?: any = null;
   @Input() dialogConfig?: MatDialogConfig = undefined;
   // CSS Variables
-  backgroundColor: string = '';
   hasBorder: boolean = false;
   borderColor: string = '';
   // SCSS Variables
@@ -59,9 +60,24 @@ export class ButtonComponent {
   ngOnInit(): void {
     if (!this.id) this.id = Math.random().toString(32).slice(2);
     if (!this.text) this.marginRightIcon = '0px';
-    if (!this.iconSize) this.iconSize = '14px';
+    if (!this.borderRadius) this.borderRadius = '2.5px';
+    if (!this.color) this.color = '#c6d3e2';
+    if (!this.backgroundColor) this.backgroundColor = 'transparent';
+    if (!this.sizeDesktop) this.sizeDesktop = '13px';
+    if (!this.sizeMobile) this.sizeMobile = '12px';
     this.selectColors();
     this.defineIfHaveData();
+  }
+
+  public calculateFontSize(isSubmenu: boolean): string {
+    const isMobile = !this.isDesktop();
+    if (isSubmenu) {
+      return isMobile
+        ? Number(this.sizeDesktop!.slice(0, -2)) - 1 + 'px'
+        : Number(this.sizeMobile!.slice(0, -2)) - 2 + 'px';
+    } else {
+      return isMobile ? this.sizeMobile! : this.sizeDesktop!;
+    }
   }
 
   public toggleSubmenus(): void {
@@ -195,7 +211,6 @@ export class ButtonComponent {
         if (!this.padding) this.padding = '5px 20px';
         break;
       default:
-        this.backgroundColor = 'transparent';
         break;
     }
   }
