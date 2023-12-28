@@ -16,7 +16,7 @@
     align-items: center;
     position: relative;
 
-    .border-top-left, .border-top-right {
+    .borders {
       display: none;
     }
 
@@ -59,7 +59,8 @@
       gap: 15px;
 
       .button {
-        width: 130px;
+        min-width: 100px;
+        width: auto;
         height: 40px;
       }
 
@@ -73,34 +74,51 @@
 @media screen and (max-width: $mobile-md) {
   #home {
     .simultated-content {
-      .border-top-left, .border-top-right {
+      padding-top: 25px;
+      padding-bottom: 25px;
+
+      .borders {
         display: inline-block;
-      }
 
-      .border-top-left {
-        width: 50px;
-        height: 150px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-top-left-radius: 15px;
-        border: 1px solid #ffffff44;
-        border-bottom: none;
-        border-right: none;
-        z-index: 1;
-      }
+        .border {
+          position: absolute;
+          border: 1px solid #ffffff44;
+          z-index: 1;
+          width: 50px;
+          height: 150px;
+        }
 
-      .border-top-right {
-        width: 50px;
-        height: 150px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        border-top-right-radius: 15px;
-        border: 1px solid #ffffff44;
-        border-bottom: none;
-        border-left: none;
-        z-index: 1;
+        .border:nth-child(1) {
+          top: 0;
+          left: 0;
+          border-top-left-radius: 15px;
+          border-bottom: none;
+          border-right: none;
+        }
+
+        .border:nth-child(2) {
+          top: 0;
+          right: 0;
+          border-top-right-radius: 15px;
+          border-bottom: none;
+          border-left: none;
+        }
+
+        // .border:nth-child(3) {
+        //   bottom: 0;
+        //   left: 0;
+        //   border-bottom-left-radius: 15px;
+        //   border-top: none;
+        //   border-right: none;
+        // }
+
+        // .border:nth-child(4) {
+        //   bottom: 0;
+        //   right: 0;
+        //   border-bottom-right-radius: 15px;
+        //   border-top: none;
+        //   border-left: none;
+        // }
       }
 
       .title {
