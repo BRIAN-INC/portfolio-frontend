@@ -191,7 +191,6 @@ export class ButtonComponent {
   }
 
   private selectColors(): void {
-    console.log('tipo: ' + this.type);
     switch (this.type) {
       case 'transparent':
         this.backgroundColor = 'transparent';

@@ -14,9 +14,9 @@ import { MatDialogConfig } from '@angular/material/dialog';
 
 export class Submenu {
   // Default variables for Button
-  icon?: string = ''; // Optional
+  icon?: string = '';
   text?: string = '';
-  shortDescription?: string = ''; // Optional
+  shortDescription?: string = '';
   uri?: string = '';
   blank?: boolean = false;
   // Dialog
