@@ -33,8 +33,8 @@ export class GithubService {
       });
 
       await this.oauthService.fetchTokenUsingPasswordFlow(
-        this.configService.githubClientId(),
-        this.configService.githubClientSecret()
+        process.env['GITHUB_CLIENT_ID']!,
+        process.env['GITHUB_CLIENT_SECRET']!
       );
 
       this.token = this.oauthService.getAccessToken();
@@ -45,6 +45,17 @@ export class GithubService {
       console.log('headers: ', this.headers);
     } catch (error: any) {
       console.error(`Error (GithubService:fetchTokenUsingPasswordFlow()): ${error.message}`);
+      console.log('GITHUB_CLIENT_ID: ', process.env['GITHUB_CLIENT_ID']!);
+      console.log(
+        'GITHUB_CLIENT_SECRET: ',
+        process.env['GITHUB_CLIENT_SECRET']!
+      );
+    } finally {
+        console.log('GITHUB_CLIENT_ID: ', process.env['GITHUB_CLIENT_ID']!);
+        console.log(
+          'GITHUB_CLIENT_SECRET: ',
+          process.env['GITHUB_CLIENT_SECRET']!
+        );
     }
   }
 

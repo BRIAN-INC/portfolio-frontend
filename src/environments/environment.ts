@@ -1,6 +1,6 @@
-// environment.prod.ts
+// environment.ts
 export const environment = {
-  production: true,
+  production: false,
   GITHUB_CLIENT_ID: '',
   GITHUB_CLIENT_SECRET: '',
 };
