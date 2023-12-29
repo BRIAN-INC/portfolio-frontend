@@ -1,5 +1,54 @@
-<section id="about-me" class="kw-section flex">
-  <div class="simultated-content flex">
-    <span>about works!</span>
-  </div>
-</section>
+@defer(when true) {
+  <section id="about-me" class="kw-section flex">
+    <div class="simultated-content flex col">
+      <span>about works!</span>
+      <br>
+      @if (length > 0) {
+        @if (commitsGroup && commitsGroup.length > 1) {
+          <p>Commits año actual ({{ commitsGroup[0].year }}): {{ commitsGroup[0].commits }}</p>
+          <p>Commits año pasado ({{ commitsGroup[1].year }}): {{ commitsGroup[1].commits }}</p>
+          <p>Diferencia porcentual: {{ percDiff }}%</p>
+        }
+        <div class="events flex col">
+          @for(event of commitsData; track event.id) {
+            @if(event.type == 'PushEvent') {
+              <div class="event">
+                <p>Tipo: {{ removeEventOnString(event.type) }}</p>
+                <span>Repo: {{ event.repo.name }} - </span>
+                <a class="link one"
+                  target="_blank" [href]="convertApiToGitHub(event.repo.url)">Ir
+                </a>
+                <p>{{ event.payload.commits[0].message }}</p>
+                <p class="user">{{ event.payload.commits[0].author.name }} • {{ event.lastUpdateTime }}</p>
+                <img class="about-img" [src]="event.actor.avatar_url" alt="">
+                <a class="link two"
+                  target="_blank" [href]="convertApiToGitHub(event.payload.commits[0].url)">Ver en GitHub
+                </a>
+              </div>
+            }
+          }
+        </div>
+      } @else if (length == -1) {
+        <div class="events flex col">
+          <div class="event">
+            <p class="error">Este usuario no existe</p>
+          </div>
+        </div>
+      } @else {
+        <div class="events flex col">
+          <div class="event error flex col">
+            <img class="about-img" [src]="user.avatar_url" alt="">
+            <p class="user">{{ user.login }}</p>
+            <p class="error">Este usuario no ha realizado commits públicos en los últimos 2 años</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+} @placeholder {
+  <section id="about-me" class="kw-section flex">
+    <div class="simultated-content flex col">
+      <span>Cargando...</span>
+    </div>
+  </section>
+}

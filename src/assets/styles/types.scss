@@ -5,6 +5,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.col {
+    flex-direction: column;
+  }
+
+  &.row {
+    flex-direction: row;
+  }
 }
 
 .grid {
