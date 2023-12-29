@@ -1,1 +1,1 @@
-Version 17.0.6
+Angular 17.0.6
