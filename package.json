@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "nx serve",
-    "build": "nx build",
+    "start": "ng serve",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "nx test"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +26,6 @@
     "angular-oauth2-oidc": "^17.0.1",
     "fs": "^0.0.1-security",
     "luxon": "^3.4.4",
-    "nx": "^17.2.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
