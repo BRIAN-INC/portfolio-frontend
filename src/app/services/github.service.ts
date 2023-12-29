@@ -57,6 +57,7 @@ export class GithubService {
 
       console.log('dev: ', environment.env);
       console.log('GITHUB_CLIENT_ID: ', environment.GITHUB_CLIENT_ID);
+      console.log('GITHUB_CLIENT_SECRET: ', environment.GITHUB_CLIENT_SECRET);
 
       if (this.length == 0) {
         this.getUserRequest(username);
