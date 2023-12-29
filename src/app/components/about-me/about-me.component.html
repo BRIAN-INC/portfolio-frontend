@@ -1,9 +1,7 @@
-@defer(when true) {
+@defer(when !isLoading) {
   <section id="about-me" class="kw-section flex">
     <div class="simultated-content flex col">
-      <span>about works!</span>
-      <br>
-      @if (length > 0) {
+      @if (getLength > 0) {
         @if (commitsGroup && commitsGroup.length > 1) {
           <p>Commits año actual ({{ commitsGroup[0].year }}): {{ commitsGroup[0].commits }}</p>
           <p>Commits año pasado ({{ commitsGroup[1].year }}): {{ commitsGroup[1].commits }}</p>
@@ -16,7 +14,7 @@
                 <p>Tipo: {{ removeEventOnString(event.type) }}</p>
                 <span>Repo: {{ event.repo.name }} - </span>
                 <a class="link one"
-                  target="_blank" [href]="convertApiToGitHub(event.repo.url)">Ir
+                  target="_blank" [href]="convertApiToGitHub(event.repo.url)">Repo
                 </a>
                 <p>{{ event.payload.commits[0].message }}</p>
                 <p class="user">{{ event.payload.commits[0].author.name }} • {{ event.lastUpdateTime }}</p>
@@ -28,23 +26,23 @@
             }
           }
         </div>
-      } @else if (length == -2) {
+      } @else if (getLength == -2) {
         <div class="events flex col">
           <div class="event">
             <p class="error">Has excedido el número de solicitudes, por favor espera unos minutos...</p>
           </div>
         </div>
-      } @else if (length == -1) {
+      } @else if (getLength == -1) {
       <div class="events flex col">
         <div class="event">
           <p class="error">Este usuario no existe</p>
         </div>
       </div>
-      } @else {
+      } @else if (getLength == 0) {
         <div class="events flex col">
           <div class="event error flex col">
-            <img class="about-img" [src]="user.avatar_url" alt="">
-            <p class="user">{{ user.login }}</p>
+            <img class="about-img" [src]="getUser?.avatar_url" alt="">
+            <p class="user">{{ getUser?.login }}</p>
             <p class="error">Este usuario no ha realizado commits públicos en los últimos 2 años</p>
           </div>
         </div>
@@ -54,7 +52,7 @@
 } @placeholder {
   <section id="about-me" class="kw-section flex">
     <div class="simultated-content flex col">
-      <span>Cargando...</span>
+      <span>Cargando información...</span>
     </div>
   </section>
 }
