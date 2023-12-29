@@ -60,6 +60,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
 
       if (error.response.status === 404) {
         this.length = -1;
+      } else if (error.response.status === 403) {
+        this.length = -2;
       }
     }
   }
