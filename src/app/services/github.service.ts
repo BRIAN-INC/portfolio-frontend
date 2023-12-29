@@ -2,7 +2,7 @@ import { ConfigService } from './config.service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import axios from 'axios';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 const urlUser = 'https://api.github.com/users/...';
 const urlEvents = 'https://api.github.com/users/.../events';
@@ -41,8 +41,6 @@ export class GithubService {
       this.headers = {
         Authorization: 'Bearer ' + this.token,
       };
-      console.log('token: ', this.token);
-      console.log('headers: ', this.headers);
     } catch (error: any) {
       console.error(`Error (GithubService:fetchTokenUsingPasswordFlow()): ${error.message}`);
     }
@@ -57,10 +55,8 @@ export class GithubService {
       this.events = this.response.data;
       this.length = this.events.length;
 
-      console.log(
-        'environment: ',
-        environment.GITHUB_CLIENT_SECRET!
-      );
+      console.log('dev: ', environment.env);
+      console.log('GITHUB_CLIENT_ID: ', environment.GITHUB_CLIENT_ID);
 
       if (this.length == 0) {
         this.getUserRequest(username);
