@@ -2,7 +2,7 @@ import { ConfigService } from './config.service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import axios from 'axios';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 const urlUser = 'https://api.github.com/users/...';
 const urlEvents = 'https://api.github.com/users/.../events';
@@ -33,8 +33,8 @@ export class GithubService {
       });
 
       await this.oauthService.fetchTokenUsingPasswordFlow(
-        process.env['GITHUB_CLIENT_ID']!,
-        process.env['GITHUB_CLIENT_SECRET']!
+        environment.GITHUB_CLIENT_ID!,
+        environment.GITHUB_CLIENT_SECRET!,
       );
 
       this.token = this.oauthService.getAccessToken();
@@ -45,17 +45,6 @@ export class GithubService {
       console.log('headers: ', this.headers);
     } catch (error: any) {
       console.error(`Error (GithubService:fetchTokenUsingPasswordFlow()): ${error.message}`);
-      console.log('GITHUB_CLIENT_ID: ', process.env['GITHUB_CLIENT_ID']!);
-      console.log(
-        'GITHUB_CLIENT_SECRET: ',
-        process.env['GITHUB_CLIENT_SECRET']!
-      );
-    } finally {
-        console.log('GITHUB_CLIENT_ID: ', process.env['GITHUB_CLIENT_ID']!);
-        console.log(
-          'GITHUB_CLIENT_SECRET: ',
-          process.env['GITHUB_CLIENT_SECRET']!
-        );
     }
   }
 
@@ -68,7 +57,10 @@ export class GithubService {
       this.events = this.response.data;
       this.length = this.events.length;
 
-      console.log(this.headers);
+      console.log(
+        'environment: ',
+        environment.GITHUB_CLIENT_SECRET!
+      );
 
       if (this.length == 0) {
         this.getUserRequest(username);
