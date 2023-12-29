@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
-  frontend: 'http://localhost:4200',
-  backend: 'http://localhost:8080',
+  production: true,
+  GITHUB_CLIENT_ID: '',
+  GITHUB_CLIENT_SECRET: '',
 };

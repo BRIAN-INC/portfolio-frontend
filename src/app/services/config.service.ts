@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GlobalService {
+export class ConfigService {
   constructor() {}
+
+  public get githubClientId(): string | any {
+    return environment.production
+      ? process.env['GITHUB_CLIENT_ID']
+      : environment.GITHUB_CLIENT_ID;
+  }
+
+  public get githubClientSecret(): string | any {
+    return environment.production
+      ? process.env['GITHUB_CLIENT_SECRET']
+      : environment.GITHUB_CLIENT_SECRET;
+  }
 
   public createDialogConfig(
     width: string,

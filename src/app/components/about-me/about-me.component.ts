@@ -15,7 +15,7 @@ class CommitGroup {
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
   private gitUser = 'kiridepapel';
-  private quantityOfEvents = 5;
+  private quantityOfEvents = 4;
   // Information received and calculated from GitHub API
   public commitsData: any[] = [];
   public commitsGroup: CommitGroup[] = [];
@@ -28,6 +28,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     try {
+      await this.githubService.fetchTokenUsingPasswordFlow();
       await this.githubService.getEventsRequest(this.gitUser);
       if (this.getLength > 0) {
         this.getCommitsGroup();
@@ -35,7 +36,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         this.startRealTimeUpdates();
       }
     } catch (error: any) {
-      console.error(`Error: ${error.message}`);
+      console.error(`Error (AboutMeComponent:ngOnInit()): ${error.message}`);
     } finally {
       this.isLoading = false;
     }
@@ -140,7 +141,9 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         }
       );
     } else {
-      console.error(`Error: ${this.getResponse?.status}`);
+      console.error(
+        `Error (AboutMeComponent:getCommitsGroup()): ${this.getResponse?.status}`
+      );
     }
   }
 
