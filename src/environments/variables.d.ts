@@ -1,5 +1,4 @@
 // variables.d.ts
-
 declare module './variables' {
   const ngEnv: string;
   export default ngEnv;
