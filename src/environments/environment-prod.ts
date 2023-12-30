@@ -1,6 +1,6 @@
 // environment-prod.ts
 
-import { ngEnv } from "./variables";
+import ngEnv from "./variables";
 
 export const environment = {
   production: true,

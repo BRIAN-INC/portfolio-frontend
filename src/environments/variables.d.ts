@@ -1,12 +1,12 @@
 // variables.d.ts
 
-declare module './variables.js' {
-  export const ngEnv: string;
+declare module './variables' {
+  const ngEnv: string;
+  export default ngEnv;
 }
-// variables.js
 
 /** @type {string} */
-const ngEnv = process.env.NG_ENV || "production";
+const ngEnv = process.env.NG_ENV || "hola2";
 
 export default {
   ngEnv,
