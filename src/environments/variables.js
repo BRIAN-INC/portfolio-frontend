@@ -1,3 +1,3 @@
 // variables.js
-const ngEnv = process.env.NG_ENV;
+import { ngEnv } from "./env";
 export default ngEnv;
