@@ -2,7 +2,7 @@ import { ConfigService } from './config.service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import axios from 'axios';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment-prod';
 
 const urlUser = 'https://api.github.com/users/...';
 const urlEvents = 'https://api.github.com/users/.../events';
