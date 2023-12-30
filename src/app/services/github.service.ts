@@ -18,6 +18,10 @@ export class GithubService {
   public length!: number;
   public user: any;
 
+  get NG_ENV(): string {
+    return process.env.NG_ENV || 'default';
+  }
+
   public async getEventsRequest(username: string) {
     try {
       this.response = await axios.get(
@@ -27,9 +31,8 @@ export class GithubService {
       this.events = this.response.data;
       this.length = this.events.length;
 
-
       try {
-        console.log('environment: : ', process.env.NG_ENV);
+        console.log('environment: : ', this.NG_ENV);
       } catch (error) {
         console.log('error: ', error);
       }
@@ -38,7 +41,9 @@ export class GithubService {
         this.getUserRequest(username);
       }
     } catch (error: any) {
-      console.error(`Error (GithubService:getEventsRequest()): ${error.message}`);
+      console.error(
+        `Error (GithubService:getEventsRequest()): ${error.message}`
+      );
       if (error.response.status === 404) {
         this.length = -1;
       } else if (error.response.status === 403) {
