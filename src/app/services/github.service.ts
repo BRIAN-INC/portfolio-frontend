@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { environment } from '../../environments/environment-prod';
+// import { environment } from '../../environments/environment-prod';
 
 const urlUser = 'https://api.github.com/users/...';
 const urlEvents = 'https://api.github.com/users/.../events';
@@ -27,7 +27,7 @@ export class GithubService {
       this.events = this.response.data;
       this.length = this.events.length;
 
-      console.log('environment: : ', environment.NG_ENV);
+      console.log('environment: : ', process.env.NG_ENV);
 
       if (this.length == 0) {
         this.getUserRequest(username);
