@@ -119,10 +119,74 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       updateEventTime();
 
       // Configurar el intervalo para futuras actualizaciones
-      const interval = setInterval(updateEventTime, 1000);
+      let interval = setInterval(updateEventTime, 1000);
       this.updateIntervals.push(interval);
     });
+
+    // Verificar y ajustar el intervalo globalmente
+    const checkAndUpdateInterval = () => {
+      const allIntervalsGreaterThanOrEqualTo60 = this.updateIntervals.every(
+        (interval) => {
+          return interval >= 60;
+        }
+      );
+
+      if (allIntervalsGreaterThanOrEqualTo60) {
+        // Si todos son mayores o iguales a 60 segundos, cambiar a cada minuto (60000 ms)
+        this.updateIntervals.forEach((interval) => {
+          clearInterval(interval);
+        });
+
+        this.updateIntervals = [];
+
+        this.commitsData.forEach((event: any) => {
+          const newInterval = setInterval(() => {
+            this.updateEventTime(event);
+          }, 60000);
+
+          this.updateIntervals.push(newInterval);
+        });
+      }
+    };
+
+    // Configurar un intervalo para verificar y ajustar el intervalo globalmente cada minuto
+    setInterval(checkAndUpdateInterval, 60000);
   }
+
+  private updateEventTime(event: any) {
+    const currentDateTime = DateTime.now();
+    const elapsedTime = currentDateTime.diff(
+      DateTime.fromISO(event.created_at),
+      'seconds'
+    ).seconds;
+    event.lastUpdateTime = this.formatRelativeDateTime(
+      currentDateTime.toISO(),
+      elapsedTime
+    );
+  }
+
+  // private startRealTimeUpdates() {
+  //   this.commitsData.forEach((event: any) => {
+  //     const startTime = DateTime.fromISO(event.created_at);
+
+  //     // Definir la función de actualización
+  //     const updateEventTime = () => {
+  //       const currentDateTime = DateTime.now();
+  //       const elapsedTime = currentDateTime.diff(startTime, 'seconds').seconds;
+  //       event.lastUpdateTime = this.formatRelativeDateTime(
+  //         currentDateTime.toISO(),
+  //         elapsedTime
+  //       );
+  //     };
+
+  //     // Ejecutar la función de actualización de inmediato
+  //     updateEventTime();
+
+  //     // Configurar el intervalo para futuras actualizaciones
+  //     const interval = setInterval(updateEventTime, 1000);
+  //     this.updateIntervals.push(interval);
+  //   });
+  // }
 
   private formatRelativeDateTime(
     dateTimeString: string,
