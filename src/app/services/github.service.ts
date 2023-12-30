@@ -2,7 +2,7 @@ import { ConfigService } from './config.service';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import axios from 'axios';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 const urlUser = 'https://api.github.com/users/...';
 const urlEvents = 'https://api.github.com/users/.../events';
@@ -32,10 +32,10 @@ export class GithubService {
         tokenEndpoint: 'https://github.com/login/oauth/access_token',
       });
 
-      await this.oauthService.fetchTokenUsingPasswordFlow(
-        environment.GITHUB_CLIENT_ID!,
-        environment.GITHUB_CLIENT_SECRET!,
-      );
+      // await this.oauthService.fetchTokenUsingPasswordFlow(
+      //   environment.GITHUB_CLIENT_ID!,
+      //   environment.GITHUB_CLIENT_SECRET!,
+      // );
 
       this.token = this.oauthService.getAccessToken();
       this.headers = {
@@ -55,9 +55,8 @@ export class GithubService {
       this.events = this.response.data;
       this.length = this.events.length;
 
+      console.log('production: ', environment.production);
       console.log('dev: ', environment.env);
-      console.log('GITHUB_CLIENT_ID: ', environment.GITHUB_CLIENT_ID);
-      console.log('GITHUB_CLIENT_SECRET: ', environment.GITHUB_CLIENT_SECRET);
 
       if (this.length == 0) {
         this.getUserRequest(username);
