@@ -28,7 +28,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     try {
-      await this.githubService.fetchTokenUsingPasswordFlow();
       await this.githubService.getEventsRequest(this.gitUser);
       if (this.getLength > 0) {
         this.getCommitsGroup();
