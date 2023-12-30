@@ -30,7 +30,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     try {
       await this.githubService.getEventsRequest(this.gitUser);
       if (this.getLength > 0) {
-        this.getCommitsGroup();
         this.fillCommitsData();
         this.startRealTimeUpdates();
       }
@@ -80,70 +79,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
 
   public get getUser(): any {
     return this.githubService.getUser;
-  }
-
-  // Component functions
-  private getCommitsGroup() {
-    if (this.getResponse && this.getResponse.status === 200) {
-      const currentYear = DateTime.local().year;
-      this.percDiff = 0;
-
-      const startThisYear = DateTime.local(currentYear, 1, 1);
-      const endThisYear = DateTime.local(currentYear, 12, 31);
-
-      const startPastYear = DateTime.local(currentYear - 1, 1, 1);
-      const endPastYear = DateTime.local(currentYear - 1, 12, 31);
-
-      const commitsThisYear = this.getEvents.filter(
-        (event: any) =>
-          event.type === 'PushEvent' &&
-          startThisYear <= DateTime.fromISO(event.created_at) &&
-          DateTime.fromISO(event.created_at) <= endThisYear
-      );
-      const commitsPastYear = this.getEvents.filter(
-        (event: any) =>
-          event.type === 'PushEvent' &&
-          startPastYear <= DateTime.fromISO(event.created_at) &&
-          DateTime.fromISO(event.created_at) <= endPastYear
-      );
-
-      const commitsThisYearCount = commitsThisYear.reduce(
-        (total: number, event: any) => total + event.payload.size,
-        0
-      );
-      const commitsPastYearCount = commitsPastYear.reduce(
-        (total: number, event: any) => total + event.payload.size,
-        0
-      );
-
-      this.percDiff =
-        commitsPastYearCount === 0
-          ? 100
-          : ((commitsThisYearCount - commitsPastYearCount) /
-              commitsPastYearCount) *
-            100;
-
-      if (this.percDiff === 100) {
-        this.percDiff = Number(this.percDiff.toFixed(0));
-      } else {
-        this.percDiff = Number(this.percDiff.toFixed(2));
-      }
-
-      this.commitsGroup.push(
-        {
-          year: currentYear,
-          commits: commitsThisYearCount,
-        },
-        {
-          year: currentYear - 1,
-          commits: commitsPastYearCount,
-        }
-      );
-    } else {
-      console.error(
-        `Error (AboutMeComponent:getCommitsGroup()): ${this.getResponse?.status}`
-      );
-    }
   }
 
   private fillCommitsData() {

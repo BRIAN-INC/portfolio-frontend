@@ -2,11 +2,6 @@
   <section id="about-me" class="kw-section flex">
     <div class="simultated-content flex col">
       @if (getLength > 0) {
-        @if (commitsGroup && commitsGroup.length > 1) {
-          <p>Commits año actual ({{ commitsGroup[0].year }}): {{ commitsGroup[0].commits }}</p>
-          <p>Commits año pasado ({{ commitsGroup[1].year }}): {{ commitsGroup[1].commits }}</p>
-          <p>Diferencia porcentual: {{ percDiff }}%</p>
-        }
         <div class="events flex col">
           @for(event of commitsData; track event.id) {
             @if(event.type == 'PushEvent') {

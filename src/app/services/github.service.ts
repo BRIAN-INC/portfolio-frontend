@@ -9,9 +9,6 @@ const urlEvents = 'https://api.github.com/users/.../events';
   providedIn: 'root',
 })
 export class GithubService {
-  // Authentication
-  private token!: string;
-  private headers: any;
   // Data
   public response: any;
   public events: any;
@@ -20,10 +17,7 @@ export class GithubService {
 
   public async getEventsRequest(username: string) {
     try {
-      this.response = await axios.get(
-        urlEvents.replace('...', username),
-        this.headers
-      );
+      this.response = await axios.get(urlEvents.replace('...', username));
       this.events = this.response.data;
       this.length = this.events.length;
 
@@ -46,10 +40,7 @@ export class GithubService {
 
   public async getUserRequest(username: string) {
     try {
-      this.response = await axios.get(
-        urlUser.replace('...', username),
-        this.headers
-      );
+      this.response = await axios.get(urlUser.replace('...', username));
       this.user = this.response.data;
     } catch (error: any) {
       console.error(`Error (GithubService:getUserRequest()): ${error.message}`);
