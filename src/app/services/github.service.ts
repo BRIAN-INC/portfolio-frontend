@@ -21,8 +21,6 @@ export class GithubService {
       this.events = this.response.data;
       this.length = this.events.length;
 
-      console.log('environment: : ', environment.NG_ENV);
-
       if (this.length == 0) {
         this.getUserRequest(username);
       }

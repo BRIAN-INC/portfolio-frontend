@@ -1,5 +1,6 @@
 // environment.ts
 export const environment = {
-  production: true,
-  NG_ENV: 'production',
+  PRODUCTION: true,
+  ENV_NAME: 'production',
+  BACKEND_URL: 'https://portfolio.monalek.xyz/api/v1/',
 };
