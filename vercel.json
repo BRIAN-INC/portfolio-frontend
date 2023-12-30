@@ -1,5 +1,5 @@
 {
   "env": {
-    "NG_ENV": "@ng-env"
+    "NG_ENV": "@NG_ENV"
   }
 }
