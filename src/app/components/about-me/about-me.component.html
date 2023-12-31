@@ -1,53 +1,92 @@
 @defer(when !isLoading) {
-  <section id="about-me" class="kw-section flex">
-    <div class="simultated-content flex col">
-      @if (getLength > 0) {
-        <div class="events flex col">
-          @for(event of commitsData; track event.id) {
-            @if(event.type == 'PushEvent') {
-              <div class="event">
-                <p>Tipo: {{ removeEventOnString(event.type) }}</p>
-                <span>Repo: {{ event.repo.name }} - </span>
-                <a class="link one"
-                  target="_blank" [href]="convertApiToGitHub(event.repo.url)">Repo
-                </a>
-                <p>{{ event.payload.commits[0].message }}</p>
-                <p class="user">{{ event.payload.commits[0].author.name }} • {{ event.lastUpdateTime }}</p>
-                <img class="about-img" [src]="event.actor.avatar_url" alt="">
-                <a class="link two"
-                  target="_blank" [href]="convertApiToGitHub(event.payload.commits[0].url)">Ver en GitHub
-                </a>
-              </div>
-            }
-          }
+<section id="about-me" class="kw-section flex">
+  <div class="simultated-content flex col">
+    <div class="tabs flex">
+      <div class="tabs-buttons flex col">
+        <div class="tab-button active" (click)="changeTab(0)">
+          <i class="fas fa-info-circle"></i> Información general
+          <span class="border"></span>
         </div>
-      } @else if (getLength == -2) {
-        <div class="events flex col">
-          <div class="event">
-            <p class="error">Has excedido el número de solicitudes, por favor espera unos minutos...</p>
-          </div>
+        <div class="tab-button" (click)="changeTab(1)">
+          <i class="icon fa-brands fa-github-alt"></i> Información de GitHub
+          <span class="border"></span>
         </div>
-      } @else if (getLength == -1) {
-      <div class="events flex col">
-        <div class="event">
-          <p class="error">Este usuario no existe</p>
+        <div class="tab-button" (click)="changeTab(2)">
+          <i class="icon fas fa-chart-line"></i> Últimas actividades
+          <span class="border"></span>
+        </div>
+        <div class="tab-button" (click)="changeTab(3)">
+          <i class="icon fas fa-cogs"></i> Información de servicios
+          <span class="border"></span>
         </div>
       </div>
-      } @else if (getLength == 0) {
-        <div class="events flex col">
-          <div class="event error flex col">
-            <img class="about-img" [src]="getUser?.avatar_url" alt="">
-            <p class="user">{{ getUser?.login }}</p>
-            <p class="error">Este usuario no ha realizado commits públicos en los últimos 2 años</p>
-          </div>
+      <span class="separator"></span>
+      <div class="tabs-body">
+        <div class="tab-body flex col start active">
+          <h2>Información general</h2>
+          <p>Hola, te deseo un feliz cumpleaños <3</p>
         </div>
-      }
+        <div class="tab-body flex col start">
+          <h2>Información de GitHub</h2>
+            @if (getLength > 0) {
+              <h3>Últimas actividades en GitHub</h3>
+              <div class="events flex col">
+                @for(event of commitsData; track event.id) {
+                  @if(event.type == 'PushEvent') {
+                    <div class="event">
+                      <p>Tipo: {{ removeEventOnString(event.type) }}</p>
+                      <span>Repo: {{ modifyRepoName(event.repo.name) }} - </span>
+                      <a class="link one"
+                        target="_blank" [href]="modifyUrl(event.repo.url)">Repo
+                      </a>
+                      <p>{{ event.payload.commits[0].message }}</p>
+                      <p class="user">{{ event.payload.commits[0].author.name }} • {{ event.lastUpdateTime }}</p>
+                      <img class="about-img" [src]="event.actor.avatar_url" alt="">
+                      <a class="link two"
+                        target="_blank" [href]="modifyUrl(event.payload.commits[0].url)">Ver en GitHub
+                      </a>
+                    </div>
+                  }
+                }
+              </div>
+            } @else if (getLength == -2) {
+              <div class="events flex col">
+                <div class="event">
+                  <p class="error">Has excedido el número de solicitudes, por favor espera unos minutos...</p>
+                </div>
+              </div>
+            } @else if (getLength == -1) {
+            <div class="events flex col">
+              <div class="event">
+                <p class="error">Este usuario no existe</p>
+              </div>
+            </div>
+            } @else if (getLength == 0) {
+              <div class="events flex col">
+                <div class="event error flex col">
+                  <img class="about-img" [src]="getUser?.avatar_url" alt="">
+                  <p class="user">{{ getUser?.login }}</p>
+                  <p class="error">Este usuario no ha realizado commits públicos en los últimos 2 años</p>
+                </div>
+              </div>
+            }
+        </div>
+        <div class="tab-body flex col start">
+          <h2>Últimas actividades</h2>
+          <p>Confía en tí, tqm</p>
+        </div>
+        <div class="tab-body flex col start">
+          <h2>Información de servicios</h2>
+          <p>Cierra tu mente a lo que te haga mal o abrela pero aprende de ello y se fuerte c:</p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 } @placeholder {
-  <section id="about-me" class="kw-section flex">
-    <div class="simultated-content flex col">
-      <span>Cargando información...</span>
-    </div>
-  </section>
+<section id="about-me" class="kw-section flex">
+  <div class="simultated-content flex col">
+    <span>Cargando información...</span>
+  </div>
+</section>
 }

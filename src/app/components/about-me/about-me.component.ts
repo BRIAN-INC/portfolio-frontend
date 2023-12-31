@@ -29,6 +29,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     try {
       await this.githubService.getEventsRequest(this.gitUser);
+
       if (this.getLength > 0) {
         this.fillCommitsData();
         this.startRealTimeUpdates();
@@ -44,6 +45,20 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     if (this.getLength > 0) {
       this.updateIntervals.forEach((interval) => clearInterval(interval));
     }
+  }
+
+  public changeTab(index: number): void {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabBodies = document.querySelectorAll('.tab-body');
+
+    tabButtons.forEach((button) => button.classList.remove('active'));
+    tabBodies.forEach((body) => {
+      body.classList.remove('active');
+      body.scrollTop = 0;
+    });
+
+    tabButtons[index].classList.add('active');
+    tabBodies[index].classList.add('active');
   }
 
   // GitHub user to show
@@ -82,15 +97,21 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   }
 
   private fillCommitsData() {
+    console.log('asd');
     if (this.getEvents && this.getEvents.length > 0) {
       const relevantCommits = this.getEvents.filter(
         (event: any) => event.type != 'PublicEvent'
       );
+
       this.commitsData = relevantCommits.slice(0, this.quantityOfEvents);
     }
   }
 
-  public convertApiToGitHub(apiurlEvents: string) {
+  public modifyRepoName(repoName: string) {
+    return repoName.split('/')[1];
+  }
+
+  public modifyUrl(apiurlEvents: string) {
     return apiurlEvents
       .replace('api.', '')
       .replace('/repos', '')
@@ -130,13 +151,16 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   ): string {
     const eventDateTime = DateTime.fromISO(dateTimeString);
     const updatedDateTime = eventDateTime.plus({ seconds: elapsedSeconds });
+
     let relativeTime = updatedDateTime.toRelative({
       base: DateTime.now(),
       locale: 'en',
     });
+
     if (!relativeTime!.includes('ago')) {
       relativeTime = relativeTime?.replace('in ', '') + ' ago';
     }
+
     return relativeTime!;
   }
 }
