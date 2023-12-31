@@ -24,7 +24,9 @@
       <div class="tabs-body">
         <div class="tab-body flex col start active">
           <h2>Información general</h2>
-          <p>Hola, te deseo un feliz cumpleaños <3</p>
+          <div class="info-container flex start">
+            <p>hola</p>
+          </div>
         </div>
         <div class="tab-body flex col start">
           <h2>Información de GitHub</h2>
@@ -35,10 +37,13 @@
                   @if(event.type == 'PushEvent') {
                     <div class="event">
                       <p>Tipo: {{ removeEventOnString(event.type) }}</p>
-                      <span>Repo: {{ modifyRepoName(event.repo.name) }} - </span>
-                      <a class="link one"
-                        target="_blank" [href]="modifyUrl(event.repo.url)">Repo
-                      </a>
+                      <p>Organización: {{ modifyRepoName(event.repo.name, 0) }}</p>
+                      <div class="repo">
+                        <span>Repositorio: {{ modifyRepoName(event.repo.name, 1) }} - </span>
+                        <a class="link one"
+                          target="_blank" [href]="modifyUrl(event.repo.url)">Ver
+                        </a>
+                      </div>
                       <p>{{ event.payload.commits[0].message }}</p>
                       <p class="user">{{ event.payload.commits[0].author.name }} • {{ event.lastUpdateTime }}</p>
                       <img class="about-img" [src]="event.actor.avatar_url" alt="">
@@ -73,11 +78,15 @@
         </div>
         <div class="tab-body flex col start">
           <h2>Últimas actividades</h2>
-          <p>Confía en tí, tqm</p>
+          <div class="info-container flex start">
+            <p>hola</p>
+          </div>
         </div>
         <div class="tab-body flex col start">
           <h2>Información de servicios</h2>
-          <p>Cierra tu mente a lo que te haga mal o abrela pero aprende de ello y se fuerte c:</p>
+          <div class="info-container flex start">
+            <p>hola</p>
+          </div>
         </div>
       </div>
     </div>

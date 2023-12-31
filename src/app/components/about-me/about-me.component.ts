@@ -97,7 +97,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   }
 
   private fillCommitsData() {
-    console.log('asd');
     if (this.getEvents && this.getEvents.length > 0) {
       const relevantCommits = this.getEvents.filter(
         (event: any) => event.type != 'PublicEvent'
@@ -107,8 +106,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public modifyRepoName(repoName: string) {
-    return repoName.split('/')[1];
+  public modifyRepoName(repoName: string, index: number) {
+    return repoName.split('/')[index];
   }
 
   public modifyUrl(apiurlEvents: string) {

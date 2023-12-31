@@ -46,12 +46,12 @@
 
     &.demo-dialog {
       .icon {
-        color: $quinary-color;
+        color: $quaternary-color;
       }
 
       span {
-        color: $quinary-color;
-        text-shadow: 0 0 10px $quinary-color;
+        color: $quaternary-color;
+        text-shadow: 0 0 10px $quaternary-color;
       }
     }
   }
@@ -89,13 +89,13 @@
       height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-bottom: 12px solid $tertiary-color;
+      border-bottom: 12px solid #334670;
       background-color: transparent;
     }
 
     .submenu {
       background-color: $semi-secondary-color;
-      border: 1px solid $tertiary-color;
+      border: 1px solid #334670;
       border-radius: 5px;
 
       .submenu-list {

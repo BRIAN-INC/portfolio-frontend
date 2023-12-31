@@ -21,18 +21,19 @@
       overflow: hidden;
       border-radius: 10px;
       // box-shadow: 0 0 5px #ccc;
-      gap: 100px;
+      gap: 30px;
 
       .tabs-buttons {
         min-width: 220px;
+        height: 100%;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 20px;
 
         .tab-button {
           width: 100%;
           text-align: start;
-          color: #e0e0e0;
+          color: $txt-white-color;
           font-weight: 500;
           cursor: pointer;
           font-size: 14px;
@@ -40,7 +41,7 @@
           border-radius: 5px;
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
-          padding: 10px 0;
+          padding: 20px 0;
           position: relative;
 
           .icon {
@@ -54,7 +55,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            background: #b4e7ff;
+            background: $quinary-color;
             opacity: 0;
             border-top-right-radius: 2px;
             border-bottom-right-radius: 2px;
@@ -64,10 +65,19 @@
             margin: 0 5px 0 10px;
           }
 
-          &.active {
-            color: #b4e7ff;
-            padding-left: 4px;
+          &:hover {
+            color: $quinary-color;
+            // padding-left: 4px;
             transition: color 500ms ease-in-out;
+          }
+
+          &.active {
+            color: $quinary-color;
+            padding-left: 4px;
+            background: rgba($tertiary-color, 0.07);
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            transition: all 500ms ease-in-out;
 
             .border {
               opacity: 1;
@@ -78,7 +88,9 @@
       }
 
       .separator {
-        display: none;
+        width: 2px;
+        height: 100%;
+        background: rgba($quinary-color, 0.25);
       }
 
       .tabs-body {
@@ -96,11 +108,6 @@
           padding-right: 30px;
           overflow-y: auto;
 
-          h2 {
-            text-align: center;
-            color: #b4e7ff;
-          }
-
           &.active {
             left: 0;
             opacity: 1;
@@ -109,6 +116,16 @@
 
           &::-webkit-scrollbar-button {
             display: none;
+          }
+
+          h2 {
+            text-align: center;
+            color: $quinary-color;
+            margin-bottom: 32px;
+          }
+
+          .info-container {
+            width: 100%;
           }
         }
       }
@@ -122,12 +139,20 @@
       .event {
 
         // Cambia dependiendo del estilo
-        max-width: 100%;
+        max-width: 350px;
         min-width: calc(100% - (20px + 2px)); // 20px = padding-lr, 2px = border-lr
 
-        border: 1px solid white;
+        border: 1px solid rgba($quinary-color, .75);
         border-radius: 5px;
         padding: 10px;
+
+        p {
+          margin: 0;
+        }
+
+        .repo {
+          margin-bottom: 16px;
+        }
 
         .link {
           list-style: none;
@@ -181,17 +206,23 @@
 
         .tabs-buttons {
           width: 100%;
+          height: auto;
 
           .tab-button {
-            padding: 10px 0 14px 0;
+            padding: 20px 0 20px 0;
             font-size: 13px;
+
+            &.active {
+              border-radius: 0;
+              border-top-right-radius: 10px;
+              border-top-left-radius: 10px;
+              transition: all 500ms ease-in-out;
+            }
 
             .border {
               width: 100%;
               height: 3px;
               border: 0;
-              border-top-right-radius: 3px;
-              border-top-left-radius: 3px;
               top: auto;
               bottom: 0;
             }
@@ -201,9 +232,8 @@
         .separator {
           display: block;
           width: 100%;
-          height: 2px;
-          background: #b4e7ff;
-          opacity: 0.3;
+          height: 1px;
+          background: rgba($quinary-color, 0.25);
         }
 
         .tabs-body {
@@ -217,6 +247,12 @@
           }
         }
       }
+
+      // .events {
+      //   .event {
+      //     max-width: 100%;
+      //   }
+      // }
     }
   }
 }
