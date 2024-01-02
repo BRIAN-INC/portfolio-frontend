@@ -16,16 +16,16 @@
     .tabs {
       width: 100%;
       height: 600px;
-      background: rgba($bg-color, 0.3);
-      padding: 30px 0 30px 30px;
       overflow: hidden;
-      border-radius: 10px;
       // box-shadow: 0 0 5px #ccc;
       gap: 30px;
 
       .tabs-buttons {
         min-width: 220px;
-        height: 100%;
+        height: calc(100% - (30px + 30px));
+        border-radius: 10px;
+        background: rgba($bg-color, 0.3);
+        padding: 30px;
         display: flex;
         align-items: center;
         gap: 20px;
@@ -38,16 +38,8 @@
           cursor: pointer;
           font-size: 14px;
           outline: none;
-          border-radius: 5px;
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
           padding: 20px 0;
           position: relative;
-
-          .icon {
-            width: 20px;
-            height: auto;
-          }
 
           .border {
             width: 4px;
@@ -57,8 +49,15 @@
             top: 0;
             background: $quinary-color;
             opacity: 0;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
+
+            &:nth-child(1) {
+              left: 100%;
+            }
+          }
+
+          .icon {
+            width: 20px;
+            height: auto;
           }
 
           i {
@@ -67,7 +66,6 @@
 
           &:hover {
             color: $quinary-color;
-            // padding-left: 4px;
             transition: color 500ms ease-in-out;
           }
 
@@ -75,8 +73,6 @@
             color: $quinary-color;
             padding-left: 4px;
             background: rgba($tertiary-color, 0.07);
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
             transition: all 500ms ease-in-out;
 
             .border {
@@ -87,29 +83,25 @@
         }
       }
 
-      .separator {
-        width: 2px;
-        height: 100%;
-        background: rgba($quinary-color, 0.25);
-      }
-
       .tabs-body {
         height: 100%;
         width: 100%;
         position: relative;
+        background: rgba($bg-color, 0.3);
+        border-radius: 10px;
 
         .tab-body {
-          width: calc(100% - 30px);
-          height: 100%;
+          width: calc(100% - (30px + 30px));
+          height: calc(100% - (30px + 30px));
           position: absolute;
           left: -200%;
           opacity: 0;
-          transition: opacity 1000ms ease-in-out;
           padding-right: 30px;
           overflow-y: auto;
 
           &.active {
-            left: 0;
+            top: 30px;
+            left: 30px;
             opacity: 1;
             transition: opacity 1000ms ease-in-out;
           }
@@ -198,14 +190,12 @@
   #about-me {
     .simultated-content {
       .tabs {
-        padding: 10px;
         flex-direction: column;
-        gap: 40px;
         justify-content: flex-start;
-        height: 900px;
+        height: 1000px;
 
         .tabs-buttons {
-          width: 100%;
+          width: calc(100% - (30px + 30px));
           height: auto;
 
           .tab-button {
@@ -214,8 +204,8 @@
 
             &.active {
               border-radius: 0;
-              border-top-right-radius: 10px;
-              border-top-left-radius: 10px;
+              border-top-right-radius: 5px;
+              border-top-left-radius: 5px;
               transition: all 500ms ease-in-out;
             }
 
@@ -225,20 +215,18 @@
               border: 0;
               top: auto;
               bottom: 0;
+
+              &:nth-child(1) {
+                display: none;
+                // left: 0;
+                // top: 0;
+              }
             }
           }
         }
 
-        .separator {
-          display: block;
-          width: 100%;
-          height: 1px;
-          background: rgba($quinary-color, 0.25);
-        }
-
         .tabs-body {
           .tab-body {
-            width: 100%;
             padding: 0;
 
             &::-webkit-scrollbar {
@@ -247,12 +235,6 @@
           }
         }
       }
-
-      // .events {
-      //   .event {
-      //     max-width: 100%;
-      //   }
-      // }
     }
   }
 }
