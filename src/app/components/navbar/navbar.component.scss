@@ -153,14 +153,14 @@
   }
 }
 
-@media (prefers-color-scheme: light) {
- .my-container {
-    background-color: #fff;
+// @media (prefers-color-scheme: light) {
+//  .my-container {
+//     background-color: #fff;
 
-    &.expanded {
-      .nav-base {
-        background-color: #fff;
-      }
-    }
- }
-}
+//     &.expanded {
+//       .nav-base {
+//         background-color: #fff;
+//       }
+//     }
+//  }
+// }

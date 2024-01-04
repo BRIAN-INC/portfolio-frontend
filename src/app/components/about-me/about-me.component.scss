@@ -1,6 +1,9 @@
 @import "../../../assets/styles/types.scss";
 @import "../../../assets/styles/loaders.scss";
 
+$separation: 50px;
+$separation-mobile: 20px;
+
 #about-me {
   // min-height: calc(
   //   100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
@@ -13,9 +16,14 @@
     width: 100%;
     height: 100%;
 
+    .title_section {
+      font-size: 24px;
+      margin-bottom: 42px;
+    }
+
     .tabs {
       width: 100%;
-      height: 600px;
+      height: 400px;
       overflow: hidden;
       // box-shadow: 0 0 5px #ccc;
       gap: 30px;
@@ -23,11 +31,10 @@
       .tabs-buttons {
         min-width: 220px;
         height: calc(100% - (30px + 30px));
-        border-radius: 10px;
+        border-radius: 5px;
         background: rgba($bg-color, 0.3);
         padding: 30px;
-        display: flex;
-        align-items: center;
+        justify-content: flex-start;
         gap: 20px;
 
         .tab-button {
@@ -88,32 +95,32 @@
         width: 100%;
         position: relative;
         background: rgba($bg-color, 0.3);
-        border-radius: 10px;
+        border-radius: 5px;
 
         .tab-body {
-          width: calc(100% - (30px + 30px));
-          height: calc(100% - (30px + 30px));
+          width: calc(100% - ($separation * 2));
+          height: calc(100% - ($separation * 2));
+          padding-right: $separation;
           position: absolute;
           left: -200%;
           opacity: 0;
-          padding-right: 30px;
           overflow-y: auto;
 
+          .info-container {
+            height: 100%;
+            font-size: 16px;
+            color: $txt-white-color;
+          }
+
           &.active {
-            top: 30px;
-            left: 30px;
+            top: $separation;
+            left: $separation;
             opacity: 1;
             transition: opacity 1000ms ease-in-out;
           }
 
           &::-webkit-scrollbar-button {
             display: none;
-          }
-
-          h2 {
-            text-align: center;
-            color: $quinary-color;
-            margin-bottom: 32px;
           }
 
           .info-container {
@@ -124,19 +131,25 @@
     }
 
     .events {
-      min-width: 300px;
       justify-content: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 10px;
 
       .event {
-
-        // Cambia dependiendo del estilo
         max-width: 350px;
-        min-width: calc(100% - (20px + 2px)); // 20px = padding-lr, 2px = border-lr
-
+        min-width: calc(100% - ($separation-mobile + 2px));
         border: 1px solid rgba($quinary-color, .75);
         border-radius: 5px;
         padding: 10px;
+
+        .e-info {
+          color: $txt-secondary-color;
+        }
+
+        .e-data {
+          color: $txt-white-color;
+        }
 
         p {
           margin: 0;
@@ -144,6 +157,10 @@
 
         .repo {
           margin-bottom: 16px;
+
+          p {
+            margin-bottom: 12px;
+          }
         }
 
         .link {
@@ -159,19 +176,26 @@
           }
         }
 
-        .about-img {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
-
         .user {
-          margin: 0;
+          justify-content: flex-start;
+          gap: 5px;
+          margin: 5px 0 15px 0;
+          color: $txt-secondary-color;
+
+          .user-img {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          .user-txt {
+            margin: 0;
+          }
         }
 
         &.error {
-          .user {
+          .user-txt {
             text-align: center;
           }
         }
@@ -189,10 +213,16 @@
 @media screen and (max-width: $tablet) {
   #about-me {
     .simultated-content {
+      .title_section {
+        color: $quinary-color;
+        font-size: 20px;
+        margin-bottom: 26px;
+      }
+
       .tabs {
         flex-direction: column;
         justify-content: flex-start;
-        height: 1000px;
+        height: 780px;
 
         .tabs-buttons {
           width: calc(100% - (30px + 30px));
@@ -228,12 +258,33 @@
         .tabs-body {
           .tab-body {
             padding: 0;
+            width: calc(100% - ($separation-mobile * 2));
+            height: calc(100% - ($separation-mobile * 2));
+
+            .info-container {
+              font-size: 14px;
+            }
+
+            &.active {
+              // top: $separation-mobile;
+              // left: $separation-mobile;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
 
             &::-webkit-scrollbar {
               display: none;
             }
           }
         }
+
+
+      }
+
+      .events {
+        flex-wrap: nowrap;
+        flex-direction: column;
       }
     }
   }

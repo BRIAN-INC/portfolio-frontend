@@ -22,13 +22,16 @@
     </div>
     <p class="data">Estudiante universitario especializado en el Desarrollo de aplicaciones Backend</p>
     <div class="buttons flex">
-      <app-button class="button linkedin" icon="fa-brands fa-linkedin" text="LinkedIn" type="primary"
+      <app-button class="button" icon="fa-brands fa-linkedin" text="LinkedIn" type="primary"
         padding="0 30px" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px"
         uri="https://www.linkedin.com/in/kiridepapel/" [blank]="true">
       </app-button>
       <app-button class="button" icon="fa-brands fa-github-alt" text="GitHub" type="secondary"
         padding="0 30px" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px"
         uri="https://github.com/kiridepapel/" [blank]="true">
+      </app-button>
+      <app-button class="button" icon="fa-solid fa-file" text="CV" type="secondary"
+        padding="0 30px" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px" (click)="download()">
       </app-button>
       <app-button class="button" icon="fas fa-envelope" text="brian.uceda@hotmail.com" type="secondary"
         padding="0 30px" borderRadius="15px" sizeDesktop="14px" sizeMobile="13px"
