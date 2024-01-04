@@ -1,7 +1,7 @@
 @defer(when !isLoading) {
 <section id="about-me" class="kw-section flex">
   <div class="simultated-content flex col">
-    <h2 class="title_section">Información sobre mí</h2>
+    <h2 class="section__title">Información sobre mí</h2>
     <div class="tabs flex">
       <section class="tabs-buttons flex col">
         <div class="tab-button active" (click)="changeTab(0)">
@@ -44,11 +44,16 @@
                 @for(event of commitsData; track event.id) {
                   @if(event.type == 'PushEvent') {
                     <div class="event flex col items-start">
-                      <p class="event-org e-info">Organización: <span class="e-data">{{ modifyRepoName(event.repo.name, 0) }}</span></p>
-                      <div class="repo flex col items-start">
-                        <p class="e-info">Repositorio: <span class="e-data">{{ modifyRepoName(event.repo.name, 1) }}</span></p>
+                      <div class="org flex">
+                        <p class="event-org e-info">Organización: <span class="e-data">{{ modifyRepoName(event.repo.name, 0) }}</span></p>
+                        <a class="link zero"
+                          target="_blank" [href]="getOrgUrl(event.repo.url)">(ver)
+                        </a>
+                      </div>
+                      <div class="repo flex">
+                        <span class="e-info">Repositorio: <span class="e-data">{{ modifyRepoName(event.repo.name, 1) }}</span></span>
                         <a class="link one"
-                          target="_blank" [href]="modifyUrl(event.repo.url)">Ver repositorio
+                          target="_blank" [href]="modifyUrl(event.repo.url)">(ver)
                         </a>
                       </div>
                       <p class="event-type e-info">Tipo: <span class="e-data">{{ removeEventOnString(event.type) }}</span></p>
@@ -56,10 +61,10 @@
                       <div class="user flex">
                         <img class="user-img" [src]="event.actor.avatar_url" alt="">
                         <p class="user-txt">{{ event.payload.commits[0].author.name }} • {{ event.lastUpdateTime }}</p>
+                        <a class="link two"
+                          target="_blank" [href]="modifyUrl(event.payload.commits[0].url)">(ver)
+                        </a>
                       </div>
-                      <a class="link two"
-                        target="_blank" [href]="modifyUrl(event.payload.commits[0].url)">Ver evento en GitHub
-                      </a>
                     </div>
                   }
                 }

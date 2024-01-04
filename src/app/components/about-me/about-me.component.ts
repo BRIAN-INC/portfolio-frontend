@@ -15,7 +15,7 @@ class CommitGroup {
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
   private gitUser = 'kiridepapel';
-  private quantityOfEvents = 4;
+  private quantityOfEvents = 5;
   // Information received and calculated from GitHub API
   public commitsData: any[] = [];
   public commitsGroup: CommitGroup[] = [];
@@ -115,6 +115,28 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       .replace('api.', '')
       .replace('/repos', '')
       .replace('/commits', '/commit');
+  }
+
+  public getOrgUrl(apiurlEvents: string) {
+    let repoUrl = this.modifyUrl(apiurlEvents);
+    let orgNameIndex = repoUrl.lastIndexOf('/');
+    let orgUrl = repoUrl.substring(0, orgNameIndex);
+
+    let gitName = this.getGitUser;
+    let orgName = orgUrl.substring(orgUrl.lastIndexOf('/') + 1);
+
+    // Primera letra en minuscula siempre
+    orgName = orgName.charAt(0).toUpperCase() + orgName.slice(1);
+    gitName = gitName.charAt(0).toUpperCase() + gitName.slice(1);
+
+    if (orgName == gitName) {
+      return (orgUrl += '?tab=repositories');
+    }
+    // } else {
+    //   return 'https://github.com/orgs/' + orgName + '/repositories';
+    // }
+
+    return orgUrl;
   }
 
   public removeEventOnString(event: string) {

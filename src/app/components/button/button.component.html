@@ -5,8 +5,7 @@
     isDesktop() ? animationClass : ''
   ]"
   [ngStyle]="{
-    cursor: (pointer) ? 'pointer' : 'default',
-    height: isButtonActive() ? 'auto' : '100%'
+    cursor: (pointer) ? 'pointer' : 'default'
   }"
   (mouseenter)="haveSubmenus ? showSubmenus('btn-mouseover') : ''"
   (mouseleave)="hideSubmenus('btn-mouseleave')"

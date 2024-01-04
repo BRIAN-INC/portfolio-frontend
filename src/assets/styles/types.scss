@@ -69,6 +69,12 @@
 
   .simultated-content {
     border-radius: 5px;
+
+    .section__title {
+      font-size: 24px;
+      margin-bottom: 42px;
+      color: $quinary-color;
+    }
   }
 
   &.last-section {
