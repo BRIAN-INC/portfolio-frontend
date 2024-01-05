@@ -2,7 +2,7 @@
   <div class="simultated-content flex col">
     <h2 class="section__title">Información sobre mí</h2>
     <div class="tabs flex">
-      <section class="tabs-buttons flex col">
+      <div class="tabs-buttons flex col">
         <div class="tab-button active" (click)="changeTab(0)">
           <span class="border"></span>
           <i class="fas fa-info-circle"></i> Información general
@@ -13,9 +13,10 @@
           <i class="icon fa-brands fa-github-alt"></i> Actividad en GitHub
           <span class="border"></span>
         </div>
-      </section>
-      <section class="tabs-body">
-        <section class="tab-body flex col start active">
+      </div>
+      <div class="tabs-body">
+        <article class="tab-body flex col start active">
+
           <div class="info-container flex col items-start">
             <p>Mi nombre es Brian Uceda Hirata, tengo 19 años y soy estudiante universitario de la carrera de Ingeniería de Sistemas de Información en la UPC Perú.</p>
             <br>
@@ -24,10 +25,10 @@
             <br>
             <p>Soy consciente de que no soy perfecto, pero siempre busco aprender y mejorar a partir de mis experiencias vividas.</p>
           </div>
-        </section>
-        <section class="tab-body flex col start">
+        </article>
+
+        <article class="tab-body flex col start">
           @if (getLength > 0) {
-            <h3>Últimas actividades en GitHub</h3>
             <div class="events flex">
               @for(event of commitsData; track event.id) {
                 <app-git-event [event]="event" gitUser="{{ getGitUser }}"></app-git-event>
@@ -54,8 +55,8 @@
               </div>
             </div>
           }
-        </section>
-      </section>
+        </article>
+      </div>
     </div>
   </div>
 </section>
