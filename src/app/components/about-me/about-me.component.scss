@@ -162,17 +162,29 @@ $separation-mobile: 20px;
           list-style: none;
           text-decoration: none;
 
-          &.zero {
-            color: rgb(106, 177, 127);
+          &.push {
+            margin-right: 5px;
           }
 
-          &.one {
-            color: rgb(107, 255, 152);
+          .icon {
+            font-size: 10px;
           }
+        }
 
-          &.two {
-            color: rgb(107, 255, 248);
-          }
+        .zero {
+          color: $quinary-color;
+        }
+
+        .one {
+          color: rgb(107, 255, 152);
+        }
+
+        .two {
+          color: $quinary-color;
+        }
+
+        .three {
+          color: rgb(255, 143, 143);
         }
 
         .user {

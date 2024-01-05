@@ -30,7 +30,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     try {
       await this.githubService.getEventsRequest(this.gitUser);
 
-      if (this.getLength > 0) {
+      if (this.getEvents && this.getLength > 0) {
         this.fillCommitsData();
         this.startRealTimeUpdates();
       }
@@ -97,13 +97,11 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   }
 
   private fillCommitsData() {
-    if (this.getEvents && this.getEvents.length > 0) {
-      const relevantCommits = this.getEvents.filter(
-        (event: any) => event.type != 'PublicEvent'
-      );
+    const relevantCommits = this.getEvents.filter(
+      (event: any) => event.type != 'PublicEvent'
+    );
 
-      this.commitsData = relevantCommits.slice(0, this.quantityOfEvents);
-    }
+    this.commitsData = relevantCommits.slice(0, this.quantityOfEvents);
   }
 
   public modifyRepoName(repoName: string, index: number) {
