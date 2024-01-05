@@ -1,0 +1,113 @@
+@import "../../../assets/styles/types.scss";
+@import "../../../assets/styles/loaders.scss";
+
+.event {
+  border: 1px solid rgba($quinary-color, .75);
+  border-radius: 5px;
+  padding: 10px;
+
+  .e-info {
+    color: $txt-secondary-color;
+    white-space: normal;
+  }
+
+  .e-data {
+    color: $txt-white-color;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .org, .repo {
+    gap: 5px;
+  }
+
+  .repo {
+    margin-bottom: 16px;
+  }
+
+  .fecha {
+    margin-top: 16px;
+    gap: 5px;
+  }
+
+  .link {
+    list-style: none;
+    text-decoration: none;
+
+    &.push {
+      margin-right: 5px;
+    }
+
+    .icon {
+      font-size: 10px;
+    }
+  }
+
+  .zero {
+    color: $quinary-color;
+  }
+
+  .one {
+    color: $quinary-color;
+  }
+
+  .two {
+    color: rgb(107, 255, 152);
+  }
+
+  .three {
+    color: rgb(255, 143, 143);
+  }
+
+  .four {
+    color: rgb(228, 170, 255);
+  }
+
+  .five {
+    color: rgb(255, 255, 170);
+  }
+
+  .event-type {
+    margin-bottom: 16px;
+  }
+
+  .merged {
+    gap: 10px;
+  }
+
+  .user {
+    justify-content: flex-start;
+    gap: 5px;
+    margin: 0;
+    color: $txt-secondary-color;
+
+    &.other-users {
+      margin-bottom: 5px;
+    }
+
+    .user-img {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-txt {
+      margin: 0;
+    }
+  }
+
+  &.error {
+    .user-txt {
+      text-align: center;
+    }
+  }
+
+  .error {
+    color: #ff9797;
+    text-align: center;
+    margin: 0;
+  }
+}

@@ -26,85 +26,34 @@
           </div>
         </section>
         <section class="tab-body flex col start">
-            @if (getLength > 0) {
-              <h3>Últimas actividades en GitHub</h3>
-              <div class="events flex">
-                @for(event of commitsData; track event.id) {
-                  <!-- @if(event.type == 'PushEvent') { -->
-                    <div class="event flex col items-start">
-                      <div class="org flex">
-                        <p class="e-info">Organización: <span class="e-data">{{ modifyRepoName(event.repo.name, 0) }}</span></p>
-                        <a class="link e-info"
-                          target="_blank" [href]="getOrgUrl(event.repo.url)">
-                          <i class="fa-solid fa-up-right-from-square icon"></i>
-                        </a>
-                      </div>
-                      <div class="repo flex">
-                        <p class="e-info">Repositorio: <span class="e-data">{{ modifyRepoName(event.repo.name, 1) }}</span></p>
-                        <a class="link e-info"
-                          target="_blank" [href]="modifyUrl(event.repo.url)">
-                          <i class="fa-solid fa-up-right-from-square icon"></i>
-                        </a>
-                      </div>
-
-                      @if (event.type == 'PushEvent') {
-                        <p class="event-type e-info">Tipo: <span class="e-data two">{{ removeEventOnString(event.type) }}</span></p>
-                        <p class="e-info">Mensaje: <span class="e-data">{{ event.payload.commits[0].message }}</span></p>
-                        <div class="user flex">
-                          <img class="user-img" [src]="event.actor.avatar_url" alt="">
-                          <p class="user-txt">{{ event.actor.login }} • {{ event.lastUpdateTime }}</p>
-                          <a class="link two push"
-                            target="_blank" [href]="modifyUrl(event.payload.commits[0].url)">
-                            <i class="fa-solid fa-up-right-from-square icon"></i>
-                          </a>
-                        </div>
-                      } @else if (event.type == 'CreateEvent' || event.type == 'DeleteEvent') {
-                        @if (event.type == 'CreateEvent') {
-                          <p class="event-type e-info">Tipo: <span class="e-data one">{{ removeEventOnString(event.type) }}</span></p>
-                          <p class="e-info">Acción:
-                            @if (event.payload.ref == null) {
-                              <span class="e-data">Creó el repositorio {{ modifyRepoName(event.repo.name, 1) }}</span>
-                            } @else {
-                              <span class="e-data">Creó la rama {{ event.payload.ref }} <- ({{ event.payload.master_branch }})</span>
-                            }
-                          </p>
-                        } @else if (event.type == 'DeleteEvent') {
-                          <p class="event-type e-info">Tipo: <span class="e-data three">{{ removeEventOnString(event.type) }}</span></p>
-                          <p class="e-info">Acción:
-                          <span class="e-data">Borró la rama {{ event.payload.ref }}</span>
-                          </p>
-                        }
-                        <div class="user flex">
-                          <img class="user-img" [src]="event.actor.avatar_url" alt="">
-                          <p class="user-txt">{{ event.actor.login }} • {{ event.lastUpdateTime }}</p>
-                        </div>
-                      }
-
-                    </div>
-                  <!-- } -->
-                }
-              </div>
-            } @else if (getLength == -2) {
-              <div class="events flex col">
-                <div class="event">
-                  <p class="error">Has excedido el número de solicitudes, por favor espera unos minutos...</p>
-                </div>
-              </div>
-            } @else if (getLength == -1) {
+          @if (getLength > 0) {
+            <h3>Últimas actividades en GitHub</h3>
+            <div class="events flex">
+              @for(event of commitsData; track event.id) {
+                <app-git-event [event]="event" gitUser="{{ getGitUser }}"></app-git-event>
+              }
+            </div>
+          } @else if (getLength == -2) {
             <div class="events flex col">
               <div class="event">
-                <p class="error">Este usuario no existe</p>
+                <p class="error">Has excedido el número de solicitudes, por favor espera unos minutos...</p>
               </div>
             </div>
-            } @else if (getLength == 0) {
-              <div class="events flex col">
-                <div class="event error flex col">
-                  <img class="about-img" [src]="getUser?.avatar_url" alt="">
-                  <p class="user">{{ getUser?.login }}</p>
-                  <p class="error">Este usuario no ha realizado commits públicos en los últimos 2 años</p>
-                </div>
+          } @else if (getLength == -1) {
+          <div class="events flex col">
+            <div class="event">
+              <p class="error">Este usuario no existe</p>
+            </div>
+          </div>
+          } @else if (getLength == 0) {
+            <div class="events flex col">
+              <div class="event error flex col">
+                <img class="about-img" [src]="getUser?.avatar_url" alt="">
+                <p class="user">{{ getUser?.login }}</p>
+                <p class="error">Este usuario no ha realizado commits públicos en los últimos 2 años</p>
               </div>
-            }
+            </div>
+          }
         </section>
       </section>
     </div>

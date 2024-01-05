@@ -1,28 +1,22 @@
 import { GithubService } from './../../services/github.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DateTime } from 'luxon';
-
-class CommitGroup {
-  year: number = 0;
-  commits: number = 0;
-}
+import { GitEventComponent } from '../git-event/git-event.component';
 
 @Component({
   selector: 'app-about-me',
   standalone: true,
+  imports: [GitEventComponent],
   templateUrl: './about-me.component.html',
   styleUrls: ['./about-me.component.scss'],
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
   private gitUser = 'kiridepapel';
-  private quantityOfEvents = 5;
+  private quantityOfEvents = 10;
   // Information received and calculated from GitHub API
   public commitsData: any[] = [];
-  public commitsGroup: CommitGroup[] = [];
-  // Don't touch this
+  // Don't touch this (is used to update the time of the events in real time)
   public updateIntervals: any[] = [];
-  public percDiff: number = 0;
-  public isLoading: boolean = true;
 
   constructor(private githubService: GithubService) {}
 
@@ -36,8 +30,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       }
     } catch (error: any) {
       console.error(`Error (AboutMeComponent:ngOnInit()): ${error.message}`);
-    } finally {
-      this.isLoading = false;
     }
   }
 
@@ -102,43 +94,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     );
 
     this.commitsData = relevantCommits.slice(0, this.quantityOfEvents);
-  }
-
-  public modifyRepoName(repoName: string, index: number) {
-    return repoName.split('/')[index];
-  }
-
-  public modifyUrl(apiurlEvents: string) {
-    return apiurlEvents
-      .replace('api.', '')
-      .replace('/repos', '')
-      .replace('/commits', '/commit');
-  }
-
-  public getOrgUrl(apiurlEvents: string) {
-    let repoUrl = this.modifyUrl(apiurlEvents);
-    let orgNameIndex = repoUrl.lastIndexOf('/');
-    let orgUrl = repoUrl.substring(0, orgNameIndex);
-
-    let gitName = this.getGitUser;
-    let orgName = orgUrl.substring(orgUrl.lastIndexOf('/') + 1);
-
-    // Primera letra en minuscula siempre
-    orgName = orgName.charAt(0).toUpperCase() + orgName.slice(1);
-    gitName = gitName.charAt(0).toUpperCase() + gitName.slice(1);
-
-    if (orgName == gitName) {
-      return (orgUrl += '?tab=repositories');
-    }
-    // } else {
-    //   return 'https://github.com/orgs/' + orgName + '/repositories';
-    // }
-
-    return orgUrl;
-  }
-
-  public removeEventOnString(event: string) {
-    return event.replace('Event', '');
   }
 
   private startRealTimeUpdates() {

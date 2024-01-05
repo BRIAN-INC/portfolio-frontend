@@ -130,92 +130,10 @@ $separation-mobile: 20px;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 10px;
+      width: 100%;
 
-      .event {
-        max-width: 350px;
-        min-width: calc(100% - ($separation-mobile + 2px));
-        border: 1px solid rgba($quinary-color, .75);
-        border-radius: 5px;
-        padding: 10px;
-
-        .e-info {
-          color: $txt-secondary-color;
-        }
-
-        .e-data {
-          color: $txt-white-color;
-        }
-
-        p {
-          margin: 0;
-        }
-
-        .org, .repo {
-          gap: 5px;
-        }
-
-        .repo {
-          margin-bottom: 16px;
-        }
-
-        .link {
-          list-style: none;
-          text-decoration: none;
-
-          &.push {
-            margin-right: 5px;
-          }
-
-          .icon {
-            font-size: 10px;
-          }
-        }
-
-        .zero {
-          color: $quinary-color;
-        }
-
-        .one {
-          color: rgb(107, 255, 152);
-        }
-
-        .two {
-          color: $quinary-color;
-        }
-
-        .three {
-          color: rgb(255, 143, 143);
-        }
-
-        .user {
-          justify-content: flex-start;
-          gap: 5px;
-          margin: 5px 0 0 0;
-          color: $txt-secondary-color;
-
-          .user-img {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-
-          .user-txt {
-            margin: 0;
-          }
-        }
-
-        &.error {
-          .user-txt {
-            text-align: center;
-          }
-        }
-
-        .error {
-          color: #ff9797;
-          text-align: center;
-          margin: 0;
-        }
+      app-git-event {
+        width: 100%;
       }
     }
   }
@@ -259,8 +177,6 @@ $separation-mobile: 20px;
 
               &:nth-child(1) {
                 display: none;
-                // left: 0;
-                // top: 0;
               }
             }
           }
@@ -277,8 +193,6 @@ $separation-mobile: 20px;
             }
 
             &.active {
-              // top: $separation-mobile;
-              // left: $separation-mobile;
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);

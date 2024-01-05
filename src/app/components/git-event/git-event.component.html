@@ -1,0 +1,120 @@
+<div class="event flex col items-start">
+  <div class="org flex">
+    <p class="e-info">Organización: <span class="e-data">{{ modifyRepoName(event.repo.name, 0) }}</span></p>
+    <a class="link e-info"
+      target="_blank" [href]="getOrgUrl(event.repo.url)">
+      <i class="fa-solid fa-up-right-from-square icon"></i>
+    </a>
+  </div>
+  <div class="repo flex">
+    <p class="e-info">Repositorio: <span class="e-data">{{ modifyRepoName(event.repo.name, 1) }}</span></p>
+    <a class="link e-info"
+      target="_blank" [href]="modifyUrl(event.repo.url)">
+      <i class="fa-solid fa-up-right-from-square icon"></i>
+    </a>
+  </div>
+
+  @if (event.type == 'PushEvent') {
+    <p class="event-type e-info">Tipo: <span class="one">{{ removeEventOnString(event.type) }}</span></p>
+    <!-- If there is only one commit -->
+    @if (event.payload.commits.length == 1){
+      <p class="e-info">Mensaje: <span class="e-data">{{ event.payload.commits[0].message }}</span></p>
+      <div class="user flex">
+        <img class="user-img" [src]="event.actor.avatar_url" alt="">
+        <p class="user-txt">{{ event.actor.login }} • {{ event.lastUpdateTime }}</p>
+        <a class="link one push"
+          target="_blank" [href]="modifyUrl(event.payload.commits[0].url)">
+          <i class="fa-solid fa-up-right-from-square icon"></i>
+        </a>
+      </div>
+    } @else {
+      @for (commit of event.payload.commits; track commit.sha) {
+        <p class="e-info">Mensaje: <span class="e-data">{{ commit.message }}</span></p>
+        <div class="user other-users flex">
+          <img class="user-img" src="https://i.ibb.co/F6FLtrh/unknown.webp" alt="">
+          <p class="user-txt">{{ commit.author.name }} • {{ event.lastUpdateTime }}</p>
+          <a class="link one push"
+            target="_blank" [href]="modifyUrl(commit.url)">
+            <i class="fa-solid fa-up-right-from-square icon"></i>
+          </a>
+        </div>
+      }
+    }
+
+  } @else if (event.type == 'CreateEvent' || event.type == 'DeleteEvent') {
+    @if (event.type == 'CreateEvent') {
+      <p class="event-type e-info">Tipo: <span class="two">{{ removeEventOnString(event.type) }}</span></p>
+      <p class="e-info">Acción:
+        @if (event.payload.ref == null) {
+          <span class="e-data">Creó el repositorio {{ modifyRepoName(event.repo.name, 1) }}</span>
+        } @else {
+          <span class="e-data">Creó la rama {{ event.payload.ref }} ← ({{ event.payload.master_branch }})</span>
+        }
+      </p>
+    } @else if (event.type == 'DeleteEvent') {
+      <p class="event-type e-info">Tipo: <span class="three">{{ removeEventOnString(event.type) }}</span></p>
+      <p class="e-info">Acción:
+      <span class="e-data">Borró la rama {{ event.payload.ref }}</span>
+      </p>
+    }
+    <div class="user flex">
+      <img class="user-img" [src]="event.actor.avatar_url" alt="">
+      <p class="user-txt">{{ event.actor.login }} • {{ event.lastUpdateTime }}</p>
+    </div>
+  } @else if (event.type == 'PullRequestEvent' || event.type == 'PullRequestReviewEvent') {
+
+    @if (event.type == 'PullRequestEvent') {
+      <p class="event-type e-info">Tipo: <span class="four">Pull Request</span></p>
+    } @else {
+      <p class="event-type e-info">Tipo: <span class="five">Pull Request Review</span></p>
+    }
+
+    <p class="e-info">Título:
+      <span class="e-data">#{{ event.payload.pull_request.number }} {{ event.payload.pull_request.title }}</span>
+    </p>
+    <p class="e-info">Estado:
+      @if (event.payload.pull_request.state == 'open') {
+        <span class="e-data two">{{ event.payload.pull_request.state }}</span>
+      } @else if (event.payload.pull_request.state == 'closed') {
+        <span class="e-data three">{{ event.payload.pull_request.state }}</span>
+      } @else {
+        <span class="e-data">{{ event.payload.pull_request.state }}</span>
+      }
+    </p>
+    <div class="merged flex">
+      <p class="e-info">Creado por:</p>
+      <div class="user flex">
+        <img class="user-img" [src]="event.actor.avatar_url" alt="">
+        <p class="e-data">{{ event.actor.login }}</p>
+      </div>
+    </div>
+
+    @if (event.type == 'PullRequestEvent') {
+      @if (event.payload.pull_request.merged_by) {
+        <div class="merged flex">
+          <p class="e-info">Fusionado por:</p>
+          <div class="user flex">
+              <img class="user-img" [src]="event.payload.pull_request.merged_by.avatar_url" alt="">
+              <p class="user-txt e-data">{{ event.payload.pull_request.merged_by.login }}</p>
+          </div>
+        </div>
+      }
+      <p class="e-info">Número de comentarios: <span class="e-data">{{ event.payload.pull_request.comments }}</span></p>
+      <p class="e-info">Número de commits: <span class="e-data">{{ event.payload.pull_request.commits }}</span></p>
+    }
+
+    <div class="fecha flex">
+      <p class="e-info"><span class="">{{ event.lastUpdateTime }}</span></p>
+      <a class="link push"
+        target="_blank" [href]="modifyUrl(event.payload.pull_request.url)">
+        @if (event.type == 'PullRequestEvent') {
+          <i class="fa-solid fa-up-right-from-square icon four"></i>
+        } @else {
+          <i class="fa-solid fa-up-right-from-square icon five"></i>
+        }
+      </a>
+    </div>
+  } @else {
+    <p>Other Event Unknown</p>
+  }
+</div>
