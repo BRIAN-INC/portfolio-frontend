@@ -1,6 +1,43 @@
 <section id="projects" class="kw-section flex">
   <div class="simultated-content flex col">
-    <h2 class="section__title">Mis proyectos</h2>
-    <span>projects works!</span>
+    <h2 class="section__title">Proyectos terminados</h2>
+    <div class="projects flex col">
+      @for (project of getProjects; track project) {
+        <article class="project flex">
+          <div class="project-event">
+            <a [href]="project.demoUrl" target="_blank" rel="noopener">
+              <img class="project-img" [src]="project.img" alt="{{ project.alt }}">
+            </a>
+          </div>
+          <div class="project-data flex col items-start">
+            <h3>{{ project.name }}</h3>
+            <p class="project-desc">{{ project.description }}</p>
+            <div class="project-tags flex">
+              @for (tag of project.tags; track tag) {
+                <span>{{ tag }}</span>
+              }
+            </div>
+            <div class="project-skills flex">
+              @for (skill of project.skills; track skill) {
+                <div class="skill flex">
+                  <p class="skill-name">{{ skill.name }}</p>
+                  <img class="skill-img" [src]="skill.svg" alt="{{ skill.name }}">
+                </div>
+              }
+            </div>
+            <div class="project-links flex">
+              <a [href]="project.demoUrl" target="_blank" rel="noopener">
+                <i class="fa-solid fa-desktop"></i>
+                Demo
+              </a>
+              <a [href]="project.codeUrl" target="_blank" rel="noopener">
+                <i class="fa-solid fa-code"></i>
+                Código
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
   </div>
 </section>

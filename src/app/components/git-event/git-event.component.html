@@ -48,7 +48,7 @@
         @if (event.payload.ref == null) {
           <span class="e-data">Creó el repositorio {{ modifyRepoName(event.repo.name, 1) }}</span>
         } @else {
-          <span class="e-data">Creó la rama {{ event.payload.ref }} ← ({{ event.payload.master_branch }})</span>
+          <span class="e-data">Creó la rama ({{ event.payload.ref }}) ← ({{ event.payload.master_branch }})</span>
         }
       </p>
     } @else if (event.type == 'DeleteEvent') {

@@ -7,11 +7,39 @@
   //   100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
   // );
   // height: 100%;
-  // justify-content: center;
 
   .simultated-content {
     width: 100%;
     height: 100%;
-    // background: #3d6196;
+  }
+}
+
+.skill {
+  position: relative;
+
+  .skill-name {
+    font-size: 13px;
+    position: absolute;
+    top: -15px;
+    opacity: 0;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  &:hover {
+    .skill-name {
+      padding: 5px 10px;
+      border-radius: 10px;
+      background: #fff;
+      color: #000;
+      opacity: 1;
+      top: -40px;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .skill-img {
+    width: 28px;
+    height: 28px;
   }
 }
