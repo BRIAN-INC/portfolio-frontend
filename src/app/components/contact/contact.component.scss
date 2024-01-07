@@ -1,17 +1,7 @@
 @import "../../../assets/styles/types.scss";
 @import "../../../assets/styles/loaders.scss";
 
-#contact {
-  font-family: "Onest", sans-serif;
-  // min-height: calc(
-  //   100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
-  // );
-  // height: 100%;
-  // justify-content: center;
-
-  .simultated-content {
-    width: 100%;
-    height: 100%;
-    // background: #6969a3;
-  }
+.social-container {
+  gap: 32px;
+  flex-wrap: wrap;
 }

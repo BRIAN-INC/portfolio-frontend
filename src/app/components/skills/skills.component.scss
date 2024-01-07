@@ -2,18 +2,10 @@
 @import "../../../assets/styles/loaders.scss";
 
 #skills {
-  font-family: "Onest", sans-serif;
-  // min-height: calc(
-  //   100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
-  // );
-  // height: 100%;
   padding-left: $section-mg-lr;
   padding-right: $section-mg-lr;
 
   .simultated-content {
-    width: -webkit-fill-available;
-    height: 100%;
-
     .skills-languages, .skills-frameworks, .skills-knowledges {
       width: -webkit-fill-available !important;
       flex-wrap: wrap;
