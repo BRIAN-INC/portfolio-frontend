@@ -2,9 +2,6 @@
 @import "../../../assets/styles/loaders.scss";
 
 #technologies {
-  padding-left: $section-mg-lr;
-  padding-right: $section-mg-lr;
-
   .simultated-content {
     .technologies-dev, .technologies-data {
       width: -webkit-fill-available !important;
@@ -16,6 +13,17 @@
     .section__content {
       h3 {
         color: #bfbfbf;
+        word-wrap: break-word;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-md) {
+  #technologies {
+    .simultated-content {
+      .section__content {
+        width: -webkit-fill-available;
       }
     }
   }

@@ -1,7 +1,116 @@
 @import "../../../assets/styles/types.scss";
 @import "../../../assets/styles/loaders.scss";
 
+.form-container {
+  box-sizing: border-box;
+  max-width: 700px;
+  margin: 0 0 64px 0;
+  background: rgba($bg-color, 0.3);
+  padding: 30px;
+  border-left: 5px solid $quaternary-color;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    0 100%
+  );
+
+  .form {
+    .heading {
+      display: block;
+      text-align: center;
+      color: #bfbfbf;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .input {
+      box-sizing: border-box;
+      color: $quinary-color;
+      width: 100%;
+      background: rgba($semi-secondary-color, 0.5);
+      border: none;
+      outline: none;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      transition: all 0.2s ease-in-out;
+      border-left: 1px solid transparent;
+      border-radius: 5px;
+      box-shadow: 0 0 10px 1px rgba($quaternary-color, 0.2);
+
+      &:focus {
+        border-left: 5px solid $quaternary-color;
+      }
+    }
+
+    .button-container {
+      display: flex;
+      gap: 10px;
+
+      .send-button {
+        flex-basis: 70%;
+        background: $quaternary-color;
+        padding: 10px;
+        color: #001925;
+        text-align: center;
+        font-weight: bold;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in-out;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba($semi-secondary-color, 0.8);
+          border: 1px solid $quaternary-color;
+          color: $quaternary-color;
+        }
+      }
+
+      .reset-button {
+        filter: drop-shadow(1px 1px 0px $quaternary-color);
+        flex-basis: 30%;
+        position: relative;
+        text-align: center;
+        padding: 10px;
+        color: $quaternary-color;
+        font-weight: bold;
+        background: rgba($semi-secondary-color, 0.8);
+        transition: all 0.2s ease-in-out;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background: $quaternary-color;
+          color: #001925;
+        }
+      }
+    }
+  }
+}
+
 .social-container {
   gap: 32px;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: $tablet) {
+  .form-container {
+    .form {
+      .heading {
+        font-size: 13px;
+      }
+
+      .input {
+        font-size: 12px;
+      }
+
+      .button-container {
+        flex-direction: column;
+      }
+    }
+  }
 }

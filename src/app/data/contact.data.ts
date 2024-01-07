@@ -9,7 +9,7 @@ export const socialData = [
     name: 'GitHub',
     svg: 'assets/svgs/social/github.svg',
     url: 'https://github.com/kiridepapel',
-    bgColor: '#24a1de',
+    bgColor: '#282828',
   },
   {
     name: 'Instagram',
