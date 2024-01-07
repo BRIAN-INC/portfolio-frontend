@@ -27,9 +27,9 @@
   }
 }
 
-@media screen and (max-width: $mobile-sm) {
+@media screen and (max-width: $mobile-md) {
   .kw-container {
-    background-size: 40px 40px;
+    background-size: 50px 50px;
     top: -$bar-height-mobile;
   }
 }

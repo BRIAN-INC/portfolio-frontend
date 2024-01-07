@@ -1,11 +1,11 @@
-<a class="btn-social" title="btn"
+<a class="btn-social" title="Go to {{ social.name }}"
   [style.width]="isDesktop() ? tam : tamTablet"
   [style.height]="isDesktop() ? tam : tamTablet"
   [href]="social.url" target="_blank" rel="noopener"
 >
   <span class="btn-svg-container">
     <img [src]="social.svg"
-      [alt]="social.name" title="{{ social.name }} button of social red"
+      [alt]="social.name" title="Go to {{ social.name }}"
     >
   </span>
   <span class="btn-bg"
