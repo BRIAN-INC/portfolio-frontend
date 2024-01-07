@@ -15,3 +15,10 @@ export class Skill {
   name?: string = '';
   svg?: string = '';
 }
+
+export class Social {
+  name: string = '';
+  svg: string = '';
+  url: string = '';
+  bgColor?: string = '';
+}

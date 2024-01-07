@@ -1,5 +1,11 @@
 <section id="contact" class="kw-section flex last-section">
-  <div class="simultated-content flex">
-    <span>contact works!</span>
+  <div class="simultated-content flex col">
+    <h2 class="section__title">Contácto</h2>
+    <!-- <span>contact works!</span> -->
+    <div class="social-container flex">
+      @for (social of socialData; track social) {
+        <app-social-item [social]="social"></app-social-item>
+      }
+    </div>
   </div>
 </section>

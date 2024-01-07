@@ -2,16 +2,21 @@
 @import "../../../assets/styles/loaders.scss";
 
 #technologies {
-  font-family: "Onest", sans-serif;
-  // min-height: calc(
-  //   100vh - ($bar-height + $section-pg-top + $section-pg-bottom)
-  // );
-  // height: 100%;
-  // justify-content: center;
+  padding-left: $section-mg-lr;
+  padding-right: $section-mg-lr;
 
   .simultated-content {
-    width: 100%;
-    height: 100%;
-    // background: #454591;
+    .technologies-dev, .technologies-data {
+      width: -webkit-fill-available !important;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .section__content {
+      h3 {
+        color: #bfbfbf;
+      }
+    }
   }
 }

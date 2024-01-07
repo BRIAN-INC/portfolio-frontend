@@ -1,0 +1,14 @@
+<a class="btn-social" title="btn"
+  [style.width]="isDesktop() ? tam : tamTablet"
+  [style.height]="isDesktop() ? tam : tamTablet"
+  [href]="social.url" target="_blank" rel="noopener"
+>
+  <span class="btn-svg-container">
+    <img [src]="social.svg"
+      [alt]="social.name" title="{{ social.name }} button of social red"
+    >
+  </span>
+  <span class="btn-bg"
+    [style]="{ 'background': social.bgColor }"
+  ></span>
+</a>

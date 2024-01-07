@@ -1,8 +1,8 @@
 <section id="skills" class="kw-section flex">
   <div class="simultated-content flex col">
-    <h2 class="section__title">Habilidades</h2>
+    <h2 class="section__title">Habilidades adquiridas</h2>
     <div class="section__content">
-      <h3>Lenguajes de Programación</h3>
+      <h3>Lenguajes de programación</h3>
       <div class="skills-languages flex start">
         @for(language of skillsLanguages; track language) {
           <app-skill [skill]="language"></app-skill>
@@ -16,7 +16,7 @@
         }
       </div>
       <br>
-      <h3>Conocimientos Generales</h3>
+      <h3>Conocimientos generales</h3>
       <div class="skills-knowledges flex start">
         @for(knowledge of skillsKnowledges; track knowledge) {
           <app-skill [skill]="knowledge"></app-skill>

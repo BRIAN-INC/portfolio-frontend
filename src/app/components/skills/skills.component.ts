@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { skillsFrameworks, skillsKnowledges, skillsLanguages } from '../../data/landing.data';
 import { Skill } from '../../models/landing.model';
 import { SkillComponent } from '../skill/skill.component';
+import { skillsFrameworks, skillsKnowledges, skillsLanguages } from '../../data/skills.data';
 
 @Component({
   selector: 'app-skills',
