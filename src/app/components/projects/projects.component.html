@@ -19,10 +19,7 @@
             </div>
             <div class="project-skills flex">
               @for (skill of project.skills; track skill) {
-                <div class="skill flex">
-                  <p class="skill-name">{{ skill.name }}</p>
-                  <img class="skill-img" [src]="skill.svg" alt="{{ skill.name }}">
-                </div>
+                <app-skill [skill]="skill" [tam]="28"></app-skill>
               }
             </div>
             <div class="project-links flex">

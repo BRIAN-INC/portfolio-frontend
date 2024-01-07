@@ -1,5 +1,28 @@
 <section id="skills" class="kw-section flex">
-  <div class="simultated-content flex">
-    <span>skills works!</span>
+  <div class="simultated-content flex col">
+    <h2 class="section__title">Habilidades</h2>
+    <div class="section__content">
+      <h3>Lenguajes de Programación</h3>
+      <div class="skills-languages flex start">
+        @for(language of skillsLanguages; track language) {
+          <app-skill [skill]="language"></app-skill>
+        }
+      </div>
+      <br>
+      <h3>Frameworks</h3>
+      <div class="skills-frameworks flex start">
+        @for(framework of skillsFrameworks; track framework) {
+          <app-skill [skill]="framework"></app-skill>
+        }
+      </div>
+      <br>
+      <h3>Conocimientos Generales</h3>
+      <div class="skills-knowledges flex start">
+        @for(knowledge of skillsKnowledges; track knowledge) {
+          <app-skill [skill]="knowledge"></app-skill>
+        }
+      </div>
+      <br>
+    </div>
   </div>
 </section>

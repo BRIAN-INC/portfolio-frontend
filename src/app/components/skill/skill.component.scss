@@ -1,0 +1,27 @@
+.skill {
+  position: relative;
+
+  .skill-name {
+    position: absolute;
+    top: -15px;
+    opacity: 0;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  &:hover {
+    .skill-name {
+      padding: 5px 10px;
+      border-radius: 10px;
+      background: #fff;
+      color: #000;
+      opacity: 1;
+      top: -40px;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .skill-img {
+    border-radius: 5px;
+  }
+}

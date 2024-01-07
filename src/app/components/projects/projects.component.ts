@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Project } from '../../models/landing.model';
 import { projectsData } from '../../data/landing.data';
+import { SkillComponent } from '../skill/skill.component';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [],
+  imports: [SkillComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
