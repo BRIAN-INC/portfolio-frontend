@@ -1,0 +1,8 @@
+<div class="skill flex">
+  <p class="skill-name" [style.fontSize.px]="fontSize">{{ skill.name }}</p>
+  <img class="skill-img"
+    [width]="isDesktop() ? tam : tamTablet"
+    [height]="isDesktop() ? tam : tamTablet"
+    [src]="skill.svg" alt="{{ skill.name }}"
+  />
+</div>
