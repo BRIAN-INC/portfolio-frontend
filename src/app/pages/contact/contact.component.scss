@@ -153,7 +153,7 @@
 @media screen and (max-width: $tablet) {
   .form-container {
     .form {
-      .heading {
+      .heading, .checkbox-wrapper .label span {
         font-size: 13px;
       }
 
