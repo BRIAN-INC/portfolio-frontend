@@ -163,6 +163,10 @@
 
       .button-container {
         flex-direction: column;
+
+        .reset-button {
+          width: -webkit-fill-available;
+        }
       }
     }
   }
