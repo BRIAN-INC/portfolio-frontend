@@ -1,7 +1,7 @@
-import { GithubService } from './../../services/github.service';
+import { GithubService } from '../../services/github.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DateTime } from 'luxon';
-import { GitEventComponent } from '../git-event/git-event.component';
+import { GitEventComponent } from '../../components/git-event/git-event.component';
 
 @Component({
   selector: 'app-about-me',

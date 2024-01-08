@@ -4,7 +4,7 @@ import {
   technologiesDev,
   technologiesData,
 } from '../../data/technologies.data';
-import { SkillComponent } from '../skill/skill.component';
+import { SkillComponent } from '../../components/skill/skill.component';
 
 @Component({
   selector: 'app-technologies',

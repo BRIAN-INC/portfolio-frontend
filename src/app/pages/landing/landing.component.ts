@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { HomeComponent } from '../../components/home/home.component';
-import { AboutMeComponent } from '../../components/about-me/about-me.component';
-import { ProjectsComponent } from '../../components/projects/projects.component';
-import { SkillsComponent } from '../../components/skills/skills.component';
-import { TechnologiesComponent } from '../../components/technologies/technologies.component';
-import { ContactComponent } from '../../components/contact/contact.component';
+import { HomeComponent } from '../home/home.component';
+import { AboutMeComponent } from '../about-me/about-me.component';
+import { ProjectsComponent } from '../projects/projects.component';
+import { SkillsComponent } from '../skills/skills.component';
+import { TechnologiesComponent } from '../technologies/technologies.component';
+import { ContactComponent } from '../contact/contact.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-landing',

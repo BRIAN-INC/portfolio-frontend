@@ -4,7 +4,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root',
 })
-export class ConfigService {
+export class GlobalService {
   constructor() {}
 
   public createDialogConfig(

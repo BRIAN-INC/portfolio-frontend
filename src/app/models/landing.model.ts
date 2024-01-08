@@ -22,3 +22,10 @@ export class Social {
   url: string = '';
   bgColor?: string = '';
 }
+
+export class ContactDTO {
+  title: string = '';
+  email: string = '';
+  message: string = '';
+  sendMeCopy: boolean = true;
+}

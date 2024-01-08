@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Skill } from '../../models/landing.model';
-import { SkillComponent } from '../skill/skill.component';
+import { SkillComponent } from '../../components/skill/skill.component';
 import { skillsFrameworks, skillsKnowledges, skillsLanguages } from '../../data/skills.data';
 
 @Component({

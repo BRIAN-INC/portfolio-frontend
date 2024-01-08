@@ -1,8 +1,8 @@
 import { CvComponent } from "../components/cv/cv.component";
 import { Submenu } from "../models/submenu.model";
-import { ConfigService } from "../services/config.service";
+import { GlobalService } from "../services/global.service";
 
-const globalService = new ConfigService(); // Instancia del servicio
+const globalService = new GlobalService(); // Instancia del servicio
 
 // Por ahora se recomienda no poner más de 6 submenus,
 // ya que se desborda del navbar en pantallas pequeñas

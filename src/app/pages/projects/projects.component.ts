@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Project } from '../../models/landing.model';
 import { projectsData } from '../../data/projects.data';
-import { SkillComponent } from '../skill/skill.component';
+import { SkillComponent } from '../../components/skill/skill.component';
 
 @Component({
   selector: 'app-projects',
