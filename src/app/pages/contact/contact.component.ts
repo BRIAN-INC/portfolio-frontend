@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
 import { socialData } from '../../data/contact.data';
+import { ContactDTO, Social } from '../../models/landing.model';
 import { SocialItemComponent } from '../../components/social-item/social-item.component';
+import { environment } from '../../../environments/environment-prod';
 import { HttpService } from '../../services/http.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ContactDTO, Social } from '../../models/landing.model';
 
 @Component({
-  selector: 'app-contactDTO',
+  selector: 'app-contact',
   standalone: true,
   imports: [SocialItemComponent, HttpClientModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
-export class contactDTOComponent {
+export class ContactComponent {
   public socialData: Social[] = socialData;
-  public contactDTO: ContactDTO = new ContactDTO();
+  public contact: ContactDTO = new ContactDTO();
 
   constructor(private http: HttpService) {}
 
   ngOnInit() {
-    this.contactDTO.sendMeCopy = true;
+    this.contact.sendMeCopy = true;
     try {
       this.http.getSimple('/test').subscribe((data: any) => {
         console.log(data);
@@ -30,6 +31,6 @@ export class contactDTOComponent {
   }
 
   public check() {
-    this.contactDTO.sendMeCopy = !this.contactDTO.sendMeCopy;
+    this.contact.sendMeCopy = !this.contact.sendMeCopy;
   }
 }
