@@ -79,9 +79,9 @@ export class ContactComponent {
             response.error.message,
             ResponseType.WARN
           );
-        } else if (response.error.statusCode == 422) {
+        } else if (response.error.statusCode == 500) {
           this.globalService.openCustomSnackbar(
-            response.error.message,
+            JSON.parse(response.error).message,
             ResponseType.WARN
           );
         } else {
