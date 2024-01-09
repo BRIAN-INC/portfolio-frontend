@@ -71,6 +71,7 @@ export class ContactComponent {
           response.message,
           ResponseType.SUCCESS
         );
+        console.log(response);
       },
       error: (response: any) => {
         if (response.error.statusCode == 422) {
@@ -89,6 +90,7 @@ export class ContactComponent {
             ResponseType.ERROR
           );
         }
+        console.log(response);
       },
     });
   }
