@@ -79,7 +79,7 @@ export class ContactComponent {
             response.error.message,
             ResponseType.WARN
           );
-        } else if (response.error.statusCode == 500) {
+        } else if (response.status == 500) {
           this.globalService.openCustomSnackbar(
             JSON.parse(response.error).message,
             ResponseType.WARN
