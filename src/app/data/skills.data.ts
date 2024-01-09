@@ -19,7 +19,7 @@ export const skillsLanguages: Skill[] = [
   },
   {
     name: 'C#',
-    svg: 'assets/svgs/language/c.svg',
+    svg: 'assets/svgs/language/c-4.svg',
   },
   {
     name: 'C++',

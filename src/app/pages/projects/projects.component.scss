@@ -119,12 +119,17 @@
       flex-direction: column;
       background: rgba($bg-color, 0.3);
       border-radius: 5px;
+      width: -webkit-fill-available !important;
+      width: -moz-available !important;
 
       .project-event {
         margin-top: 20px;
-        background: transparent;
+        background: transparent !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
 
         .project-img {
+          position: unset;
           bottom: 0 !important;
           right: 0 !important;
         }
@@ -132,7 +137,8 @@
 
       .project-data {
         width: -webkit-fill-available !important;
-        justify-content: center;
+        width: -moz-available !important;
+        align-items: center;
         padding: 0 20px 20px 20px;
 
         h3 {
@@ -172,6 +178,11 @@
       .project-event,
       .project-img {
         width: -webkit-fill-available !important;
+        width: -moz-available !important;
+      }
+
+      .project-img {
+        position: absolute;
       }
 
       .project-event {

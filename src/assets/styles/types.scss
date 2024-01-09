@@ -120,6 +120,7 @@
   .simultated-content {
     border-radius: 5px;
     width: -webkit-fill-available;
+    width: -moz-available;
     height: 100%;
 
     .section__title {
@@ -137,6 +138,7 @@
 #footer {
   height: 100%;
   width: -webkit-fill-available;
+  width: -moz-available;
   margin: 0;
   padding: 0 $section-mg-lr;
   padding-top: $section-pg-top;

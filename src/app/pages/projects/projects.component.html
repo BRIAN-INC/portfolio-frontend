@@ -4,7 +4,7 @@
     <div class="projects flex col">
       @for (project of getProjects; track project) {
         <article class="project flex">
-          <div class="project-event">
+          <div class="project-event flex">
             <a [href]="project.demoUrl" target="_blank" rel="noopener">
               <img class="project-img" [src]="project.img" alt="{{ project.alt }}">
             </a>

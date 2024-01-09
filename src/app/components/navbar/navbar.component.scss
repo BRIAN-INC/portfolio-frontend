@@ -8,7 +8,7 @@
   height: 100%;
   top: 0;
   font-size: 14px;
-  color: $txt-white-color;
+  // color: $txt-white-color;
   z-index: 100;
   transition: background-color 0.5s ease, box-shadow 0.5s ease;
   transition-property: background-color, box-shadow;
@@ -26,6 +26,10 @@
     justify-content: space-between;
 
     .nav-base {
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: flex-start;
+
       .close {
         display: none;
         cursor: pointer;
@@ -107,6 +111,7 @@
         .items {
           display: flex;
           width: -webkit-fill-available;
+          width: -moz-available;
           height: 100%;
           padding: 0 12%;
           flex-direction: column;
