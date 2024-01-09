@@ -74,19 +74,32 @@ export class ContactComponent {
         console.log(response);
       },
       error: (response: any) => {
+        let errorMessage =
+          response.error.message || 'Ocurrió un error desconocido';
+
+        // Verifica si el error es un JSON válido
+        if (typeof response.error === 'string') {
+          try {
+            const parsedError = JSON.parse(response.error);
+            errorMessage = parsedError.message || errorMessage;
+          } catch (e) {
+            // No hacer nada si el parseo falla, usa el mensaje de error por defecto
+          }
+        }
+
         if (response.error.statusCode == 422) {
           this.globalService.openCustomSnackbar(
-            response.error.message,
+            errorMessage,
             ResponseType.WARN
           );
         } else if (response.status == 500) {
           this.globalService.openCustomSnackbar(
-            JSON.parse(response.error).message,
+            errorMessage,
             ResponseType.WARN
           );
         } else {
           this.globalService.openCustomSnackbar(
-            response.error.message,
+            errorMessage,
             ResponseType.ERROR
           );
         }
