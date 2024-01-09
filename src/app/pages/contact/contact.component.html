@@ -3,10 +3,10 @@
     <h2 class="section__title">Contácto</h2>
 
     <div class="form-container">
-      <div class="form">
+      <form [formGroup]="myForm" class="form">
         <h3 class="heading">Contácto a través de correo electrónico</h3>
-        <input placeholder="Título" id="title" type="text" class="input" />
-        <input placeholder="Email" id="mail" type="email" class="input" />
+        <input placeholder="Título" id="title" type="text" class="input" formControlName="title" />
+        <input placeholder="Email" id="mail" type="email" class="input" formControlName="email" />
         <textarea
           placeholder="Mensaje"
           id="message"
@@ -14,10 +14,11 @@
           rows="10"
           cols="30"
           class="input"
+          formControlName="message"
         ></textarea>
 
         <div class="checkbox-wrapper">
-          <input checked="" (click)="check()" type="checkbox" class="check" id="check1-61">
+          <input checked="" (click)="check()" type="checkbox" class="check" id="check1-61" formControlName="sendMeCopy">
           <label for="check1-61" class="label">
             <svg width="45" height="45" viewBox="0 0 95 95" xmlns="http://www.w3.org/2000/svg">
               <!-- Rectángulo con esquinas redondeadas -->
@@ -34,10 +35,13 @@
         </div>
 
         <div class="button-container">
-          <a class="send-button">Enviar</a>
-          <a id="reset-btn" class="reset-button">Limpiar</a>
+          <button type="submit" [disabled]="!myForm.valid" (click)="send()"
+            class="send-button" [class.send-button-valid]="myForm.valid">
+              Enviar
+          </button>
+          <button type="reset" id="reset-btn" class="reset-button" (click)="reset()">Limpiar</button>
         </div>
-      </div>
+      </form>
     </div>
 
     <div class="social-container flex">

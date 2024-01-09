@@ -1,0 +1,9 @@
+<div class="cus-snakebar" @snackBarAnimation>
+    <div class="txt-snakebar">
+        <mat-icon>{{data.icon}}</mat-icon>
+        &nbsp;
+        <span>{{data?.message}}</span>
+    </div>
+    <div class="spacer"></div>
+    <a class="btn" mat-button (click)="closeCustomSnackbar()">{{data?.action}}</a>
+</div>

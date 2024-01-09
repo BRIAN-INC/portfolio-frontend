@@ -1,8 +1,8 @@
 import { CvComponent } from "../components/cv/cv.component";
-import { Submenu } from "../models/submenu.model";
 import { GlobalService } from "../services/global.service";
+import { Submenu } from '../models/submenu.model';
 
-const globalService = new GlobalService(); // Instancia del servicio
+// const globalService = new GlobalService();
 
 // Por ahora se recomienda no poner más de 6 submenus,
 // ya que se desborda del navbar en pantallas pequeñas
@@ -70,11 +70,11 @@ export const submenusInfoData: Submenu[] = [
     // uri: 'assets/files/cv.pdf',
     uri: 'https://drive.google.com/file/d/1zV5FcSlaJs0qscRKSNUE76ZUNtVYTs0A/view?usp=sharing',
     blank: true,
-    dialog: CvComponent,
-    dialogConfig: globalService.createDialogConfig(
-      '600px',
-      '80%',
-    ),
+    // dialog: CvComponent,
+    // dialogConfig: globalService.createDialogConfig(
+    //   '600px',
+    //   '80%',
+    // ),
   },
   {
     icon: 'fas fa-envelope',

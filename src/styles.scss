@@ -13,12 +13,6 @@ body {
 }
 
 // * Dialog
-.cdk-global-overlay-wrapper {
-  backdrop-filter: blur(5px) !important;
-  --webkit-backdrop-filter: blur(5px) !important;
-  // grayscale(0.8)
-}
-
 .mdc-dialog__surface {
   background: $bg-gradient !important;
   border-radius: $dialog-border-radius !important;
@@ -28,6 +22,12 @@ body {
 .cdk-overlay-backdrop {
   cursor: default; // Fuera del dialogo
 }
+
+// .cdk-global-overlay-wrapper {
+  // backdrop-filter: blur(5px) !important;
+  // --webkit-backdrop-filter: blur(5px) !important;
+  // grayscale(0.8)
+// }
 
 // * Scroll
 ::-webkit-scrollbar {
@@ -55,9 +55,139 @@ body {
   background: $quaternary-color; /* Color de los botones al hacer hover y al hacer click */
 }
 
-// animation on scroll disabled
-// @media (prefers-reduced-motion: reduce) {
-//   html {
-//     scroll-behavior: auto;
-//   }
-// }
+// * SNACKBAR VARIABLES * //
+$snackbar-background: #292929;
+$snackbar-text-color: #f3f3f3;
+$snackbar-btn-bg: rgba(#f3f3f3, 0.025);
+
+$success-primary: #01dc6a;
+$success-secondary: #01a656;
+$success-gradient: linear-gradient(
+  90deg,
+  $success-primary 15%,
+  $snackbar-background 100%
+);
+
+$info-primary: #1a71b8;
+$info-secondary: #3a86d1;
+$info-gradient: linear-gradient(
+  90deg,
+  $info-primary 15%,
+  $snackbar-background 100%
+);
+
+$warn-primary: #ffcc00;
+$warn-secondary: #e6b200;
+$warn-gradient: linear-gradient(
+  90deg,
+  $warn-primary 15%,
+  $snackbar-background 100%
+);
+
+$error-primary: #fe3151;
+$error-secondary: #d9273d;
+$error-gradient: linear-gradient(
+  90deg,
+  $error-primary 15%,
+  $snackbar-background 100%
+);
+// linear-gradient(90deg, #fe3151 15%, #d9273d 100%);
+
+$favorite-primary: #deff49;
+$favorite-secondary: #b8d230;
+$favorite-gradient: linear-gradient(
+  90deg,
+  $favorite-primary 15%,
+  $snackbar-background 100%
+);
+
+// SnackBar Styles
+.mat-mdc-snack-bar-container {
+  &.success-snackbar,
+  &.error-snackbar,
+  &.warn-snackbar,
+  &.info-snackbar,
+  &.favorite-snackbar {
+    background: $snackbar-background;
+    color: $snackbar-text-color !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+
+    &::before {
+      content: "";
+      width: 140px;
+      height: 90px;
+      border-radius: 50%;
+      background: $snackbar-text-color;
+      position: absolute;
+      left: -40px;
+      z-index: -1;
+      top: -10px;
+      filter: blur(56px);
+    }
+    .btn {
+      background-color: $snackbar-btn-bg !important;
+    }
+  }
+  &.success-snackbar {
+    &::before {
+      background: $success-primary;
+    }
+    --mdc-snackbar-container-color: $success-gradient;
+    .mat-icon {
+      color: $success-secondary !important;
+    }
+    .btn {
+      color: $success-primary !important;
+    }
+  }
+  &.info-snackbar {
+    &::before {
+      background: $info-primary;
+    }
+    --mdc-snackbar-container-color: $info-gradient;
+    .mat-icon {
+      color: $info-secondary !important;
+    }
+    .btn {
+      color: $info-secondary !important;
+    }
+  }
+  &.warn-snackbar {
+    &::before {
+      background: $warn-primary;
+    }
+    --mdc-snackbar-container-color: $warn-gradient;
+    .mat-icon {
+      color: $warn-secondary !important;
+    }
+    .btn {
+      color: $warn-secondary !important;
+    }
+  }
+  &.error-snackbar {
+    &::before {
+      background: $error-primary;
+    }
+    --mdc-snackbar-container-color: $error-gradient;
+    .mat-icon {
+      color: $error-secondary !important;
+    }
+    .btn {
+      color: $error-primary !important;
+    }
+  }
+  &.favorite-snackbar {
+    &::before {
+      background: $favorite-primary !important;
+    }
+    --mdc-snackbar-container-color: $favorite-gradient;
+    .mat-icon {
+      color: $favorite-secondary !important;
+    }
+    .btn {
+      color: $favorite-primary !important;
+    }
+  }
+}

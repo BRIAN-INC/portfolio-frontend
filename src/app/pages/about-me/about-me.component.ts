@@ -34,9 +34,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.getLength > 0) {
-      this.updateIntervals.forEach((interval) => clearInterval(interval));
-    }
+    this.updateIntervals.forEach((interval) => clearInterval(interval));
   }
 
   public changeTab(index: number): void {

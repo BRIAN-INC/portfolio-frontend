@@ -1,0 +1,36 @@
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  background-color: #000 !important;
+}
+
+.cus-snakebar {
+  // padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  min-width: 400px;
+
+  .txt-snakebar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 500;
+
+    mat-icon {
+      font-size: 2rem;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .btn {
+    align-self: flex-end;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    // border: 1px solid #464646;
+    padding: 5px 15px;
+    border-radius: 3px;
+  }
+}

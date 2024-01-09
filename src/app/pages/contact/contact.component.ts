@@ -3,34 +3,97 @@ import { socialData } from '../../data/contact.data';
 import { ContactDTO, Social } from '../../models/landing.model';
 import { SocialItemComponent } from '../../components/social-item/social-item.component';
 import { environment } from '../../../environments/environment-prod';
-import { HttpService } from '../../services/http.service';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Observable, map } from 'rxjs';
+import { ResponseDTO, ResponseType } from '../../models/general.model';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [SocialItemComponent, HttpClientModule],
+  imports: [SocialItemComponent, HttpClientModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
-  public socialData: Social[] = socialData;
-  public contact: ContactDTO = new ContactDTO();
+  private api = environment.BACKEND_URL;
 
-  constructor(private http: HttpService) {}
+  public socialData: Social[] = socialData;
+
+  public rq: ContactDTO = new ContactDTO();
+  public myForm!: FormGroup;
+
+  constructor(
+    private globalService: GlobalService,
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.contact.sendMeCopy = true;
-    try {
-      this.http.getSimple('/test').subscribe((data: any) => {
-        console.log(data);
-      });
-    } catch (error) {
-      console.log('error: ', error);
-    }
+    this.reactiveForm();
+  }
+
+  public reactiveForm() {
+    this.myForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', Validators.required],
+      sendMeCopy: [true, Validators.required],
+    });
   }
 
   public check() {
-    this.contact.sendMeCopy = !this.contact.sendMeCopy;
+    this.rq.sendMeCopy = !this.rq.sendMeCopy;
+  }
+
+  public async send() {
+    const url = this.api + '/send-email';
+
+    this.rq.title = this.myForm.get('title')?.value;
+    this.rq.email = this.myForm.get('email')?.value;
+    this.rq.message = this.myForm.get('message')?.value;
+    this.rq.sendMeCopy = this.myForm.get('sendMeCopy')?.value;
+
+    await this.http.post<ResponseDTO>(url, this.rq).subscribe({
+      next: (response: ResponseDTO) => {
+        this.globalService.openCustomSnackbar(
+          response.message,
+          ResponseType.SUCCESS
+        );
+      },
+      error: (response: any) => {
+        if (response.error.statusCode == 422) {
+          this.globalService.openCustomSnackbar(
+            response.error.message,
+            ResponseType.WARN
+          );
+        } else if (response.error.statusCode == 422) {
+          this.globalService.openCustomSnackbar(
+            response.error.message,
+            ResponseType.WARN
+          );
+        } else {
+          this.globalService.openCustomSnackbar(
+            response.error.message,
+            ResponseType.ERROR
+          );
+        }
+      },
+    });
+  }
+
+  public reset() {
+    this.myForm.reset();
   }
 }
