@@ -125,8 +125,6 @@
       .project-event {
         margin-top: 20px;
         background: transparent !important;
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
 
         .project-img {
           position: unset;
@@ -175,17 +173,12 @@
 @media screen and (max-width: $mobile-sm) {
   .projects {
     .project {
-      .project-event,
-      .project-img {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-      }
-
       .project-img {
         position: absolute;
       }
 
       .project-event {
+        width: inherit !important;
         height: 200px !important;
       }
     }
