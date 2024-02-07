@@ -81,6 +81,12 @@ export const skillsKnowledges: Skill[] = [
     // blank: true,
   },
   {
+    name: 'Tailwind',
+    svg: 'assets/svgs/knowledge/tailwind.svg',
+    // url: 'https://acortar.link/kiridepapel-tailwind',
+    // blank: true,
+  },
+  {
     name: 'Git',
     svg: 'assets/svgs/knowledge/git.svg',
     // url: 'https://acortar.link/kiridepapel-git',

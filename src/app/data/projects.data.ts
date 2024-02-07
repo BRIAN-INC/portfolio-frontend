@@ -10,22 +10,28 @@ export const projectsData: Project[] = [
     tags: ['Frontend', 'Backend', 'Scraping'],
     skills: [
       {
-        name: 'Spring Boot 3',
+        name: 'Spring Boot 3 - Java 17',
         svg: 'assets/svgs/framework/springboot.svg',
         // // url: '/#skills',
         // url: 'https://acortar.link/kiridepapel-springboot',
         // blank: true,
       },
       {
-        name: 'Angular 17',
+        name: 'JSoup',
+        svg: 'assets/svgs/knowledge/jsoup.svg',
+        // url: 'https://acortar.link/kiridepapel-jwt',
+        // blank: true,
+      },
+      {
+        name: 'Angular 17 - TypeScript 5',
         svg: 'assets/svgs/framework/angular.svg',
         // url: 'https://acortar.link/kiridepapel-angular',
         // blank: true,
       },
       {
-        name: 'JSoup',
-        svg: 'assets/svgs/knowledge/jsoup.svg',
-        // url: 'https://acortar.link/kiridepapel-jwt',
+        name: 'Tailwind',
+        svg: 'assets/svgs/knowledge/tailwind.svg',
+        // url: 'https://acortar.link/kiridepapel-tailwind',
         // blank: true,
       },
       {
@@ -48,22 +54,28 @@ export const projectsData: Project[] = [
     tags: ['Frontend', 'Backend', 'JWT'],
     skills: [
       {
-        name: 'Spring Boot',
+        name: 'Spring Boot 3 - Java 17',
         svg: 'assets/svgs/framework/springboot.svg',
         // // url: '/#skills',
         // url: 'https://acortar.link/kiridepapel-springboot',
         // blank: true,
       },
       {
-        name: 'Angular',
+        name: 'JWT',
+        svg: 'assets/svgs/knowledge/jwt.svg',
+        // url: 'https://acortar.link/kiridepapel-jwt',
+        // blank: true,
+      },
+      {
+        name: 'Angular 16 - TypeScript 5',
         svg: 'assets/svgs/framework/angular.svg',
         // url: 'https://acortar.link/kiridepapel-angular',
         // blank: true,
       },
       {
-        name: 'JWT',
-        svg: 'assets/svgs/knowledge/jwt.svg',
-        // url: 'https://acortar.link/kiridepapel-jwt',
+        name: 'SCSS',
+        svg: 'assets/svgs/language/scss.svg',
+        // url: 'https://acortar.link/kiridepapel-scss',
         // blank: true,
       },
       {
