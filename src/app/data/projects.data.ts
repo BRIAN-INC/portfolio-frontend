@@ -12,27 +12,40 @@ export const projectsData: Project[] = [
     skills: [
       {
         name: 'Spring Boot',
-        svg: 'assets/svgs/framework/spring.svg',
+        svg: 'assets/svgs/framework/springboot.svg',
+        // // url: '/#skills',
+        // url: 'https://acortar.link/kiridepapel-springboot',
+        // blank: true,
       },
       {
         name: 'Java',
         svg: 'assets/svgs/language/java.svg',
+        // url: 'https://acortar.link/kiridepapel-java',
+        // blank: true,
       },
       {
         name: 'Angular',
         svg: 'assets/svgs/framework/angular.svg',
+        // url: 'https://acortar.link/kiridepapel-angular',
+        // blank: true,
       },
       {
         name: 'TypeScript',
         svg: 'assets/svgs/language/typescript.svg',
+        // url: 'https://acortar.link/kiridepapel-typescript',
+        // blank: true,
       },
       {
         name: 'JWT',
         svg: 'assets/svgs/knowledge/jwt.svg',
+        // url: 'https://acortar.link/kiridepapel-jwt',
+        // blank: true,
       },
       {
         name: 'PostgreSQL',
-        svg: 'assets/svgs/knowledge/postgresql.svg',
+        svg: 'assets/svgs/database/postgresql.svg',
+        // url: 'https://acortar.link/kiridepapel-postgresql',
+        // blank: true,
       },
     ],
 

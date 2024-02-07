@@ -19,4 +19,16 @@ export class SkillComponent {
   public isDesktop(): boolean {
     return window.innerWidth > this.tabletSize;
   }
+
+  public goTo(): void {
+    const url = this.skill.url;
+
+    if (url && url !== null && url !== '') {
+      if (this.skill.blank) {
+        window.open(url, '_blank');
+      } else {
+        window.location.href = url;
+      }
+    }
+  }
 }

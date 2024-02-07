@@ -1,8 +1,10 @@
 <div class="skill flex">
   <p class="skill-name" [style.fontSize.px]="fontSize">{{ skill.name }}</p>
   <img class="skill-img"
+    (click)="goTo()"
     [width]="isDesktop() ? tam : tamTablet"
     [height]="isDesktop() ? tam : tamTablet"
+    [style.cursor]="skill.url ? 'help' : 'default'"
     [src]="skill.svg" alt="{{ skill.name }}"
   />
 </div>

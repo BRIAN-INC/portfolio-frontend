@@ -4,21 +4,28 @@
     <div class="section__content">
       <h3>Lenguajes de programación</h3>
       <div class="skills-languages flex start">
-        @for(language of skillsLanguages; track language) {
+        @for(language of skillsLanguages; track $index) {
           <app-skill [skill]="language"></app-skill>
+        }
+      </div>
+      <br>
+      <h3>Bases de datos</h3>
+      <div class="skills-frameworks flex start">
+        @for(database of skillsDatabases; track $index) {
+          <app-skill [skill]="database"></app-skill>
         }
       </div>
       <br>
       <h3>Frameworks</h3>
       <div class="skills-frameworks flex start">
-        @for(framework of skillsFrameworks; track framework) {
+        @for(framework of skillsFrameworks; track $index) {
           <app-skill [skill]="framework"></app-skill>
         }
       </div>
       <br>
       <h3>Conocimientos generales</h3>
       <div class="skills-knowledges flex start">
-        @for(knowledge of skillsKnowledges; track knowledge) {
+        @for(knowledge of skillsKnowledges; track $index) {
           <app-skill [skill]="knowledge"></app-skill>
         }
       </div>

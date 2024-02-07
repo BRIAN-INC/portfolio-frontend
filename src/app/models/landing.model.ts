@@ -14,6 +14,8 @@ export class Project {
 export class Skill {
   name?: string = '';
   svg?: string = '';
+  url?: string = '';
+  blank?: boolean = false;
 }
 
 export class Social {
