@@ -7,7 +7,8 @@ export class Project {
   tags: string[] = [];
   skills: Skill[] = [];
 
-  codeUrl?: string = '';
+  codeFrontUrl?: string = '';
+  codeBackUrl?: string = '';
   demoUrl?: string = '';
 }
 

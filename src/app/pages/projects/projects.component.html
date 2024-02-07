@@ -1,6 +1,6 @@
 <section id="projects" class="kw-section flex">
   <div class="simultated-content flex col">
-    <h2 class="section__title">Proyectos terminados</h2>
+    <h2 class="section__title">Proyectos</h2>
     <div class="projects flex col">
       @for (project of getProjects; track project) {
         <article class="project flex">
@@ -25,11 +25,15 @@
             <div class="project-links flex">
               <a [href]="project.demoUrl" target="_blank" rel="noopener">
                 <i class="fa-solid fa-desktop"></i>
-                Demo
+                Ver
               </a>
-              <a [href]="project.codeUrl" target="_blank" rel="noopener">
+              <a [href]="project.codeFrontUrl" target="_blank" rel="noopener">
                 <i class="fa-solid fa-code"></i>
-                Código
+                Front
+              </a>
+              <a [href]="project.codeBackUrl" target="_blank" rel="noopener">
+                <i class="fa-solid fa-code"></i>
+                Back
               </a>
             </div>
           </div>
