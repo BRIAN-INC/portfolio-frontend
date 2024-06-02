@@ -11,7 +11,7 @@ import { GitEventComponent } from '../../components/git-event/git-event.componen
   styleUrls: ['./about-me.component.scss'],
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
-  private gitUser = 'kiridepapel';
+  private gitUser = 'brianuceda';
   private quantityOfEvents = 10;
   // Information received and calculated from GitHub API
   public commitsData: any[] = [];
